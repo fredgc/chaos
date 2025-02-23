@@ -1,0 +1,187 @@
+<!--
+    Copyright 2024 Google LLC
+
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+  -->
+<!doctype html PUBLIC "-//W3C//DTD HTML 5.0//EN">
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
+    <link type="text/css" rel="stylesheet" href="css/doc_style.css"/>
+    <title>Chaos Help Page</title>
+  </head>
+  <body>
+    <h2>Demo Fields</h2>
+    <p>
+      Here is the list of vector fields shown. I recommend you look at them in
+      order.
+    </p>
+
+    <h3>Simple rotation</h3>
+    <p>
+      This is a simple clockwise rotation.
+    </p>
+
+    <pre>
+      x' =     y + p*saw(x)
+      y' = -x    + p*saw(y)
+    </pre>
+    <p>
+      Or in vector notation
+    </p>
+
+    <pre>
+      v' = [ 0  1]v  + perturbation
+           [-1  0]
+
+      v = [x]
+          [y]
+    </pre>
+    <p>
+      The perterbation is a sawtooth that depends on the parater. Add a few
+      motes to the flow and clock "play". You should see them flowing in a
+      clockwise circle.
+    </p>
+    <p>
+      Increase the size of the parameter and the motes will slightly deviate
+      from their previous paths.
+    </p>
+    <p>
+      Turn on the checkbox "Fld" to show the vector field. Because the vector
+      field is bounded, the path of each mote is smooth and it is completely
+      determined by the mote's starting point. That means the motes can never
+      intersect.
+    </p>
+    <p>
+      Turn on the checkbox "Iso" to dissplay the isoclines. These are the
+      curves where the vector field that is 0 in either the x or y component.
+      If <code>x' = 0</code> then the vector field is vertical and the mote is
+      traveling vertically.  If <code>y' = 0</code> then the vector field is
+      horizontal and the mote is traveling horizontally. If both are 0 then the
+      mote is stationary. This is also called a stationary point of the dynamic
+      system.
+    </p>
+
+
+    <h3>Spiral - stable versus unstable point</h3>
+    <p>
+      We change the previous example by adding a linear dependency of
+      <code>x'</code> on <code>x</code> and <code>y'</code> on <code>y</code>.
+      Like this:
+    </p>
+
+    <pre>
+      x' = p*x +   y
+      y' =  -x + p*y
+    </pre>
+    <p>
+      When you start out, <code>p = 0</code>, so it is identical to the
+      rotation above. There is a stationary point at the center
+      <code>(0,0)</code>.
+    </p>
+    <p>
+      Move the parameter to the left so that <code>p &lt; 0</code>. The motes
+      will start to spiral toward the stationary point. This is a stable
+      stationary point. Motes that start near the stationary point will stay
+      near the stationary point.
+    </p>
+
+    <p>
+      Move the parameter to the right so that <code>p > 0</code>. The motes
+      will start to spiral away from the stationary point. This is an unstable
+      stationary point. Motes that start near the stationary point will
+      eventually move away from the stationary point.
+    </p>
+    <p>
+      Look at the regions separated by the isoclines. In each region, the motes
+      tend to move "up and left", "up and right", "down and left" or "down and
+      right".
+    </p>
+
+    <h3>Stir</h3>
+    <p>
+      Here is an example with several stationary points. Some are stable and
+      some are unstable. Notice that if you add a mote near one of the unstable
+      points it drifts away and then starts to approach the stable points.
+    </p>
+
+    <pre>
+      x' = -0.2 x^3 + saw(y, y_cent)
+      y' = -0.2 y^3 - saw(x, x_cent)
+                              /
+                         /\  /
+       saw(x,c) =       /  \/
+                       /
+
+    </pre>
+    <p>
+      Change the paremeter and the stationary points will start to move. The
+      motes will start to follow. You end up with a chaotic mess.
+    </p>
+    <p>
+      Because the equations are smooth, motes that start near each other, will
+      in the short term, stay near each other. However, if you wait long enough
+      they will eventually drift apart.
+    </p>
+    <p>
+      This is seems like a paradox of calculus: if you fix a value of
+      <code>t</code>, then the position <code>(x(t), y(t))</code> varies
+      continuously with respect to <code>(x(0), y(0))</code>. But if you do not
+      fix <code>t</code>, and let it grow large, then you loose that
+      continuity.
+    </p>
+    <p>
+      This example is a little bit interesting because there is an attractor
+      that moves with time. But it's not very interesting: eventually all the
+      motes end up spiralling closely around one of the four attractor points.
+    </p>
+
+    <h3>Chaotic System w/Strange Attract</h3>
+    <p>
+      This is an example from the book mentioned in the reference section
+      below.
+    </p>
+
+    <pre>
+      x'(t) = 0.7y + 10x(0.1-y^2)
+      y'(t) = -x + 0.25 sin(1.57t)
+    </pre>
+    <p>
+      Although this system is chaotic, it has an attractor. Notice that the
+      attractor is not really a curve. As time advances, the attractor
+      separates and folds on itself. The motes will drift apart and then drift
+      back together but in a different order.
+    </p>
+
+    <p>
+      Add a grid of motes and watch how the similar colors stay near each other
+      at first, and then start to mix together. It is reminiscent of kneading
+      bread or forging steel.
+    </p>
+
+    <h3>References</h3>
+
+    <p>For more reading, I recommend</p>
+    <ul>
+      <li><a href="https://www.wiley.com/en-us/Nonlinear+Dynamics+and+Chaos%2C+2nd+Edition-p-9780471876847"
+             target="_blank">Nonlinear Dynamics and Chaos</a>
+        by J. M. T. Thompson and H. B. Stewart.
+      </li>
+      <li><a href="https://www.degruyter.com/document/doi/10.1515/zna-1981-0115/html"
+             target="_blank"
+             >Strange attractors, chaotic behavior, and information flow</a>
+        by R. Shaw
+      </li>
+    </ul>
+  </body>
+</html>
