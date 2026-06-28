@@ -46,11 +46,17 @@ class _HelpScreenState extends State<HelpScreen> {
       return;
     }
     print("load file $filename.");
-    webViewController?.loadFile(assetFilePath: "assets/$filename");
-    // print("getMetaThemeColor = ${webViewController?.getMetaThemeColor}");
-    Color? color = await webViewController!.getMetaThemeColor();
-    // print("getMetaThemeColor = ${color}");
-    // print("Done loading?");
+  // XXX This does not work with firebase hosting. These files need to go
+  // to the web and also to Android. This needs some work.
+    try {
+      await webViewController?.loadFile(assetFilePath: "assets/assets/$filename");
+      print("getMetaThemeColor = ${webViewController?.getMetaThemeColor}");
+      Color? color = await webViewController!.getMetaThemeColor();
+      print("getMetaThemeColor = ${color}");
+      print("Done loading?");
+    } catch(ex) {
+      print("RED: error loading $filename. $ex");
+    }
   }
 
   AppBar appBar(BuildContext context) {
