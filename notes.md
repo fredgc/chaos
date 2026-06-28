@@ -7,7 +7,7 @@ In help doc or about doc explain how to delete preferences.
 
 https://b.corp.google.com/issues/368449630
 
-Link something like 
+Link something like
 The applications allow the user to change settings or preferences that are saved to the device. This is done via flutter's SharedPreferences which are backed by Android Shared Preferences on Android and LocalStorage for a web app.
 https://pub.dev/packages/shared_preferences
 
@@ -27,6 +27,17 @@ Use this to load an asset:
 
 
 TODO: SHORT TERM.
+- add fredgc@users.noreply.github.com as email for github commits
+  on release branch.
+  git checkout github/main
+  git merge --squash main
+  git commit --author="Fred Gylys-Colwell
+  <fredgc@users.noreply.github.com>" -m "A new commit" -m "" -m "Second
+  line"
+  or
+  github_commit  -m "A new commit" -m "" -m "Second line"
+  git push github HEAD:main
+
 - unit tests?
 - Release next: step 4 cross tool.
 - update help to use html. Add "about.html"
@@ -38,7 +49,7 @@ TODO: SHORT TERM.
   - why is speed dropdown cropped?
   - what happens if too many tools?
 - add feather density settings.
-- add ui to do loop. -- part of speed. 
+- add ui to do loop. -- part of speed.
   - animation needs to stop and restart with boolean on backwards.
   - add ability to reset clock to zero.
   - settings controls if it is in ui.
@@ -72,18 +83,18 @@ TODO: SHORT TERM.
   https://www.reddit.com/r/flutterhelp/comments/qrzm0a/what_is_the_appropriate_way_to_display_a_page_of/
     -- webview_flutter can display web page.
     -- There is also IFrameElement for displaying external web pages
-    -- 
+    --
   -- looks like https://stackoverflow.com/questions/56220691/how-do-i-open-an-external-url-in-flutter-web-in-new-tab-or-in-same-tab
      recommends dart:js or dart:html with html.window.open... That does not work
      on android.
      https://stackoverflow.com/questions/69485846/import-js-dart-and-html-dart-for-a-mixed-web-mobile-flutter-project
      or url_launcher: ^6.1.0 -- this looks more supported.
    or maybe use this: https://pub.dev/packages/webview_flutter
-     
-     or 
-     
+
+     or
+
      https://rodydavis.medium.com/displaying-html-in-flutter-8da44773764
-      
+
   -- overview
   -- explain controls
   -- explain each example flow.
