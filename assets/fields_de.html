@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Chaos-Demo-Felder</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+  </style>
+  <link rel="stylesheet" href="css/doc_style.css" />
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">Chaos-Demo-Felder</h1>
+</header>
+<h2 id="beispielfelder">Beispielfelder</h2>
+<p>Hier ist die Liste der dargestellten Vektorfelder. Wir empfehlen, sie
+der Reihe nach zu betrachten.</p>
+<h3 id="einfache-rotation">Einfache Rotation</h3>
+<p>Dies ist eine einfache Rotation im Uhrzeigersinn.</p>
+<pre><code>x&#39; =     y + p*saw(x)
+y&#39; = -x    + p*saw(y)</code></pre>
+<p>In Vektorschreibweise:</p>
+<pre><code>v&#39; = [ 0  1]v  + Störung
+     [-1  0]
+
+v = [x]
+    [y]</code></pre>
+<p>Die Störung ist eine Sägezahnfunktion, die vom Parameter abhängt.
+Fügen Sie einige Partikel hinzu und klicken Sie auf„Start“. Sie bewegen
+sich auf einer Kreisbahn im Uhrzeigersinn.</p>
+<p>Erhöhen Sie den Parameterwert, weichen die Partikel leicht von ihren
+bisherigen Bahnen ab.</p>
+<p>Aktivieren Sie das Kontrollkästchen„Feld“, um das Vektorfeld
+einzublenden. Da das Vektorfeld beschränkt ist, ist die Bahn jedes
+Partikels glatt und wird vollständig durch seinen Startpunkt bestimmt.
+Partikelbahnen können sich daher nie kreuzen.</p>
+<p>Aktivieren Sie das Kontrollkästchen„Iso“, um die Isoklinen
+anzuzeigen. Auf diesen Kurven verschwindet die x- oder y-Komponente des
+Vektorfelds. Wenn <code>x' = 0</code>, verläuft das Vektorfeld rein
+vertikal. Wenn <code>y' = 0</code>, verläuft es rein horizontal. Sind
+beide 0, bleibt das Partikel in Ruhe. Dies wird als stationärer Punkt
+des dynamischen Systems bezeichnet.</p>
+<h3 id="spirale-stabiler-versus-instabiler-punkt">Spirale – stabiler
+versus instabiler Punkt</h3>
+<p>Wir erweitern das vorherige Beispiel um eine lineare Abhängigkeit von
+<code>x'</code> von <code>x</code> und <code>y'</code> von
+<code>y</code>:</p>
+<pre><code>x&#39; = p*x +   y
+y&#39; =  -x + p*y</code></pre>
+<p>Zu Beginn ist <code>p = 0</code>, was der obigen reinen Rotation
+entspricht. Im Ursprung <code>(0,0)</code> liegt ein stationärer
+Punkt.</p>
+<p>Wird der Parameter nach links verschoben (<code>p &lt; 0</code>),
+spiralen die Partikel auf den stationären Punkt zu. Dies ist ein
+stabiler Gleichgewichtspunkt: Partikel, die nahe am Punkt starten,
+bleiben in seiner Nähe.</p>
+<p>Wird der Parameter nach rechts verschoben (<code>p &gt; 0</code>),
+spiralen die Partikel vom Punkt weg. Dies ist ein instabiler
+Gleichgewichtspunkt: Partikel entfernen sich mit der Zeit.</p>
+<p>Beachten Sie die durch die Isoklinen getrennten Bereiche. In jedem
+Bereich streben die Partikel in eine bestimmte Quadrantenrichtung.</p>
+<h3 id="rühren-stir">Rühren (Stir)</h3>
+<p>Hier ist ein Beispiel mit mehreren stationären Punkten—manche stabil,
+manche instabil. Partikel nahe instabilen Punkten driften ab und nähern
+sich den stabilen Punkten.</p>
+<pre><code>x&#39; = -0.2 x^3 + saw(y, y_cent)
+y&#39; = -0.2 y^3 - saw(x, x_cent)
+                        /
+                   /\  /
+ saw(x,c) =       /  \/
+                 /</code></pre>
+<p>Wird der Parameter verändert, beginnen die stationären Punkte zu
+wandern. Die Partikel folgen ihnen und es entsteht ein chaotisches
+Muster.</p>
+<p>Da die Gleichungen glatt sind, bleiben Partikel, die nahe beieinander
+starten, zunächst nahe beieinander. Nach längerer Zeit driften sie
+jedoch unweigerlich auseinander.</p>
+<p>Dies veranschaulicht ein scheinbares Paradoxon der Analysis: Bei
+festem <code>t</code> hängt die Position <code>(x(t), y(t))</code>
+stetig von den Anfangswerten <code>(x(0), y(0))</code> ab. Lässt man
+<code>t</code> jedoch beliebig großwerden, geht diese Stetigkeit in der
+Praxis verloren.</p>
+<p>Dieses Beispiel besitzt einen sich mit der Zeit bewegenden Attraktor:
+Schließlich kreisen alle Partikel eng um einen der vier
+Attraktor-Punkte.</p>
+<h3 id="chaotisches-system-mit-seltsamem-attraktor">Chaotisches System
+mit seltsamem Attraktor</h3>
+<p>Dieses Beispiel stammt aus dem in den Literaturhinweisen genannten
+Fachbuch.</p>
+<pre><code>x&#39;(t) = 0.7y + 10x(0.1-y^2)
+y&#39;(t) = -x + 0.25 sin(1.57t)</code></pre>
+<p>Obwohl dieses System chaotisch ist, besitzt es einen Attraktor. Der
+Attraktor ist keine einfache Kurve: Mit fortschreitender Zeit teilt und
+faltet er sich. Partikel entfernen sich voneinander und finden in
+veränderter Reihenfolge wieder zusammen.</p>
+<p>Fügen Sie ein Partikelgitter hinzu und beobachten Sie, wieähnliche
+Farben anfangs zusammenbleiben und sich dann durchmischen—vergleichbar
+mit dem Kneten von Teig oder dem Schmieden von Damaszener Stahl.</p>
+<h3 id="literaturhinweise">Literaturhinweise</h3>
+<p>Für weiterführende Lektüre empfehlen wir:</p>
+<ul>
+<li><p><a
+href="https://www.wiley.com/en-us/Nonlinear+Dynamics+and+Chaos%2C+2nd+Edition-p-9780471876847">Nonlinear
+Dynamics and Chaos</a> von J. M. T. Thompson und H. B. Stewart.</p></li>
+<li><p><a
+href="https://www.degruyter.com/document/doi/10.1515/zna-1981-0115/html">Strange
+attractors, chaotic behavior, and information flow</a> von R.
+Shaw.</p></li>
+</ul>
+</body>
+</html>

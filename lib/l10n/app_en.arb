@@ -1,0 +1,309 @@
+{
+  "@@locale": "en",
+  "aboutButton": "About",
+  "@aboutButton": {
+    "description": "Button to open About help document"
+  },
+  "appTitle": "Dynamic System Demo",
+  "@appTitle": {
+    "description": "Title displayed on application header"
+  },
+  "appVersionInfo": "Application {name} version {version}.{buildNumber}",
+  "@appVersionInfo": {
+    "description": "Application version information in settings",
+    "placeholders": {
+      "name": {
+        "type": "String",
+        "example": "chaos"
+      },
+      "version": {
+        "type": "String",
+        "example": "2.0.1"
+      },
+      "buildNumber": {
+        "type": "String",
+        "example": "7"
+      }
+    }
+  },
+  "axisColorName": "Axis Color",
+  "@axisColorName": {
+    "description": "Setting name for plot axis color"
+  },
+  "backgroundColorName": "Background Color",
+  "@backgroundColorName": {
+    "description": "Setting name for background color"
+  },
+  "cancelButton": "Cancel",
+  "@cancelButton": {
+    "description": "Button to cancel settings changes"
+  },
+  "changeToolTooltip": "{name}: {tooltip}\nClick to change tool.",
+  "@changeToolTooltip": {
+    "description": "Tooltip on the tool picker button",
+    "placeholders": {
+      "name": {
+        "type": "String",
+        "example": "Add"
+      },
+      "tooltip": {
+        "type": "String",
+        "example": "Click to add one mote to the flow"
+      }
+    }
+  },
+  "clearAllTooltip": "Clear all",
+  "@clearAllTooltip": {
+    "description": "Tooltip for clear all motes button"
+  },
+  "closeButtonTooltip": "Close",
+  "@closeButtonTooltip": {
+    "description": "Tooltip for close dialog button"
+  },
+  "colorPickerIndexedTitle": "Pick {name} {index}",
+  "@colorPickerIndexedTitle": {
+    "description": "Title in color picker dialog for indexed color",
+    "placeholders": {
+      "name": {
+        "type": "String",
+        "example": "Mote Colors"
+      },
+      "index": {
+        "type": "int",
+        "example": "1"
+      }
+    }
+  },
+  "colorPickerTitle": "Pick",
+  "@colorPickerTitle": {
+    "description": "Title in color picker dialog"
+  },
+  "controlsButton": "Controls",
+  "@controlsButton": {
+    "description": "Button to open Controls help document"
+  },
+  "currentFieldTooltip": "Current flow field: {title}\nClick to change",
+  "@currentFieldTooltip": {
+    "description": "Tooltip for current flow field menu button",
+    "placeholders": {
+      "title": {
+        "type": "String",
+        "example": "Simple Rotation"
+      }
+    }
+  },
+  "doneButton": "Done",
+  "@doneButton": {
+    "description": "Button to save and apply settings"
+  },
+  "fieldChaos": "Chaotic System w/Strange Attractor",
+  "@fieldChaos": {
+    "description": "Name of the chaotic system field"
+  },
+  "fieldRotate": "Simple Rotation",
+  "@fieldRotate": {
+    "description": "Name of the simple rotation field"
+  },
+  "fieldSpiral": "Stable/Unstable Point",
+  "@fieldSpiral": {
+    "description": "Name of the spiral field"
+  },
+  "fieldStir": "Stir",
+  "@fieldStir": {
+    "description": "Name of the stir field"
+  },
+  "fieldsButton": "Fields",
+  "@fieldsButton": {
+    "description": "Button to open Fields help document"
+  },
+  "fpsThrottleName": "FPS Throttle",
+  "@fpsThrottleName": {
+    "description": "Setting name for FPS throttle"
+  },
+  "fpsThrottleTip": "The frame rate will be throttled to this value",
+  "@fpsThrottleTip": {
+    "description": "Tooltip for FPS throttle setting"
+  },
+  "helpTitle": "Help",
+  "@helpTitle": {
+    "description": "Title of the Help screen"
+  },
+  "helpTooltip": "Help",
+  "@helpTooltip": {
+    "description": "Tooltip for help button"
+  },
+  "initializingApp": "Initializing App...",
+  "@initializingApp": {
+    "description": "Message shown while app is initializing"
+  },
+  "initializingSettings": "Initializing Settings...",
+  "@initializingSettings": {
+    "description": "Message shown while settings are initializing"
+  },
+  "isoclinesLabel": "Iso:",
+  "@isoclinesLabel": {
+    "description": "Label for isocline toggle checkbox"
+  },
+  "languageAuto": "Auto",
+  "@languageAuto": {
+    "description": "Option to follow system language"
+  },
+  "languageEnglish": "English",
+  "@languageEnglish": {
+    "description": "Option for English language"
+  },
+  "languageSpanish": "Español",
+  "@languageSpanish": {
+    "description": "Option for Spanish language"
+  },
+  "loadingText": "Loading...",
+  "@loadingText": {
+    "description": "Text displayed while document is loading"
+  },
+  "moteColorsName": "Mote Colors",
+  "@moteColorsName": {
+    "description": "Setting name for mote colors"
+  },
+  "overviewButton": "Overview",
+  "@overviewButton": {
+    "description": "Button to open Overview help document"
+  },
+  "parameterLabel": "Parameter {number}: ",
+  "@parameterLabel": {
+    "description": "Label for dynamic system parameter slider",
+    "placeholders": {
+      "number": {
+        "type": "int",
+        "example": "1"
+      }
+    }
+  },
+  "pauseTooltip": "Pause",
+  "@pauseTooltip": {
+    "description": "Tooltip for pause button"
+  },
+  "periodicDebugLogsName": "Periodic Debug Logs",
+  "@periodicDebugLogsName": {
+    "description": "Setting name for periodic debug logs"
+  },
+  "periodicDebugLogsTip": "Print some debug logs to the console.",
+  "@periodicDebugLogsTip": {
+    "description": "Tooltip for periodic debug logs setting"
+  },
+  "pickSpeedTooltip": "Pick flow speed.",
+  "@pickSpeedTooltip": {
+    "description": "Tooltip for speed picker"
+  },
+  "playTooltip": "Play",
+  "@playTooltip": {
+    "description": "Tooltip for play button"
+  },
+  "playbackSpeedName": "Playback Speed",
+  "@playbackSpeedName": {
+    "description": "Setting name for playback speed"
+  },
+  "privacyButton": "Privacy",
+  "@privacyButton": {
+    "description": "Button to open Privacy help document"
+  },
+  "selectMoteColorTooltip": "Select mote color",
+  "@selectMoteColorTooltip": {
+    "description": "Tooltip for mote color selector container"
+  },
+  "selectNextMoteColorTooltip": "Select color of next mote",
+  "@selectNextMoteColorTooltip": {
+    "description": "Tooltip for button to select next mote color"
+  },
+  "settingsTitle": "Settings",
+  "@settingsTitle": {
+    "description": "Title of settings screen and button tooltip"
+  },
+  "settingsTooltip": "Settings",
+  "@settingsTooltip": {
+    "description": "Tooltip for settings button"
+  },
+  "showIsoclinesTooltip": "Show isoclines",
+  "@showIsoclinesTooltip": {
+    "description": "Tooltip for isoclines checkbox"
+  },
+  "showVectorFieldTooltip": "Show vector field",
+  "@showVectorFieldTooltip": {
+    "description": "Tooltip for vector field checkbox"
+  },
+  "stillInitializing": "Still Initializing...",
+  "@stillInitializing": {
+    "description": "Message shown while animator is initializing"
+  },
+  "switchLanguageTooltip": "Switch language",
+  "@switchLanguageTooltip": {
+    "description": "Tooltip for the language selection menu button"
+  },
+  "termsButton": "Terms",
+  "@termsButton": {
+    "description": "Button to open Terms help document"
+  },
+  "themeBrightnessLabel": "Theme Brightness: ",
+  "@themeBrightnessLabel": {
+    "description": "Label for theme brightness toggle"
+  },
+  "themeColorName": "Theme Color",
+  "@themeColorName": {
+    "description": "Setting name for theme color"
+  },
+  "themeDark": "Dark",
+  "@themeDark": {
+    "description": "Dark theme option"
+  },
+  "themeLight": "Light",
+  "@themeLight": {
+    "description": "Light theme option"
+  },
+  "themeSystem": "System",
+  "@themeSystem": {
+    "description": "System theme option"
+  },
+  "toolAddName": "Add",
+  "@toolAddName": {
+    "description": "Name of the Add tool"
+  },
+  "toolAddTooltip": "Click to add one mote to the flow",
+  "@toolAddTooltip": {
+    "description": "Tooltip of the Add tool"
+  },
+  "toolGridName": "Grid",
+  "@toolGridName": {
+    "description": "Name of the Grid tool"
+  },
+  "toolGridTooltip": "Click to add a grid of motes to the flow",
+  "@toolGridTooltip": {
+    "description": "Tooltip of the Grid tool"
+  },
+  "toolStreamName": "Stream",
+  "@toolStreamName": {
+    "description": "Name of the Stream tool"
+  },
+  "toolStreamTooltip": "Click to add a stream of motes to the flow",
+  "@toolStreamTooltip": {
+    "description": "Tooltip of the Stream tool"
+  },
+  "vectorFieldColorName": "Vector Field",
+  "@vectorFieldColorName": {
+    "description": "Setting name for vector field color"
+  },
+  "vectorFieldLabel": "Fld:",
+  "@vectorFieldLabel": {
+    "description": "Label for vector field toggle checkbox"
+  },
+  "velocityScaleName": "Velocity Scale",
+  "@velocityScaleName": {
+    "description": "Setting name for velocity scale"
+  },
+  "xIsoclineColorName": "Isocline Colors. X",
+  "@xIsoclineColorName": {
+    "description": "Setting name for X isocline color"
+  },
+  "yIsoclineColorName": "Y",
+  "@yIsoclineColorName": {
+    "description": "Setting name for Y isocline color"
+  }
+}

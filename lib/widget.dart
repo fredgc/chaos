@@ -23,6 +23,7 @@ import 'animate.dart';
 import 'field.dart';
 import 'flow.dart';
 import 'help.dart';
+import 'l10n/l10n_extension.dart';
 import 'settings.dart';
 import 'tool.dart';
 import 'transform.dart';
@@ -142,10 +143,9 @@ class FlowAppWidgetState extends State<FlowAppWidget>
         // } else {
         // print("BLUE: BoxConstraints ${constraints}. _narrow = $_narrow");
       }
-      return MaterialApp(
-        debugShowCheckedModeBanner: false,
-        theme: Settings.instance.theme.theme_data,
-        home: Scaffold(
+      return Theme(
+        data: Settings.instance.theme.theme_data,
+        child: Scaffold(
           appBar: makeAppBar(context),
           body: Container(
             child: SafeArea(
@@ -164,8 +164,8 @@ class FlowAppWidgetState extends State<FlowAppWidget>
       onPressed: () {
         Navigator.pushNamed(context, SettingsScreen.routeName);
       },
-      icon: Icon(Icons.settings),
-      tooltip: "Settings",
+      icon: const Icon(Icons.settings),
+      tooltip: context.l10n.settingsTooltip,
     );
 
     return AppBar(
@@ -179,7 +179,7 @@ class FlowAppWidgetState extends State<FlowAppWidget>
     return MenuAnchor(
         menuChildren: FieldEnum.values
             .map((f) => MenuItemButton(
-                  child: Text(f.title),
+                  child: Text(f.localizedTitle(context)),
                   onPressed: () {
                     if (f != widget.current_item) {
                       Navigator.pushNamed(context, f.route);
@@ -198,8 +198,8 @@ class FlowAppWidgetState extends State<FlowAppWidget>
               }
             },
             child: Tooltip(
-              message:
-                  "Current flow field: ${widget.current_item.title}\nClick to change",
+              message: context.l10n.currentFieldTooltip(
+                  widget.current_item.localizedTitle(context)),
               child: _flowTitle(context),
             ),
           );
@@ -209,11 +209,12 @@ class FlowAppWidgetState extends State<FlowAppWidget>
   // Make a text widget that might be truncated. If the text is truncated, then
   // we want to switch to the narrow layout.
   Widget _flowTitle(BuildContext context) {
+    final title = widget.current_item.localizedTitle(context);
     return LayoutBuilder(builder: (context, size) {
       var tp = TextPainter(
         maxLines: 1,
         textDirection: TextDirection.ltr,
-        text: TextSpan(text: widget.current_item.title),
+        text: TextSpan(text: title),
       );
       tp.layout(maxWidth: size.maxWidth);
       var exceeded = tp.didExceedMaxLines;
@@ -234,7 +235,7 @@ class FlowAppWidgetState extends State<FlowAppWidget>
         //   print("GREEN: '${widget.current_item.title}' did not exceed layout.");
       }
       return Text(
-        widget.current_item.title,
+        title,
         softWrap: false,
         overflow: TextOverflow.ellipsis,
       );
@@ -244,37 +245,39 @@ class FlowAppWidgetState extends State<FlowAppWidget>
   List<Widget> _getButtons(BuildContext context) {
     // print("Get buttons.");
     List<Widget> list = [];
-    if (!_narrow) _getOtherButtons(list, context);
-    list.add(_makeButton("Help", Icons.help, () {
+    final isCompact = MediaQuery.sizeOf(context).width < 700;
+    if (!_narrow && !isCompact) _getOtherButtons(list, context);
+    list.add(_makeButton(context.l10n.helpTooltip, Icons.help, () {
       Navigator.pushNamed(context, HelpScreen.routeName);
     }));
+    list.add(const LanguageSwitcherButton());
     return list;
   }
 
   void _getOtherButtons(List<Widget> list, BuildContext context) {
-    list.add(_makeButton("Clear all", Icons.restart_alt, () {
+    list.add(_makeButton(context.l10n.clearAllTooltip, Icons.restart_alt, () {
       widget.flow.clearAll();
     }));
-    list.add(_colorSelect());
-    list.add(_pickTool());
+    list.add(_colorSelect(context));
+    list.add(_pickTool(context));
 
     if (animator != null && animator!.isAnimating) {
-      list.add(_makeButton("Pause", Icons.pause, () {
+      list.add(_makeButton(context.l10n.pauseTooltip, Icons.pause, () {
         setState(() {
           animator?.pause();
         });
       }));
     } else {
-      list.add(_makeButton("Play", Icons.play_arrow, () {
+      list.add(_makeButton(context.l10n.playTooltip, Icons.play_arrow, () {
         setState(() {
           if (animator == null) return;
           animator?.play();
         });
       }));
     }
-    list.add(_pickSpeed());
-    list.add(_isoclineControl());
-    list.add(_vectorFieldControl());
+    list.add(_pickSpeed(context));
+    list.add(_isoclineControl(context));
+    list.add(_vectorFieldControl(context));
   }
 
   Widget _makeButton(String tip, IconData data, VoidCallback callback) {
@@ -289,13 +292,13 @@ class FlowAppWidgetState extends State<FlowAppWidget>
     );
   }
 
-  Widget _pickTool() {
+  Widget _pickTool(BuildContext context) {
     final ToolItem current = widget.flow.current_tool;
     return MenuAnchor(
         menuChildren: ToolItem.values
             .map((tool) => MenuItemButton(
                   leadingIcon: Icon(tool.icon),
-                  child: Text(tool.name),
+                  child: Text(tool.localizedName(context)),
                   onPressed: () {
                     if (tool != current) {
                       setState(() {
@@ -315,8 +318,9 @@ class FlowAppWidgetState extends State<FlowAppWidget>
                 controller.open();
               }
             },
-            tooltip:
-                "${current.name}: ${current.tooltip}\nClick to change tool.",
+            tooltip: context.l10n.changeToolTooltip(
+                current.localizedName(context),
+                current.localizedTooltip(context)),
             icon: Icon(current.icon),
           );
         });
@@ -330,7 +334,7 @@ class FlowAppWidgetState extends State<FlowAppWidget>
     return SpeedLabel.normal;
   }
 
-  Widget _pickSpeed() {
+  Widget _pickSpeed(BuildContext context) {
     final SpeedLabel current = _getSpeed();
     return MenuAnchor(
         menuChildren: SpeedLabel.values
@@ -358,7 +362,7 @@ class FlowAppWidgetState extends State<FlowAppWidget>
               }
             },
             child: Tooltip(
-                message: "Pick flow speed.",
+                message: context.l10n.pickSpeedTooltip,
                 child: Text(
                   current.label,
                   softWrap: false,
@@ -368,13 +372,13 @@ class FlowAppWidgetState extends State<FlowAppWidget>
         });
   }
 
-  Widget _isoclineControl() {
+  Widget _isoclineControl(BuildContext context) {
     // Think about using this instead:
     // https://api.flutter.dev/flutter/material/SwitchListTile-class.html
     return Tooltip(
-        message: 'Show isoclines',
+        message: context.l10n.showIsoclinesTooltip,
         child: Row(children: <Widget>[
-          Text("Iso:"),
+          Text(context.l10n.isoclinesLabel),
           Checkbox(
               value: widget.flow.draw_isocline,
               onChanged: (bool? value) {
@@ -385,11 +389,11 @@ class FlowAppWidgetState extends State<FlowAppWidget>
         ]));
   }
 
-  Widget _vectorFieldControl() {
+  Widget _vectorFieldControl(BuildContext context) {
     return Tooltip(
-        message: 'Show vector field',
+        message: context.l10n.showVectorFieldTooltip,
         child: Row(children: <Widget>[
-          Text("Fld:"),
+          Text(context.l10n.vectorFieldLabel),
           Checkbox(
               value: widget.flow.draw_field,
               onChanged: (bool? value) {
@@ -400,9 +404,9 @@ class FlowAppWidgetState extends State<FlowAppWidget>
         ]));
   }
 
-  Widget _colorSelect() {
+  Widget _colorSelect(BuildContext context) {
     return Tooltip(
-        message: "Select mote color",
+        message: context.l10n.selectMoteColorTooltip,
         child: MenuAnchor(
           builder:
               (BuildContext context, MenuController controller, Widget? child) {
@@ -414,7 +418,7 @@ class FlowAppWidgetState extends State<FlowAppWidget>
                   controller.open();
                 }
               },
-              tooltip: "Select color of next mote",
+              tooltip: context.l10n.selectNextMoteColorTooltip,
               icon: Icon(Icons.circle,
                   color: FlowField
                       .mote_colors.value[widget.flow.current_mote_color]),
@@ -438,21 +442,27 @@ class FlowAppWidgetState extends State<FlowAppWidget>
   Widget _centerWidget(BuildContext context) {
     if (Settings.instance.status == SettingsStatus.NotInitialized) {
       Settings.instance.initialize(context);
-      return Text("Initializing Settings...");
+      return Text(context.l10n.initializingSettings);
     }
     if (animator == null) {
-      return Text("Still Initializing...");
+      return Text(context.l10n.stillInitializing);
     }
     List<Widget> column = [];
-    if (_narrow) {
+    final isCompact = MediaQuery.sizeOf(context).width < 700;
+    if (_narrow || isCompact) {
       List<Widget> list = [];
       _getOtherButtons(list, context);
-      column.add(Row(children: list));
+      column.add(
+        SingleChildScrollView(
+          scrollDirection: Axis.horizontal,
+          child: Row(children: list),
+        ),
+      );
     }
     column.add(Expanded(child: mainViewWidget(context)));
     for (int i = 0; i < widget.flow.field.parameter_count; i++) {
       column.add(Row(children: <Widget>[
-        Text("Parameter ${i + 1}: "),
+        Text(context.l10n.parameterLabel(i + 1)),
         Expanded(
             child: Slider(
           value: widget.flow.field.getParameter(i),

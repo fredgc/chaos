@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Chaos デモ ベクトル場</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+  </style>
+  <link rel="stylesheet" href="css/doc_style.css" />
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">Chaos デモ ベクトル場</h1>
+</header>
+<h2 id="デモ用ベクトル場">デモ用ベクトル場</h2>
+<p>描画されるベクトル場の一覧です。番号順にご覧いただくことをおすすめします。</p>
+<h3 id="単純な回転">単純な回転</h3>
+<p>時計回りの単純な回転です。</p>
+<pre><code>x&#39; =     y + p*saw(x)
+y&#39; = -x    + p*saw(y)</code></pre>
+<p>ベクトル表記：</p>
+<pre><code>v&#39; = [ 0  1]v  + 摂動
+     [-1  0]
+
+v = [x]
+    [y]</code></pre>
+<p>摂動はパラメータに応じた鋸歯状関数です。粒子を追加して「再生」をクリックすると、時計回りの円を描いて流れます。</p>
+<p>パラメータを大きくすると、粒子は元の軌道からわずかにずれるようになります。</p>
+<p>「Fld」チェックボックスをオンにするとベクトル場が表示されます。ベクトル場が有界であるため、各粒子の軌道は滑らかで、初期位置によって完全に決定されます。し
+たがって、粒子の軌道同士が交差することはありません。</p>
+<p>「Iso」チェックボックスをオンにすると等傾斜線が表示されます。これはベクトル場のx成分またはy成分が0になる曲線です。<code>x' = 0</code>の場合はベクトル場が
+垂直になり、粒子は垂直に移動します。<code>y' = 0</code>の場合は水平に移動します。両方が0の場合、粒子は静止します。これは力学系の平衡点（停留点）と呼ばれます。</p>
+<h3 id="渦巻スパイラル-安定平衡点と不安定平衡点">渦巻（スパイラル） –
+安定平衡点と不安定平衡点</h3>
+<p>前の例を変更し、<code>x'</code>の<code>x</code>に対する線形依存性と<code>y'</code>の<code>y</code>に対する線形依存性を追加します：</p>
+<pre><code>x&#39; = p*x +   y
+y&#39; =  -x + p*y</code></pre>
+<p>開始時（<code>p = 0</code>）は上記の回転と同一です。中心<code>(0,0)</code>に平衡点が存在します。</p>
+<p>パラメータを左に動かして<code>p &lt; 0</code>にすると、粒子は平衡点に向かって渦を巻いて収束します。これは安定平衡点です。平衡点の近くから始まった粒子はその近傍にと
+どまります。</p>
+<p>パラメータを右に動かして<code>p &gt; 0</code>にすると、粒子は平衡点から渦を巻いて離れていきます。これは不安定平衡点です。</p>
+<p>等傾斜線で区切られた領域に着目してください。各領域で、粒子は特定の象限方向（右上、左上、右下、左下）へ向かう傾向があります。</p>
+<h3 id="攪拌stir">攪拌（Stir）</h3>
+<p>複数の平衡点を持つ例です。安定なものと不安定なものが混在しています。不安定な平衡点の近くに粒子を配置すると、離れていき、やがて安定な平衡点へと近づきます。</p>
+<pre><code>x&#39; = -0.2 x^3 + saw(y, y_cent)
+y&#39; = -0.2 y^3 - saw(x, x_cent)
+                        /
+                   /\  /
+ saw(x,c) =       /  \/
+                 /</code></pre>
+<p>パラメータを変更すると平衡点が移動し始め、粒子がそれを追従してカオス的な乱れが生じます。</p>
+<p>方程式が滑らかであるため、互いに近くから始まった粒子は短期的には近くにとどまります。しかし、十分な時間が経過すると離れていきます。</p>
+<p>これは微分積分のパラドックスのように見えます。ある固定された<code>t</code>に対しては、位置<code>(x(t), y(t))</code>は初期位置<code>(x(0), y(0))</code>に対して
+連続的に変化します。しかし<code>t</code>を大きくしていくと、その連続性は実質的に失われます。</p>
+<p>この例には時間とともに移動するアトラクターがあり、最終的にすべての粒子は4つのアトラクター点のいずれかの周りを密集して回転します。</p>
+<h3
+id="ストレンジアトラクターを持つカオス系">ストレンジアトラクターを持つカオス系</h3>
+<p>参考書籍に掲載されている例です。</p>
+<pre><code>x&#39;(t) = 0.7y + 10x(0.1-y^2)
+y&#39;(t) = -x + 0.25 sin(1.57t)</code></pre>
+<p>この系はカオス的ですが、アトラクターを持ちます。アトラクターは単純な曲線ではなく、時間が進むにつれて分離し、自身へと折り畳まれます。粒子は離散したあと再び集
+まりますが、その順序は入れ替わっています。</p>
+<p>粒子の格子を追加し、最初は似た色の粒子が近くに留まり、次第に混ざり合っていく様子を観察してください。パンを捏ねたり、鋼を鍛造したりする過程に似ています。</p>
+<h3 id="参考文献">参考文献</h3>
+<p>より詳しい学習には以下をおすすめします：</p>
+<ul>
+<li><p><a
+href="https://www.wiley.com/en-us/Nonlinear+Dynamics+and+Chaos%2C+2nd+Edition-p-9780471876847">Nonlinear
+Dynamics and Chaos</a> J. M. T. Thompson, H. B. Stewart著</p></li>
+<li><p><a
+href="https://www.degruyter.com/document/doi/10.1515/zna-1981-0115/html">Strange
+attractors, chaotic behavior, and information flow</a> R.
+Shaw著</p></li>
+</ul>
+</body>
+</html>

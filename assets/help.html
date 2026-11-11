@@ -1,69 +1,59 @@
-<!--
-    Copyright 2024 Google LLC
-
-    Licensed under the Apache License, Version 2.0 (the "License");
-    you may not use this file except in compliance with the License.
-    You may obtain a copy of the License at
-
-    http://www.apache.org/licenses/LICENSE-2.0
-
-    Unless required by applicable law or agreed to in writing, software
-    distributed under the License is distributed on an "AS IS" BASIS,
-    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-    See the License for the specific language governing permissions and
-    limitations under the License.
-  -->
-<!doctype html PUBLIC "-//W3C//DTD HTML 5.0//EN">
-<html>
-  <head>
-    <meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
-    <link type="text/css" rel="stylesheet" href="css/doc_style.css"/>
-    <title>Chaos Help Page</title>
-  </head>
-  <body>
-    <h2>Chaos</h2>
-    <p>
-      A dynamic system is an ordinary differential equation with several
-      spacial dimensions. These examples are all first order equations in two
-      spacial dimensions, which means the position of a point completely
-      determines its velocity.
-    </p>
-
-    <pre>
-      x'(t) = fx(x(t), y(t), t)
-      y'(t) = fy(x(t), y(t), t)
-    </pre>
-
-    <p>
-      You can think of the the field being a flow of water. We are going to
-      drop some motes of dust into the water and watch where they flow. This is
-      not a great analogy because water is not very compressible, and these
-      flows are.
-    </p>
-    <p>
-      The first few examples are quite simple. The last one shows some
-      interesting behavior. Scroll to the bottom for some recommended reading.
-    </p>
-
-    <p>
-      See <a href="fields.html">Fields</a> for the sample fields drawn by this
-      program.  See <a href="controls.html">Controls</a> for how to use the
-      program.
-    </p>
-
-    <h3>References</h3>
-
-    <p>For more reading, I recommend</p>
-    <ul>
-      <li><a href="https://www.wiley.com/en-us/Nonlinear+Dynamics+and+Chaos%2C+2nd+Edition-p-9780471876847"
-             target="_blank">Nonlinear Dynamics and Chaos</a>
-        by J. M. T. Thompson and H. B. Stewart.
-      </li>
-      <li><a href="https://www.degruyter.com/document/doi/10.1515/zna-1981-0115/html"
-             target="_blank"
-             >Strange attractors, chaotic behavior, and information flow</a>
-        by R. Shaw
-      </li>
-    </ul>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Chaos Help Page</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+  </style>
+  <link rel="stylesheet" href="css/doc_style.css" />
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">Chaos Help Page</h1>
+</header>
+<h2 id="chaos">Chaos</h2>
+<p>A dynamic system is an ordinary differential equation with several
+spatial dimensions. These examples are all first order equations in two
+spatial dimensions, which means the position of a point completely
+determines its velocity.</p>
+<pre><code>x&#39;(t) = fx(x(t), y(t), t)
+y&#39;(t) = fy(x(t), y(t), t)</code></pre>
+<p>You can think of the field being a flow of water. We are going to
+drop some motes of dust into the water and watch where they flow. This
+is not a great analogy because water is not very compressible, and these
+flows are.</p>
+<p>The first few examples are quite simple. The last one shows some
+interesting behavior. Scroll to the bottom for some recommended
+reading.</p>
+<p>See <a href="fields.html">Fields</a> for the sample fields drawn by
+this program. See <a href="controls.html">Controls</a> for how to use
+the program.</p>
+<h3 id="references">References</h3>
+<p>For more reading, I recommend:</p>
+<ul>
+<li><p><a
+href="https://www.wiley.com/en-us/Nonlinear+Dynamics+and+Chaos%2C+2nd+Edition-p-9780471876847">Nonlinear
+Dynamics and Chaos</a> by J. M. T. Thompson and H. B. Stewart.</p></li>
+<li><p><a
+href="https://www.degruyter.com/document/doi/10.1515/zna-1981-0115/html">Strange
+attractors, chaotic behavior, and information flow</a> by R.
+Shaw.</p></li>
+</ul>
 </body>
 </html>

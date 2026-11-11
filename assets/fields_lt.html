@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Chaoso Pavyzdiniai Laukai</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+  </style>
+  <link rel="stylesheet" href="css/doc_style.css" />
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">Chaoso Pavyzdiniai Laukai</h1>
+</header>
+<h2 id="pavyzdiniai-laukai">Pavyzdiniai laukai</h2>
+<p>Štai rodomųvektoriniųlaukųsąrašas. Rekomenduojame juos peržiūrėti
+išeilės.</p>
+<h3 id="paprastas-sukimasis">Paprastas sukimasis</h3>
+<p>Tai paprastas sukimasis pagal laikrodžio rodyklę.</p>
+<pre><code>x&#39; =     y + p*saw(x)
+y&#39; = -x    + p*saw(y)</code></pre>
+<p>Arba vektoriniu pavidalu:</p>
+<pre><code>v&#39; = [ 0  1]v  + trikdis
+     [-1  0]
+
+v = [x]
+    [y]</code></pre>
+<p>Trikdis yra pjūklo formos funkcija, priklausanti nuo parametro.
+Pridėkite kelias daleles ir spustelėkite„Groti“. Pamatysite, kaip jos
+sukasi ratu pagal laikrodžio rodyklę.</p>
+<p>Padidinus parametro reikšmę, dalelėsšiek tiek nukryps nuo savo
+ankstesnių trajektorijų.</p>
+<p>Pažymėkite langelį„Fld“, kad pamatytumėte vektorinįlauką. Kadangi
+vektorinis laukas yra aprėžtas, kiekvienos dalelės kelias yra tolygus ir
+visiškai nulemtas jos pradinio taško. Tai reiškia, kad
+daleliųtrajektorijos niekada nesikerta.</p>
+<p>Pažymėkite langelį„Iso“, kad pamatytumėte izoklinas. Tai kreivės,
+kuriose vektorinio lauko x arba y koordinatėlygi 0. Jei
+<code>x' = 0</code>, laukas yra vertikalus. Jei <code>y' = 0</code>,
+laukas yra horizontalus. Jei abi lygios 0, dalelė nejuda. Tai vadinama
+dinaminės sistemos pusiausvyros (stacionariuoju) tašku.</p>
+<h3 id="spiralė-stabilus-ir-nestabilus-taškas">Spiralė – stabilus ir
+nestabilus taškas</h3>
+<p>Pakeičiame ankstesnįpavyzdįpridėdami tiesinę<code>x'</code>
+priklausomybęnuo <code>x</code> ir <code>y'</code> nuo
+<code>y</code>:</p>
+<pre><code>x&#39; = p*x +   y
+y&#39; =  -x + p*y</code></pre>
+<p>Pradžioje <code>p = 0</code>, todėl judėjimas identiškas sukimuisi
+aukščiau. Centre <code>(0,0)</code> yra stacionarusis taškas.</p>
+<p>Pajudinkite parametrąįkairę(<code>p &lt; 0</code>). Dalelės ims
+spiralėmis artėti prie stacionariojo taško. Tai stabilus stacionarusis
+taškas: dalelės, prasidedančiosšalia jo, liekašalia.</p>
+<p>Pajudinkite parametrąįdešinę(<code>p &gt; 0</code>). Dalelės ims
+spiralėmis tolti nuo stacionariojo taško. Tai nestabilus stacionarusis
+taškas.</p>
+<p>Pažvelkiteįsritis, kurias skiria izoklinos. Kiekvienoje srityje
+dalelės judaį atitinkamąkvadranto pusę.</p>
+<h3 id="maišymas-stir">Maišymas (Stir)</h3>
+<p>Tai pavyzdys su keliais stacionariaisiais taškais—vieni stabilūs,
+kiti nestabilūs. Dalelėšalia nestabilaus taško tolsta nuo jo ir artėja
+prie stabiliųtaškų.</p>
+<pre><code>x&#39; = -0.2 x^3 + saw(y, y_cent)
+y&#39; = -0.2 y^3 - saw(x, x_cent)
+                        /
+                   /\  /
+ saw(x,c) =       /  \/
+                 /</code></pre>
+<p>Pakeiskite parametrąir stacionarieji taškai ims judėti. Dalelės seks
+paskui juos ir susidarys chaotiška netvarka.</p>
+<p>Kadangi lygtys tolydžios, dalelės, prasidedančios vienašalia kitos,
+trumpuoju laikotarpiu lieka arti. Tačiau ilgainiui jos išsiskiria.</p>
+<p>Tai atrodo kaip matematinės analizės paradoksas: fiksuotai
+<code>t</code> reikšmei padėtis <code>(x(t), y(t))</code> kinta
+tolydžiai pradinės padėties <code>(x(0), y(0))</code> atžvilgiu. Tačiau
+leidus <code>t</code> augti be ribų,šis tolydumas praktiškai
+prarandamas.</p>
+<p>Šiame pavyzdyje yra atraktorius, kuris juda laike: galiausiai visos
+dalelės ima glaudžiai suktis apie vienąišketuriųatraktoriaus taškų.</p>
+<h3 id="chaotinė-sistema-su-keistuoju-atraktoriumi">Chaotinė sistema su
+keistuoju atraktoriumi</h3>
+<p>Šis pavyzdys paimtas išliteratūros skyriuje nurodytos knygos.</p>
+<pre><code>x&#39;(t) = 0.7y + 10x(0.1-y^2)
+y&#39;(t) = -x + 0.25 sin(1.57t)</code></pre>
+<p>Norsši sistema chaotiška, ji turi atraktorių. Atraktorius nėra
+paprasta kreivė: bėgant laikui jis atsiskiria ir susilanksto patsįsave.
+Dalelės išsisklaido, o paskui vėl susirenka, bet jau kita tvarka.</p>
+<p>Pridėkite daleliųtinklelįir stebėkite, kaip panašios spalvos
+pradžioje lieka gretos, o vėliau susimaišo—panašiai kaip minkant duonąar
+kalant plieną.</p>
+<h3 id="literatūra">Literatūra</h3>
+<p>Išsamesniam susipažinimui rekomenduojame:</p>
+<ul>
+<li><p><a
+href="https://www.wiley.com/en-us/Nonlinear+Dynamics+and+Chaos%2C+2nd+Edition-p-9780471876847">Nonlinear
+Dynamics and Chaos</a> (autoriai J. M. T. Thompson ir H. B.
+Stewart).</p></li>
+<li><p><a
+href="https://www.degruyter.com/document/doi/10.1515/zna-1981-0115/html">Strange
+attractors, chaotic behavior, and information flow</a> (autorius R.
+Shaw).</p></li>
+</ul>
+</body>
+</html>

@@ -20,7 +20,9 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 
 import 'color.dart';
+import 'l10n/l10n_extension.dart';
 import 'printer.dart';
+import 'web_cache.dart';
 
 enum SettingsStatus {
   NotInitialized, // Before Settings intiialized.
@@ -238,6 +240,11 @@ class Settings {
     status = SettingsStatus.Initialized;
     _loading_future = null;
     // print("Finished loading settings.");
+    if (foundation.kIsWeb) {
+      final clientVersion =
+          build_number.isNotEmpty ? '$version+$build_number' : version;
+      unawaited(checkServerVersionAndReload(clientVersion));
+    }
   }
 
   Future<void> save() async {
@@ -325,10 +332,9 @@ class _SettingsScreenState extends State<SettingsScreen> {
       },
       separatorBuilder: (BuildContext context, int index) => const Divider(),
     );
-    return MaterialApp(
-      // XXX debugShowCheckedModeBanner: false,
-      theme: Settings.instance.theme.theme_data,
-      home: Scaffold(
+    return Theme(
+      data: Settings.instance.theme.theme_data,
+      child: Scaffold(
         appBar: appBar(context),
         body: list,
       ),
@@ -337,17 +343,20 @@ class _SettingsScreenState extends State<SettingsScreen> {
 
   AppBar appBar(BuildContext context) {
     return AppBar(
-      title: Text("Settings"),
+      title: Text(context.l10n.settingsTitle),
       actions: <Widget>[
-        ElevatedButton(
-          child: const Icon(Icons.close),
+        const LanguageSwitcherButton(),
+        IconButton(
+          icon: const Icon(Icons.close),
+          tooltip: context.l10n.cancelButton,
           onPressed: () {
             // print("Cancel.");
             quit(context);
           },
         ),
-        ElevatedButton(
-          child: const Icon(Icons.done),
+        IconButton(
+          icon: const Icon(Icons.done),
+          tooltip: context.l10n.doneButton,
           onPressed: () {
             // print("Done.");
             done(context);
@@ -361,12 +370,12 @@ class _SettingsScreenState extends State<SettingsScreen> {
   // Then flatten this list of lists so we get one big list.
   List<Widget?> _pickChildren(BuildContext context) {
     if (Settings.instance.status == SettingsStatus.NotInitialized) {
-      return [Text("Initializing App...")];
+      return [Text(context.l10n.initializingApp)];
     }
     List<List<Widget?>> list1 = [
       [
-        SelectableText("Application ${Settings.instance.app_name} "
-            "version ${Settings.instance.version}.${Settings.instance.build_number}"),
+        SelectableText(context.l10n.appVersionInfo(Settings.instance.app_name,
+            Settings.instance.version, Settings.instance.build_number)),
         null,
       ],
       for (var s in Settings.instance.savables)
@@ -378,11 +387,11 @@ class _SettingsScreenState extends State<SettingsScreen> {
         null,
         ElevatedButton(
           onPressed: () => done(context),
-          child: Text("Done"),
+          child: Text(context.l10n.doneButton),
         ),
         ElevatedButton(
           onPressed: () => quit(context),
-          child: Text("Cancel"),
+          child: Text(context.l10n.cancelButton),
         ),
       ]
     ];

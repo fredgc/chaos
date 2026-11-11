@@ -28,10 +28,9 @@ void main(List<String> arguments) async {
   // the `--input` option and one for the `--output` option.
   // `--input` is the original asset file that this program should transform.
   // `--output` is where flutter expects the transformation output to be written to.
-  final parser =
-      ArgParser()
-        ..addOption(inputOptionName, mandatory: true, abbr: 'i')
-        ..addOption(outputOptionName, mandatory: true, abbr: 'o');
+  final parser = ArgParser()
+    ..addOption(inputOptionName, mandatory: true, abbr: 'i')
+    ..addOption(outputOptionName, mandatory: true, abbr: 'o');
 
   ArgResults argResults = parser.parse(arguments);
   final String inputFilePath = argResults[inputOptionName];
@@ -75,7 +74,7 @@ class MyReWriter {
     for (String line in await File("pubspec.yaml").readAsLines()) {
       var match = re.firstMatch(line);
       if (match != null) {
-        if(match.group(1) == null) {
+        if (match.group(1) == null) {
           stderr.writeln("The version was null! match=$match");
           exit(1);
         }
@@ -87,14 +86,13 @@ class MyReWriter {
     }
   }
 
-
   Future<int> rewrite(String inputFilePath, String outputFilePath) async {
     print("in=$inputFilePath, out=$outputFilePath");
     await getVersion();
     IOSink output = File(outputFilePath).openWrite();
     for (String line in await File(inputFilePath).readAsLines()) {
       replacements.forEach((re, result) {
-          line = line.replaceAll(re, result);
+        line = line.replaceAll(re, result);
       });
       output.writeln(line);
     }

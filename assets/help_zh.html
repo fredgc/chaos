@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>混沌流帮助</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+  </style>
+  <link rel="stylesheet" href="css/doc_style.css" />
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">混沌流帮助</h1>
+</header>
+<h2 id="混沌-chaos">混沌 (Chaos)</h2>
+<p>动力系统是一个包含多个空间维度的常微分方程。这里的示例均为二维空间中的一阶微分方程，这意味着质点的位置完全决定了其速度。</p>
+<pre><code>x&#39;(t) = fx(x(t), y(t), t)
+y&#39;(t) = fy(x(t), y(t), t)</code></pre>
+<p>可以将该场想象为水流。我们在水中撒入一些尘埃微粒，观察它们随水流漂动的轨迹。虽然水是近乎不可压缩的，而这些场具有可压缩性，但这一类比仍能提供直观印象。</p>
+<p>前几个示例较为简单。最后一个示例展现了引人入胜的混沌现象。页面底部列出了推荐的参考书籍。</p>
+<p>请参阅<a
+href="fields.html">向量场</a>了解程序绘制的各个示例场。请参阅<a
+href="controls.html">控制</a>了解程序的使用方法。</p>
+<h3 id="参考资料">参考资料</h3>
+<p>如需深入学习，推荐阅读：</p>
+<ul>
+<li><p><a
+href="https://www.wiley.com/en-us/Nonlinear+Dynamics+and+Chaos%2C+2nd+Edition-p-9780471876847">Nonlinear
+Dynamics and Chaos</a> （J. M. T. Thompson与H. B. Stewart著）</p></li>
+<li><p><a
+href="https://www.degruyter.com/document/doi/10.1515/zna-1981-0115/html">Strange
+attractors, chaotic behavior, and information flow</a> （R.
+Shaw著）</p></li>
+</ul>
+</body>
+</html>

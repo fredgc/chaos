@@ -13,8 +13,10 @@
 // limitations under the License.
 
 import 'dart:ui';
+import 'package:flutter/widgets.dart' show BuildContext;
 import 'package:vector_math/vector_math.dart' show Vector2;
 
+import 'l10n/l10n_extension.dart';
 import 'rotate.dart';
 import 'spiral.dart';
 import 'stir.dart';
@@ -52,6 +54,19 @@ enum FieldEnum {
 
   final String route;
   final String title;
+
+  String localizedTitle(BuildContext context) {
+    switch (this) {
+      case FieldEnum.rotate:
+        return context.l10n.fieldRotate;
+      case FieldEnum.spiral:
+        return context.l10n.fieldSpiral;
+      case FieldEnum.stir:
+        return context.l10n.fieldStir;
+      case FieldEnum.chaos:
+        return context.l10n.fieldChaos;
+    }
+  }
 
   VectorField get field {
     switch (this) {

@@ -16,6 +16,7 @@ import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flex_color_picker/flex_color_picker.dart';
 
+import 'l10n/l10n_extension.dart';
 import 'settings.dart';
 
 class SavableColor extends Savable<Color> {
@@ -70,7 +71,8 @@ class SavableColor extends Savable<Color> {
       context,
       // We use the dialogSelectColor, as its starting color.
       value,
-      title: Text('Pick', style: Theme.of(context).textTheme.titleLarge),
+      title: Text(context.l10n.colorPickerTitle,
+          style: Theme.of(context).textTheme.titleLarge),
       width: 40,
       height: 40,
       spacing: 0,
@@ -172,8 +174,8 @@ class SavableColorArray extends Savable<List<Color>> {
       context,
       // We use the dialogSelectColor, as its starting color.
       value[i],
-      title:
-          Text('Pick $name $i', style: Theme.of(context).textTheme.titleLarge),
+      title: Text(context.l10n.colorPickerIndexedTitle(description, i + 1),
+          style: Theme.of(context).textTheme.titleLarge),
       width: 40,
       height: 40,
       spacing: 0,
@@ -310,7 +312,7 @@ class SavableTheme extends Savable<int> {
     List<bool> isSelected = List<bool>.filled(ThemeMode.values.length, false);
     isSelected[theme_mode.index] = true;
     return Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-      Text('Theme Brightness: '),
+      Text(context.l10n.themeBrightnessLabel),
       SizedBox(width: 10),
       ToggleButtons(
         isSelected: isSelected,
@@ -322,7 +324,16 @@ class SavableTheme extends Savable<int> {
           updateAndCallback();
           callback();
         },
-        children: ThemeMode.values.map((e) => Text(e.name)).toList(),
+        children: ThemeMode.values.map((e) {
+          switch (e) {
+            case ThemeMode.system:
+              return Text(context.l10n.themeSystem);
+            case ThemeMode.light:
+              return Text(context.l10n.themeLight);
+            case ThemeMode.dark:
+              return Text(context.l10n.themeDark);
+          }
+        }).toList(),
       ),
     ]);
   }
