@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Campos de Demostración de Caos</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+  </style>
+  <link rel="stylesheet" href="css/doc_style.css" />
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">Campos de Demostración de Caos</h1>
+</header>
+<h2 id="campos-de-demostración">Campos de Demostración</h2>
+<p>Aquíestála lista de campos vectoriales mostrados. Recomiendo verlos
+en orden.</p>
+<h3 id="rotación-simple">Rotación simple</h3>
+<p>Esta es una rotación simple en sentido horario.</p>
+<pre><code>x&#39; =     y + p*saw(x)
+y&#39; = -x    + p*saw(y)</code></pre>
+<p>O en notación vectorial:</p>
+<pre><code>v&#39; = [ 0  1]v  + perturbación
+     [-1  0]
+
+v = [x]
+    [y]</code></pre>
+<p>La perturbación es una onda de diente de sierra que depende del
+parámetro. Añada unas cuantas motas al flujo y presione “reproducir”.
+Debería verlas fluir en un círculo en el sentido de las agujas del
+reloj.</p>
+<p>Aumente el valor del parámetro y las motas se desviarán ligeramente
+de sus trayectorias previas.</p>
+<p>Active la casilla “Campo” para mostrar el campo vectorial. Debido a
+que el campo vectorial estáacotado, la trayectoria de cada mota es suave
+y está completamente determinada por su punto de partida. Eso significa
+que las motas nunca pueden cruzarse.</p>
+<p>Active la casilla “Iso” para mostrar las isoclinas. Estas son las
+curvas donde el campo vectorial es 0 en el componente x o en el y. Si
+<code>x' = 0</code>, el campo vectorial es vertical y la mota viaja
+verticalmente. Si <code>y' = 0</code>, el campo vectorial es horizontal
+y la mota viaja horizontalmente. Si ambos son 0, la mota permanece
+estacionaria. Esto también se llama punto estacionario del sistema
+dinámico.</p>
+<h3 id="espiral-punto-estable-frente-a-inestable">Espiral: punto estable
+frente a inestable</h3>
+<p>Modificamos el ejemplo anterior agregando una dependencia lineal de
+<code>x'</code> sobre <code>x</code> y de <code>y'</code> sobre
+<code>y</code>:</p>
+<pre><code>x&#39; = p*x +   y
+y&#39; =  -x + p*y</code></pre>
+<p>Al comenzar, <code>p = 0</code>, por lo que es idéntico a la rotación
+anterior. Hay un punto estacionario en el centro <code>(0,0)</code>.</p>
+<p>Mueva el parámetro hacia la izquierda para que <code>p &lt; 0</code>.
+Las motas comenzarán a girar en espiral hacia el punto estacionario.
+Este es un punto estacionario estable. Las motas que comienzan cerca del
+punto estacionario permanecerán cerca deél.</p>
+<p>Mueva el parámetro hacia la derecha para que <code>p &gt; 0</code>.
+Las motas comenzarán a girar en espiral alejándose del punto
+estacionario. Este es un punto estacionario inestable. Las motas que
+comienzan cerca del punto estacionario terminarán alejándose deél.</p>
+<p>Observe las regiones separadas por las isoclinas. En cada región, las
+motas tienden a moverse “arriba y a la izquierda”, “arriba y a la
+derecha”, “abajo y a la izquierda” o “abajo y a la derecha”.</p>
+<h3 id="remolino">Remolino</h3>
+<p>Aquíhay un ejemplo con varios puntos estacionarios. Algunos son
+estables y otros inestables. Observe que si añade una mota cerca de uno
+de los puntos inestables, esta se aleja y luego comienza a acercarse a
+los puntos estables.</p>
+<pre><code>x&#39; = -0.2 x^3 + saw(y, y_cent)
+y&#39; = -0.2 y^3 - saw(x, x_cent)
+                        /
+                   /\  /
+ saw(x,c) =       /  \/
+                 /</code></pre>
+<p>Cambie el parámetro y los puntos estacionarios comenzarán a moverse.
+Las motas comenzarán a seguirlos. Terminarácon un caos dinámico.</p>
+<p>Debido a que las ecuaciones son suaves, las motas que comienzan cerca
+unas de otras se mantendrán cerca a corto plazo. Sin embargo, si espera
+el tiempo suficiente, terminarán distanciándose.</p>
+<p>Esto parece una paradoja del cálculo: si fija un valor de
+<code>t</code>, la posición <code>(x(t), y(t))</code> varía
+continuamente con respecto a <code>(x(0), y(0))</code>. Pero si no fija
+<code>t</code> y deja que crezca, se pierde esa continuidad.</p>
+<p>Este ejemplo es interesante porque hay un atractor que se mueve con
+el tiempo: eventualmente todas las motas terminan girando en espiral
+alrededor de uno de los cuatro puntos atractores.</p>
+<h3 id="sistema-caótico-con-atractor-extraño">Sistema caótico con
+atractor extraño</h3>
+<p>Este es un ejemplo del libro mencionado en la sección de referencias
+a continuación.</p>
+<pre><code>x&#39;(t) = 0.7y + 10x(0.1-y^2)
+y&#39;(t) = -x + 0.25 sin(1.57t)</code></pre>
+<p>Aunque este sistema es caótico, posee un atractor. Observe que el
+atractor no es una curva simple. A medida que avanza el tiempo, el
+atractor se divide y se pliega sobre símismo. Las motas se separarán y
+luego volverán a juntarse pero en un orden diferente.</p>
+<p>Añada una cuadrícula de motas y observe cómo los colores similares
+permanecen cerca al principio y luego comienzan a mezclarse. Recuerda el
+amasado del pan o el forjado del acero.</p>
+<h3 id="referencias">Referencias</h3>
+<p>Para más lecturas, recomiendo:</p>
+<ul>
+<li><p><a
+href="https://www.wiley.com/en-us/Nonlinear+Dynamics+and+Chaos%2C+2nd+Edition-p-9780471876847">Nonlinear
+Dynamics and Chaos</a> por J. M. T. Thompson y H. B. Stewart.</p></li>
+<li><p><a
+href="https://www.degruyter.com/document/doi/10.1515/zna-1981-0115/html">Strange
+attractors, chaotic behavior, and information flow</a> por R.
+Shaw.</p></li>
+</ul>
+</body>
+</html>

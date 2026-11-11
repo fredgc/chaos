@@ -16,6 +16,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:vector_math/vector_math.dart' show Vector2;
 
+import 'l10n/l10n_extension.dart';
 import 'mote.dart';
 import 'flow.dart';
 
@@ -29,6 +30,28 @@ enum ToolItem {
   final String name;
   final String tooltip;
   final IconData icon;
+
+  String localizedName(BuildContext context) {
+    switch (this) {
+      case ToolItem.add:
+        return context.l10n.toolAddName;
+      case ToolItem.stream:
+        return context.l10n.toolStreamName;
+      case ToolItem.grid:
+        return context.l10n.toolGridName;
+    }
+  }
+
+  String localizedTooltip(BuildContext context) {
+    switch (this) {
+      case ToolItem.add:
+        return context.l10n.toolAddTooltip;
+      case ToolItem.stream:
+        return context.l10n.toolStreamTooltip;
+      case ToolItem.grid:
+        return context.l10n.toolGridTooltip;
+    }
+  }
 
   void onTap(FlowField flow, Vector2 pos, Color color) {
     switch (this) {

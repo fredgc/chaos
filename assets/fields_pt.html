@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Campos de Demonstração de Caos</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+  </style>
+  <link rel="stylesheet" href="css/doc_style.css" />
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">Campos de Demonstração de Caos</h1>
+</header>
+<h2 id="campos-demonstrados">Campos demonstrados</h2>
+<p>Aqui estáa lista dos campos vetoriais demonstrados. Recomendamos
+analisá-los na ordem apresentada.</p>
+<h3 id="rotação-simples">Rotação simples</h3>
+<p>Trata-se de uma rotação simples no sentido horário.</p>
+<pre><code>x&#39; =     y + p*saw(x)
+y&#39; = -x    + p*saw(y)</code></pre>
+<p>Em notação vetorial:</p>
+<pre><code>v&#39; = [ 0  1]v  + perturbação
+     [-1  0]
+
+v = [x]
+    [y]</code></pre>
+<p>A perturbaçãoéuma onda dente de serra dependente do parâmetro.
+Adicione algumas partículas e clique em„reproduzir“. Vocêas veráfluindo
+em círculos no sentido horário.</p>
+<p>Aumente o valor do parâmetro e as partículas se desviarão
+ligeiramente das suas trajetórias originais.</p>
+<p>Ative a opção„Campo“para exibir o campo vetorial. Como o campo
+vetorialé limitado, a trajetória de cada partículaésuave e inteiramente
+determinada por seu ponto inicial. Portanto, as partículas nunca se
+cruzam.</p>
+<p>Ative„Iso“para exibir as isóclinas. Estas são as curvas onde a
+componente x ou y do campo vetorialénula. Se <code>x' = 0</code>, o
+campoévertical. Se <code>y' = 0</code>, o campoé horizontal. Se ambas
+forem 0, a partícula permanece imóvel: trata-se de um ponto de
+equilíbrio (estacionário) do sistema dinâmico.</p>
+<h3 id="espiral-ponto-estável-versus-instável">Espiral – ponto estável
+versus instável</h3>
+<p>Modificamos o exemplo anterior introduzindo uma dependência linear de
+<code>x'</code> em relação a <code>x</code> e de <code>y'</code> em
+relação a <code>y</code>:</p>
+<pre><code>x&#39; = p*x +   y
+y&#39; =  -x + p*y</code></pre>
+<p>Inicialmente, <code>p = 0</code>, o que coincide com a rotação acima.
+Háum ponto estacionário na origem <code>(0,0)</code>.</p>
+<p>Mova o parâmetro para a esquerda (<code>p &lt; 0</code>): as
+partículas espiralam em direção ao ponto estacionário. Trata-se de um
+ponto estacionário estável.</p>
+<p>Mova o parâmetro para a direita (<code>p &gt; 0</code>): as
+partículas espiralam para longe do ponto estacionário. Trata-se de um
+ponto estacionário instável.</p>
+<p>Observe as regiões separadas pelas isóclinas. Em cada região, as
+partículas tendem a se mover para um quadrante específico.</p>
+<h3 id="mistura-stir">Mistura (Stir)</h3>
+<p>Este exemplo possui múltiplos pontos estacionários—alguns estáveis e
+outros instáveis. Partículas próximas a um ponto instável se afastam
+dele e convergem para os pontos estáveis.</p>
+<pre><code>x&#39; = -0.2 x^3 + saw(y, y_cent)
+y&#39; = -0.2 y^3 - saw(x, x_cent)
+                        /
+                   /\  /
+ saw(x,c) =       /  \/
+                 /</code></pre>
+<p>Ao alterar o parâmetro, os pontos estacionários se deslocam,
+conduzindo as partículas a um padrão caótico.</p>
+<p>Como as equações são suaves, partículas que começam próximas
+permanecem próximas no curto prazo. Com o tempo, contudo, elas acabam
+divergindo.</p>
+<p>Isso exemplifica um aparente paradoxo do cálculo: para um
+<code>t</code> fixo, a posição <code>(x(t), y(t))</code> varia
+continuamente em relação a <code>(x(0), y(0))</code>. Se deixarmos
+<code>t</code> crescer indefinidamente, essa continuidade perde
+relevância prática.</p>
+<p>Este exemplo possui um atrator móvel no tempo: eventualmente todas as
+partículas terminam orbitando estreitamente em torno de um dos quatro
+pontos do atrator.</p>
+<h3 id="sistema-caótico-com-atrator-estranho">Sistema caótico com
+atrator estranho</h3>
+<p>Este exemplo foi extraído da obra citada nas referências.</p>
+<pre><code>x&#39;(t) = 0.7y + 10x(0.1-y^2)
+y&#39;(t) = -x + 0.25 sin(1.57t)</code></pre>
+<p>Embora caótico, este sistema possui um atrator. O atrator nãoéuma
+curva simples: com o avanço do tempo, ele se divide e se dobra sobre si
+mesmo. As partículas se dispersam e tornam a se reunir em uma ordem
+diferente.</p>
+<p>Adicione uma grade de partículas e observe como as cores semelhantes
+permanecem próximas inicialmente e depois se misturam
+intimamente—lembrando o sovar de um pão ou o forjar de aço.</p>
+<h3 id="referências">Referências</h3>
+<p>Para aprofundamento, recomendamos:</p>
+<ul>
+<li><p><a
+href="https://www.wiley.com/en-us/Nonlinear+Dynamics+and+Chaos%2C+2nd+Edition-p-9780471876847">Nonlinear
+Dynamics and Chaos</a> de J. M. T. Thompson e H. B. Stewart.</p></li>
+<li><p><a
+href="https://www.degruyter.com/document/doi/10.1515/zna-1981-0115/html">Strange
+attractors, chaotic behavior, and information flow</a> de R.
+Shaw.</p></li>
+</ul>
+</body>
+</html>

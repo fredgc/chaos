@@ -14,15 +14,19 @@
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import 'field.dart';
 import 'flow.dart';
 import 'help.dart';
-import 'widget.dart';
+import 'l10n/l10n_extension.dart';
 import 'settings.dart';
+import 'widget.dart';
 
 void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await LocaleController.initialize();
   print("RED: Start of main.");
   MyAppBuilder builder = MyAppBuilder();
   FlowAppWidgetState.initSettings(Settings.instance);
@@ -45,12 +49,31 @@ class MyAppBuilder {
     return (BuildContext context) => FlowAppWidget(FlowField(f), f);
   }
 
-  MaterialApp makeApp() {
-    return MaterialApp(
-      title: "Dynamic System Demo",
-      routes: routes,
-      initialRoute: FieldEnum.rotate.route,
-      debugShowCheckedModeBanner: false,
+  Widget makeApp() {
+    return ValueListenableBuilder<Locale?>(
+      valueListenable: LocaleController.currentLocale,
+      builder: (context, locale, _) {
+        return MaterialApp(
+          locale: locale,
+          localeResolutionCallback: (deviceLocale, supportedLocales) {
+            if (deviceLocale != null) {
+              for (final supported in supportedLocales) {
+                if (supported.languageCode == deviceLocale.languageCode) {
+                  return supported;
+                }
+              }
+            }
+            return const Locale('en');
+          },
+          onGenerateTitle: (context) => context.l10n.appTitle,
+          localizationsDelegates: AppLocalizations.localizationsDelegates,
+          supportedLocales: AppLocalizations.supportedLocales,
+          theme: Settings.instance.theme.theme_data,
+          routes: routes,
+          initialRoute: FieldEnum.rotate.route,
+          debugShowCheckedModeBanner: false,
+        );
+      },
     );
   }
 }

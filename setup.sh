@@ -24,8 +24,10 @@ echo "Using port $FLUTTER_PORT"
 export USE_DESKTOP=$workspace
 emacs-maybe-client -n -3 README.md lib/main.dart
 
-chrome-hot-key -w $workspace -g 1700x1000+0+375 9 "http://localhost:$FLUTTER_PORT/#/"
+chrome-hot-key -n personal -w $workspace -g 1200x1000+0+50 9 "http://localhost:$FLUTTER_PORT"
 
-# chrome-hot-key -w $workspace -g +0+26 5 "https://flutter.dev/docs/get-started/codelab"
+chrome-hot-key -n personal -w $workspace -g 980x1010-1+30 0 \
+  "https://console.firebase.google.com/u/0/project/chaos-3462f/overview"
 
-chrome-hot-key -n personal -w $workspace -g 980x1010+1500+26 0 "https://console.firebase.google.com/u/0/project/chaos-3462f/overview"
+chrome-hot-key -n personal -w $workspace -g 950x1000+100+30 t \
+  "https://docs.google.com/document/d/19ESr9TL-pdcFNEsN7CH6jGBd29GVWtpy7y3GxRuSSrI/edit?tab=t.x49286yytn39"

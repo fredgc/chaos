@@ -15,20 +15,23 @@
 name: chaos
 description: "A demo of chaotic systems."
 publish_to: 'none' # Remove this line if you wish to publish to pub.dev
-version: 2.0.1+1
+version: 2.1.0+0
 
 environment:
-  sdk: '>=3.3.4 <4.0.0'
+  sdk: '>=3.4.0 <4.0.0'
 
 dependencies:
   flutter:
     sdk: flutter
+  flutter_localizations:
+    sdk: flutter
+  intl: any
   cupertino_icons: ^1.0.2
   flex_color_picker: ^3.7.0
   flutter_animate: ^4.5.2
   flutter_inappwebview: ^6.1.5  # If the help page is html.
   # flutter_markdown_plus: ^1.0.7 # If the help page is in markdown.
-  google_fonts: ^6.2.1
+  google_fonts: ^8.1.0
   package_info_plus: ^8.2.1     # get version number from code.
   shared_preferences: ^2.5.2
   url_launcher: ^6.3.1
@@ -44,25 +47,84 @@ dev_dependencies:
     path: ./html_tweak
 
 flutter:
+  generate: true
   uses-material-design: true
   assets:
     - path: assets/about.html
       transformers:
         - package: html_tweak
+    - path: assets/about_es.html
+      transformers:
+        - package: html_tweak
+    - path: assets/about_de.html
+      transformers:
+        - package: html_tweak
+    - path: assets/about_fr.html
+      transformers:
+        - package: html_tweak
+    - path: assets/about_ja.html
+      transformers:
+        - package: html_tweak
+    - path: assets/about_lt.html
+      transformers:
+        - package: html_tweak
+    - path: assets/about_pt.html
+      transformers:
+        - package: html_tweak
+    - path: assets/about_zh.html
+      transformers:
+        - package: html_tweak
+    - assets/privacy.html
+    - assets/privacy_es.html
+    - assets/privacy_de.html
+    - assets/privacy_fr.html
+    - assets/privacy_ja.html
+    - assets/privacy_lt.html
+    - assets/privacy_pt.html
+    - assets/privacy_zh.html
+    - assets/terms.html
+    - assets/terms_es.html
+    - assets/terms_de.html
+    - assets/terms_fr.html
+    - assets/terms_ja.html
+    - assets/terms_lt.html
+    - assets/terms_pt.html
+    - assets/terms_zh.html
     - assets/help.html
+    - assets/help_es.html
+    - assets/help_de.html
+    - assets/help_fr.html
+    - assets/help_ja.html
+    - assets/help_lt.html
+    - assets/help_pt.html
+    - assets/help_zh.html
     - assets/fields.html
+    - assets/fields_es.html
+    - assets/fields_de.html
+    - assets/fields_fr.html
+    - assets/fields_ja.html
+    - assets/fields_lt.html
+    - assets/fields_pt.html
+    - assets/fields_zh.html
     - assets/controls.html
+    - assets/controls_es.html
+    - assets/controls_de.html
+    - assets/controls_fr.html
+    - assets/controls_ja.html
+    - assets/controls_lt.html
+    - assets/controls_pt.html
+    - assets/controls_zh.html
     - assets/css/
 
 flutter_launcher_icons:
   android: true
   ios: false
-  image_path: "assets/icon/icon.png"
-  adaptive_icon_background: "assets/icon/background.png"
-  adaptive_icon_foreground: "assets/icon/foreground.png"
+  image_path: "assets/icons/icon.png"
+  adaptive_icon_background: "assets/icons/background.png"
+  adaptive_icon_foreground: "assets/icons/foreground.png"
   min_sdk_android: 21 # android min sdk min:16, default 21
   web:
     generate: true
-    image_path: "assets/icon/icon.png"
+    image_path: "assets/icons/icon.png"
     background_color: "#9300ff"
     theme_color: "#ff00f4"

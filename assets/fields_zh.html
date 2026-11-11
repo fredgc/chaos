@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>混沌流演示向量场</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+  </style>
+  <link rel="stylesheet" href="css/doc_style.css" />
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">混沌流演示向量场</h1>
+</header>
+<h2 id="演示向量场">演示向量场</h2>
+<p>以下是演示中包含的向量场列表，建议按顺序依次体验。</p>
+<h3 id="简单旋转">简单旋转</h3>
+<p>这是一个顺时针方向的简单旋转。</p>
+<pre><code>x&#39; =     y + p*saw(x)
+y&#39; = -x    + p*saw(y)</code></pre>
+<p>向量记法：</p>
+<pre><code>v&#39; = [ 0  1]v  + 摄动
+     [-1  0]
+
+v = [x]
+    [y]</code></pre>
+<p>摄动是依赖于参数的锯齿波函数。在流场中添加若干粒子并点击“播放”，可看到它们呈顺时针圆形流动。</p>
+<p>增大参数值后，粒子的运动轨迹将偏离先前的轨道。</p>
+<p>勾选“Fld”复选框以显示向量场。由于向量场有界，每个粒子的运动轨迹都是平滑的，且完全由其初始位置决定。这意味着粒子轨迹之间永远不会相交。</p>
+<p>勾选“Iso”复选框以显示等斜线。这些是向量场在x或y方向分量为0的曲线。当<code>x' = 0</code>时，向量场为垂直方向；当<code>y' = 0</code>时，向量场为水平方向。若
+两者均为0，粒子将静止不动，这称为动力系统的驻点（平衡点）。</p>
+<h3 id="螺旋-稳定平衡点与不稳定平衡点">螺旋 –
+稳定平衡点与不稳定平衡点</h3>
+<p>在上一示例的基础上，引入<code>x'</code>对<code>x</code>以及<code>y'</code>对<code>y</code>的线性依赖：</p>
+<pre><code>x&#39; = p*x +   y
+y&#39; =  -x + p*y</code></pre>
+<p>初始时<code>p = 0</code>，与上述旋转完全一致。在中心<code>(0,0)</code>处存在一个平衡点。</p>
+<p>将参数向左滑动（<code>p &lt; 0</code>），粒子将盘旋螺旋汇聚向平衡点。这是一个稳定平衡点，其附近的粒子将始终保持在附近。</p>
+<p>将参数向右滑动（<code>p &gt; 0</code>），粒子将盘旋螺旋远离平衡点。这是一个不稳定平衡点。</p>
+<p>观察等斜线分隔的各区域，在每个区域内粒子都倾向于朝特定象限方向运动。</p>
+<h3 id="搅拌-stir">搅拌 (Stir)</h3>
+<p>这是一个具有多个平衡点的示例，其中部分稳定，部分不稳定。若在不稳定平衡点附近放置粒子，粒子会漂移离开并向稳定平衡点靠近。</p>
+<pre><code>x&#39; = -0.2 x^3 + saw(y, y_cent)
+y&#39; = -0.2 y^3 - saw(x, x_cent)
+                        /
+                   /\  /
+ saw(x,c) =       /  \/
+                 /</code></pre>
+<p>调整参数后，平衡点开始移动，粒子随之移动，形成复杂的混沌图景。</p>
+<p>由于方程是光滑的，初始彼此靠近的粒子在短期内仍将保持接近；但在经过足够长的时间后，它们终将分道扬镳。</p>
+<p>这展现了微积分的一个表观悖论：对于给定的固定时间<code>t</code>，位置<code>(x(t), y(t))</code>随初始点<code>(x(0), y(0))</code>连续变化；但若让<code>t</code>无限增长，
+这种连续性在实际观测中将不复存在。</p>
+<p>该示例包含一个随时间移动的吸引子：最终所有粒子都会紧密围绕四个吸引子点之一盘旋。</p>
+<h3 id="具有奇异吸引子的混沌系统">具有奇异吸引子的混沌系统</h3>
+<p>本示例选自参考资料中的专著。</p>
+<pre><code>x&#39;(t) = 0.7y + 10x(0.1-y^2)
+y&#39;(t) = -x + 0.25 sin(1.57t)</code></pre>
+<p>尽管系统是混沌的，但它具有吸引子。吸引子并非简单曲线：随时间推进，吸引子会发生分离并向自身折叠。粒子分散后会重新聚集，但相对顺序发生了置换。</p>
+<p>添加一组粒子网格，观察相似颜色的粒子如何在最初保持紧凑，随后充分混合—其过程令人联想到揉面团或锻打大马士革钢。</p>
+<h3 id="参考资料">参考资料</h3>
+<p>如需深入学习，推荐阅读：</p>
+<ul>
+<li><p><a
+href="https://www.wiley.com/en-us/Nonlinear+Dynamics+and+Chaos%2C+2nd+Edition-p-9780471876847">Nonlinear
+Dynamics and Chaos</a> （J. M. T. Thompson与H. B. Stewart著）</p></li>
+<li><p><a
+href="https://www.degruyter.com/document/doi/10.1515/zna-1981-0115/html">Strange
+attractors, chaotic behavior, and information flow</a> （R.
+Shaw著）</p></li>
+</ul>
+</body>
+</html>

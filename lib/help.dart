@@ -19,11 +19,34 @@ import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:flutter/services.dart' show rootBundle;
 
+import 'help_nav_listener.dart';
+import 'l10n/l10n_extension.dart';
 import 'settings.dart';
 
 class HelpScreen extends StatefulWidget {
   static const routeName = "/help";
   HelpScreen({super.key});
+
+  static bool isExternalUrl(String href) {
+    final trimmed = href.trim();
+    return trimmed.startsWith('http://') ||
+        trimmed.startsWith('https://') ||
+        trimmed.startsWith('mailto:');
+  }
+
+  static String cleanNavTarget(String href) {
+    String target = href.trim();
+    if (target.contains('#')) {
+      target = target.split('#').first;
+    }
+    if (target.contains('?')) {
+      target = target.split('?').first;
+    }
+    if (target.startsWith('./')) {
+      target = target.substring(2);
+    }
+    return target;
+  }
 
   @override
   State<HelpScreen> createState() => _HelpScreenState();
@@ -34,73 +57,183 @@ class _HelpScreenState extends State<HelpScreen> {
 
   InAppWebViewController? webViewController;
   double progress = 0;
+  String currentFile = "about.html";
+  HelpNavListener? _helpNavListener;
+
+  static const _navScript = '''
+<script>
+document.addEventListener('click', function(e) {
+  var a = e.target.closest('a');
+  if (a) {
+    var href = a.getAttribute('href');
+    if (href && !href.startsWith('#')) {
+      e.preventDefault();
+      if (window.parent && window.parent !== window) {
+        window.parent.postMessage('help_navigate:' + href, '*');
+      }
+      var f = window.flutter_inappwebview;
+      if (f && f.callHandler) {
+        f.callHandler('helpNavigate', href);
+      }
+    }
+  }
+});
+</script>
+''';
 
   @override
   void initState() {
     super.initState();
+    LocaleController.currentLocale.addListener(_onLocaleChanged);
+    _helpNavListener = HelpNavListener(_handleNavigation);
+  }
+
+  @override
+  void dispose() {
+    LocaleController.currentLocale.removeListener(_onLocaleChanged);
+    _helpNavListener?.dispose();
+    super.dispose();
+  }
+
+  void _onLocaleChanged() {
+    if (mounted) {
+      loadFile(currentFile);
+      setState(() {});
+    }
+  }
+
+  void _handleNavigation(String href) async {
+    if (HelpScreen.isExternalUrl(href)) {
+      final uri = Uri.tryParse(href.trim());
+      if (uri != null) {
+        await launchUrl(uri, mode: LaunchMode.externalApplication);
+      }
+      return;
+    }
+
+    final target = HelpScreen.cleanNavTarget(href);
+    if (target.isNotEmpty) {
+      loadFile(target);
+    }
+  }
+
+  String _effectiveLanguage() {
+    final active = LocaleController.currentLocale.value?.languageCode;
+    if (active != null && active.isNotEmpty) {
+      return active;
+    }
+    final systemLang =
+        WidgetsBinding.instance.platformDispatcher.locale.languageCode;
+    const supported = {'en', 'es'};
+    if (supported.contains(systemLang)) {
+      return systemLang;
+    }
+    return 'en';
   }
 
   void loadFile(String filename) async {
+    final baseWithExt =
+        filename.endsWith('.html') ? filename : '$filename.html';
+    final cleanBase =
+        baseWithExt.replaceAll(RegExp(r'_[a-z]{2}\.html$'), '.html');
+    currentFile = cleanBase;
     if (webViewController == null) {
       print("Not loading $filename because controller is null.");
       return;
     }
-    print("load file $filename.");
-  // XXX This does not work with firebase hosting. These files need to go
-  // to the web and also to Android. This needs some work.
+    final lang = _effectiveLanguage();
+    String target = cleanBase;
+    if (lang != 'en') {
+      final dot = cleanBase.lastIndexOf('.');
+      if (dot != -1) {
+        target =
+            "${cleanBase.substring(0, dot)}_$lang${cleanBase.substring(dot)}";
+      }
+    }
+    print("load file $target.");
+    String htmlContent;
     try {
-      await webViewController?.loadFile(assetFilePath: "assets/assets/$filename");
-      print("getMetaThemeColor = ${webViewController?.getMetaThemeColor}");
-      Color? color = await webViewController!.getMetaThemeColor();
-      print("getMetaThemeColor = ${color}");
-      print("Done loading?");
-    } catch(ex) {
-      print("RED: error loading $filename. $ex");
+      htmlContent = await rootBundle.loadString('assets/$target');
+    } catch (_) {
+      try {
+        htmlContent = await rootBundle.loadString('assets/$cleanBase');
+      } catch (ex) {
+        print("RED: error loading $cleanBase. $ex");
+        return;
+      }
+    }
+    try {
+      final css = await rootBundle.loadString('assets/css/doc_style.css');
+      htmlContent =
+          htmlContent.replaceFirst('</head>', '<style>$css</style></head>');
+    } catch (_) {}
+
+    if (htmlContent.contains('</body>')) {
+      htmlContent = htmlContent.replaceFirst('</body>', '$_navScript</body>');
+    } else {
+      htmlContent = '$htmlContent$_navScript';
+    }
+
+    try {
+      await webViewController?.loadData(data: htmlContent);
+    } catch (e) {
+      print("Error loading data into webview: $e");
     }
   }
 
   AppBar appBar(BuildContext context) {
-    // print("Building help page appbar.");
-    final settings_button = IconButton(
+    final settingsButton = IconButton(
       onPressed: () {
         Navigator.pushNamed(context, SettingsScreen.routeName);
       },
-      icon: Icon(Icons.settings),
-      tooltip: "Settings",
+      icon: const Icon(Icons.settings),
+      tooltip: context.l10n.settingsTooltip,
     );
 
     return AppBar(
-      title: Text("Help"),
-      leading: settings_button,
+      title: Text(context.l10n.helpTitle),
+      leading: settingsButton,
       actions: <Widget>[
         ElevatedButton(
-          child: const Text("About"),
+          child: Text(context.l10n.aboutButton),
           onPressed: () {
-            loadFile("about.html");
+            loadFile(getLocalizedHtmlFileName(context, "about"));
           },
         ),
         ElevatedButton(
-          child: const Text("Overview"),
+          child: Text(context.l10n.privacyButton),
           onPressed: () {
-            loadFile("help.html");
+            loadFile(getLocalizedHtmlFileName(context, "privacy"));
           },
         ),
         ElevatedButton(
-          child: const Text("Fields"),
+          child: Text(context.l10n.termsButton),
           onPressed: () {
-            loadFile("fields.html");
+            loadFile(getLocalizedHtmlFileName(context, "terms"));
           },
         ),
         ElevatedButton(
-          child: const Text("Controls"),
+          child: Text(context.l10n.overviewButton),
           onPressed: () {
-            loadFile("controls.html");
+            loadFile(getLocalizedHtmlFileName(context, "help"));
           },
         ),
         ElevatedButton(
-          child: const Icon(Icons.close),
+          child: Text(context.l10n.fieldsButton),
           onPressed: () {
-            // print("close.");
+            loadFile(getLocalizedHtmlFileName(context, "fields"));
+          },
+        ),
+        ElevatedButton(
+          child: Text(context.l10n.controlsButton),
+          onPressed: () {
+            loadFile(getLocalizedHtmlFileName(context, "controls"));
+          },
+        ),
+        IconButton(
+          icon: const Icon(Icons.close),
+          tooltip: context.l10n.closeButtonTooltip,
+          onPressed: () {
             Navigator.pop(context);
           },
         ),
@@ -109,27 +242,42 @@ class _HelpScreenState extends State<HelpScreen> {
   }
 
   InAppWebView webview(BuildContext c) {
-    // print("Making web view.");
-    var blank_page = InAppWebViewInitialData(data: """
+    var blankPage = InAppWebViewInitialData(data: """
       <!DOCTYPE html>
-      <head></head> <body>Loading... </body></html>
+      <head></head> <body>${c.l10n.loadingText}</body></html>
       """);
     return InAppWebView(
       key: webViewKey,
-      initialData: blank_page,
-      // pullToRefreshController: pullToRefreshController,
+      initialData: blankPage,
+      initialSettings: InAppWebViewSettings(
+        useShouldOverrideUrlLoading: true,
+        javaScriptEnabled: true,
+      ),
       onWebViewCreated: (controller) {
-        // print("onWebViewCreated");
         webViewController = controller;
-        loadFile("about.html");
+        controller.addJavaScriptHandler(
+          handlerName: 'helpNavigate',
+          callback: (args) {
+            if (args.isNotEmpty && args[0] is String) {
+              _handleNavigation(args[0] as String);
+            }
+          },
+        );
+        loadFile(getLocalizedHtmlFileName(c, "about"));
       },
       shouldOverrideUrlLoading: (controller, navigationAction) async {
-        var uri = navigationAction.request.url!;
-        // print("ORANGE: shouldOverrideUrlLoadin $uri.");
-        // Any http, i.e. anything but a file.
-        if (uri.toString().startsWith("http")) {
-          InAppBrowser.openWithSystemBrowser(url: uri);
-          return NavigationActionPolicy.ALLOW;
+        final uri = navigationAction.request.url;
+        if (uri == null) return NavigationActionPolicy.ALLOW;
+        final urlString = uri.toString();
+        if (urlString.startsWith('http://') ||
+            urlString.startsWith('https://') ||
+            urlString.startsWith('mailto:')) {
+          await launchUrl(uri.uriValue, mode: LaunchMode.externalApplication);
+          return NavigationActionPolicy.CANCEL;
+        }
+        if (urlString != 'about:blank' && !urlString.startsWith('data:')) {
+          _handleNavigation(urlString);
+          return NavigationActionPolicy.CANCEL;
         }
         return NavigationActionPolicy.ALLOW;
       },
@@ -148,13 +296,13 @@ class _HelpScreenState extends State<HelpScreen> {
 
   @override
   Widget build(BuildContext context) {
-    // print("Build help web view page.");
-    return MaterialApp(
-        theme: Settings.instance.theme.theme_data,
-        home: Scaffold(
-            appBar: appBar(context),
-            body: SafeArea(
-                child: Column(children: <Widget>[
+    return Theme(
+      data: Settings.instance.theme.theme_data,
+      child: Scaffold(
+        appBar: appBar(context),
+        body: SafeArea(
+          child: Column(
+            children: <Widget>[
               Expanded(
                 child: Stack(
                   children: [
@@ -165,6 +313,10 @@ class _HelpScreenState extends State<HelpScreen> {
                   ],
                 ),
               ),
-            ]))));
+            ],
+          ),
+        ),
+      ),
+    );
   }
 }

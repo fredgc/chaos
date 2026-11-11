@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>plan</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+  </style>
+  <link rel="stylesheet" href="../css/doc_style.css" />
+</head>
+<body>
+<h1 id="chaos-flow-demo-plan">Chaos Flow Demo Plan</h1>
+<p>This document outlines the strategic roadmap, mathematical
+foundations, and long-term milestones for the <strong>Chaos Flow
+Demo</strong> project.</p>
+<blockquote>
+<p><strong>Note</strong>: Active day-to-day tasks and issue tracking are
+managed dynamically using <code>~/bin/todo.py</code>. Run
+<code>~/bin/todo.py list</code> to view active tasks.</p>
+</blockquote>
+<hr />
+<h2 id="mathematical-models-systems">1. Mathematical Models &amp;
+Systems</h2>
+<p>The application illustrates dynamic systems, vector fields, and
+chaotic flow:</p>
+<h3 id="pure-rotation-with-perturbation-rotate">1.1 Pure Rotation with
+Perturbation (<code>Rotate</code>)</h3>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mover><mi>x</mi><mo accent="true">̇</mo></mover><mo stretchy="false" form="prefix">(</mo><mi>t</mi><mo stretchy="false" form="postfix">)</mo><mo>=</mo><mi>−</mi><mn>3</mn><mi>y</mi><mo>+</mo><mtext mathvariant="normal">saw</mtext><mo stretchy="false" form="prefix">(</mo><mi>x</mi><mo stretchy="false" form="postfix">)</mo><mo>,</mo><mspace width="1.0em"></mspace><mover><mi>y</mi><mo accent="true">̇</mo></mover><mo stretchy="false" form="prefix">(</mo><mi>t</mi><mo stretchy="false" form="postfix">)</mo><mo>=</mo><mn>3</mn><mi>x</mi><mo>+</mo><mtext mathvariant="normal">saw</mtext><mo stretchy="false" form="prefix">(</mo><mi>y</mi><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">\dot{x}(t) = -3y + \text{saw}(x), \quad \dot{y}(t) = 3x + \text{saw}(y)</annotation></semantics></math></p>
+<p>Demonstrates smooth periodic trajectories, uniqueness of solutions,
+and how time-dependent perturbations alter path crossing behavior.</p>
+<h3 id="stirring-flow-stir">1.2 Stirring Flow (<code>Stir</code>)</h3>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mover><mi>x</mi><mo accent="true">̇</mo></mover><mo stretchy="false" form="prefix">(</mo><mi>t</mi><mo stretchy="false" form="postfix">)</mo><mo>=</mo><mi>−</mi><mn>0.2</mn><msup><mi>x</mi><mn>3</mn></msup><mo>+</mo><mn>3</mn><mi>f</mi><mo stretchy="false" form="prefix">(</mo><mi>y</mi><mo>,</mo><msub><mi>y</mi><mtext mathvariant="normal">cent</mtext></msub><mo stretchy="false" form="postfix">)</mo><mo>,</mo><mspace width="1.0em"></mspace><mover><mi>y</mi><mo accent="true">̇</mo></mover><mo stretchy="false" form="prefix">(</mo><mi>t</mi><mo stretchy="false" form="postfix">)</mo><mo>=</mo><mi>−</mi><mn>0.2</mn><msup><mi>y</mi><mn>3</mn></msup><mo>−</mo><mn>3</mn><mi>f</mi><mo stretchy="false" form="prefix">(</mo><mi>x</mi><mo>,</mo><msub><mi>x</mi><mtext mathvariant="normal">cent</mtext></msub><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">\dot{x}(t) = -0.2 x^3 + 3 f(y, y_{\text{cent}}), \quad \dot{y}(t) = -0.2 y^3 - 3 f(x, x_{\text{cent}})</annotation></semantics></math></p>
+<p>Where
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>f</mi><annotation encoding="application/x-tex">f</annotation></semantics></math>
+represents localized shearing or stirring teeth. Showcases sensitive
+dependence on initial conditions and folding behavior.</p>
+<h3 id="strange-attractor-chaos">1.3 Strange Attractor
+(<code>Chaos</code>)</h3>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mover><mi>x</mi><mo accent="true">̇</mo></mover><mo stretchy="false" form="prefix">(</mo><mi>t</mi><mo stretchy="false" form="postfix">)</mo><mo>=</mo><mn>0.7</mn><mi>y</mi><mo>+</mo><mn>10</mn><mi>x</mi><mo stretchy="false" form="prefix">(</mo><mn>0.1</mn><mo>−</mo><msup><mi>y</mi><mn>2</mn></msup><mo stretchy="false" form="postfix">)</mo><mo>,</mo><mspace width="1.0em"></mspace><mover><mi>y</mi><mo accent="true">̇</mo></mover><mo stretchy="false" form="prefix">(</mo><mi>t</mi><mo stretchy="false" form="postfix">)</mo><mo>=</mo><mi>−</mi><mi>x</mi><mo>+</mo><mn>0.25</mn><mrow><mi>sin</mi><mo>&#8289;</mo></mrow><mo stretchy="false" form="prefix">(</mo><mn>1.57</mn><mi>t</mi><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">\dot{x}(t) = 0.7 y + 10x(0.1 - y^2), \quad \dot{y}(t) = -x + 0.25 \sin(1.57 t)</annotation></semantics></math></p>
+<p>Exhibits a chaotic strange attractor that folds continuously in state
+space, generating quasi-periodic behavior and fractal
+cross-sections.</p>
+<hr />
+<h2 id="numerical-integration-particle-dynamics">2. Numerical
+Integration &amp; Particle Dynamics</h2>
+<ul>
+<li><p><strong>Runge-Kutta Integration</strong>: Transition from simple
+Euler stepping to adaptive 4th-order Runge-Kutta (RK4) to ensure
+particle motes remain bounded and conserve energy over extended
+simulation runs.</p></li>
+<li><p><strong>Reversible Time &amp; Error Measurement</strong>: Provide
+a time-reversal toggle to simulate backward flow and compute numerical
+drift / Lyapunov exponent estimates.</p></li>
+<li><p><strong>Nullcline &amp; Isocline Geometry</strong>: Solve and
+render horizontal
+(<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mover><mi>x</mi><mo accent="true">̇</mo></mover><mo>=</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">\dot{x} =
+0</annotation></semantics></math>) and vertical
+(<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mover><mi>y</mi><mo accent="true">̇</mo></mover><mo>=</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">\dot{y} = 0</annotation></semantics></math>)
+nullclines dynamically across all parameter configurations.</p></li>
+</ul>
+<hr />
+<h2 id="interactive-presentation-educational-modes">3. Interactive
+Presentation &amp; Educational Modes</h2>
+<ul>
+<li><p><strong>Interactive Demonstration Walkthrough</strong>: Design
+step-by-step guided lessons explaining vector fields, phase portraits,
+and chaos theory.</p></li>
+<li><p><strong>Android Package Release</strong>: Prepare Android
+manifest and publish release package to Google Play.</p></li>
+</ul>
+<hr />
+<h2 id="visual-accessibility-verification-checklist">4. Visual &amp;
+Accessibility Verification Checklist</h2>
+<p>Perform these manual checks across supported locales
+(<code>en</code>, <code>es</code>, <code>de</code>, <code>fr</code>,
+<code>ja</code>, <code>lt</code>, <code>pt</code>, <code>zh</code>) on
+mobile and desktop viewports:</p>
+<ul>
+<li><p><strong>Simulation Canvas &amp; Flow Models</strong>:</p>
+<ul class="task-list">
+<li><p><label><input type="checkbox" />Verify particle flow animation
+renders smoothly for all three models:</label></p>
+<ul>
+<li><p><strong>Rotate</strong>: Pure rotation with saw-tooth
+perturbation.</p></li>
+<li><p><strong>Stir</strong>: Stirring flow with shearing
+teeth.</p></li>
+<li><p><strong>Chaos</strong>: Strange attractor folding in phase
+space.</p></li>
+</ul></li>
+<li><p><label><input type="checkbox" />Test trail fading and particle
+contrast in both light and dark themes.</label></p></li>
+</ul></li>
+<li><p><strong>Controls &amp; Sliders</strong>:</p>
+<ul class="task-list">
+<li><p><label><input type="checkbox" />Verify the <strong>Play /
+Pause</strong> and <strong>Step</strong> buttons respond crisply and
+display localized tooltips.</label></p></li>
+<li><p><label><input type="checkbox" />Adjust particle speed, trail
+length, and perturbation parameters and confirm that slider labels and
+values render without clipping.</label></p></li>
+</ul></li>
+<li><p><strong>Language Menu &amp; Settings</strong>:</p>
+<ul class="task-list">
+<li><p><label><input type="checkbox" />Switch to each language from the
+top bar language menu and confirm all UI labels, toolbars, and dialog
+titles update immediately.</label></p></li>
+<li><p><label><input type="checkbox" />Switch to <strong>Auto</strong>
+and verify the app reverts cleanly to the system default
+locale.</label></p></li>
+</ul></li>
+<li><p><strong>Touch Targets &amp; Screen Readers</strong>:</p>
+<ul class="task-list">
+<li><p><label><input type="checkbox" />Verify top bar and floating
+action controls meet the 48x48 dp minimum touch target requirement on
+mobile devices.</label></p></li>
+<li><p><label><input type="checkbox" />Enable TalkBack (Android) or
+VoiceOver (iOS/macOS) and confirm screen reader announcements when
+toggling simulation states and switching models.</label></p></li>
+</ul></li>
+</ul>
+</body>
+</html>
