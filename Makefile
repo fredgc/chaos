@@ -27,7 +27,7 @@ web/%.html: assets/%.html
 	cp -f $< $@
 
 build_all: $(ASSETS)
-	echo XXX flutter build apk
+	flutter build apk --release
 	flutter build web
 
 web/favicon.png: assets/icons/icon.png
@@ -60,7 +60,7 @@ stage-release: $(ASSETS) audit
 
 release: $(ASSETS) audit
 	make build_all
-	firebase deploy
+	firebase_release.pl
 
 $(FIREBASE_FILES):
 	flutterfire configure -y
