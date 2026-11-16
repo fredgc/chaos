@@ -13,19 +13,21 @@
 // limitations under the License.
 
 import 'dart:async';
+
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_inappwebview/flutter_inappwebview.dart';
-import 'package:url_launcher/url_launcher.dart';
 import 'package:flutter/services.dart' show rootBundle;
+import 'package:url_launcher/url_launcher.dart';
+import 'package:webview_flutter/webview_flutter.dart';
 
 import 'help_nav_listener.dart';
 import 'l10n/l10n_extension.dart';
 import 'settings.dart';
+import 'webview_stub.dart' if (dart.library.js_interop) 'webview_web.dart';
 
 class HelpScreen extends StatefulWidget {
   static const routeName = "/help";
-  HelpScreen({super.key});
+  const HelpScreen({super.key});
 
   static bool isExternalUrl(String href) {
     final trimmed = href.trim();
@@ -48,17 +50,79 @@ class HelpScreen extends StatefulWidget {
     return target;
   }
 
+  static String colorToHex(Color color) {
+    return '#${color.toARGB32().toRadixString(16).padLeft(8, '0').substring(2)}';
+  }
+
+  static String generateThemeCss(ColorScheme scheme) {
+    final bgHex = colorToHex(scheme.surface);
+    final textHex = colorToHex(scheme.onSurface);
+    final sectionHex = colorToHex(scheme.surfaceContainerHighest);
+    final primaryHex = colorToHex(scheme.primary);
+    final borderHex = colorToHex(scheme.outline);
+
+    return '''
+<style id="theme-style">
+html, body, .container {
+  background: $bgHex !important;
+  color: $textHex !important;
+}
+section {
+  background: $sectionHex !important;
+  border: 1px solid $borderHex !important;
+  color: $textHex !important;
+}
+h1, h2, h3, h4, .title {
+  color: $primaryHex !important;
+}
+p, li, td, th {
+  color: $textHex !important;
+}
+table, th, td {
+  border-color: $borderHex !important;
+}
+th {
+  background: $sectionHex !important;
+  color: $primaryHex !important;
+}
+a {
+  color: $primaryHex !important;
+}
+a:visited {
+  color: $primaryHex !important;
+}
+a:hover {
+  color: $textHex !important;
+}
+code {
+  background: $sectionHex !important;
+  color: $textHex !important;
+  padding: 2px 4px !important;
+  border-radius: 4px !important;
+}
+nav {
+  background-color: $sectionHex !important;
+}
+header, footer {
+  background: inherit !important;
+  color: $textHex !important;
+}
+</style>
+''';
+  }
+
   @override
   State<HelpScreen> createState() => _HelpScreenState();
 }
 
 class _HelpScreenState extends State<HelpScreen> {
-  final GlobalKey webViewKey = GlobalKey();
-
-  InAppWebViewController? webViewController;
+  late final WebViewController webViewController;
   double progress = 0;
   String currentFile = "about.html";
+  String? _lastLocale;
+  Brightness? _lastBrightness;
   HelpNavListener? _helpNavListener;
+  StreamSubscription<SettingsStatus>? _statusListener;
 
   static const _navScript = '''
 <script>
@@ -71,9 +135,8 @@ document.addEventListener('click', function(e) {
       if (window.parent && window.parent !== window) {
         window.parent.postMessage('help_navigate:' + href, '*');
       }
-      var f = window.flutter_inappwebview;
-      if (f && f.callHandler) {
-        f.callHandler('helpNavigate', href);
+      if (window.HelpNavigate && window.HelpNavigate.postMessage) {
+        window.HelpNavigate.postMessage(href);
       }
     }
   }
@@ -84,13 +147,78 @@ document.addEventListener('click', function(e) {
   @override
   void initState() {
     super.initState();
+    if (kIsWeb) {
+      initWebviewPlatform();
+    }
+    webViewController = WebViewController();
+    try {
+      webViewController.setBackgroundColor(
+        Settings.instance.theme.scheme.surface,
+      );
+    } catch (_) {}
+    if (!kIsWeb) {
+      try {
+        webViewController
+          ..setJavaScriptMode(JavaScriptMode.unrestricted)
+          ..addJavaScriptChannel(
+            'HelpNavigate',
+            onMessageReceived: (JavaScriptMessage message) {
+              _handleNavigation(message.message);
+            },
+          )
+          ..setNavigationDelegate(
+            NavigationDelegate(
+              onProgress: (int p) {
+                if (mounted) {
+                  setState(() {
+                    progress = p / 100.0;
+                  });
+                }
+              },
+              onPageFinished: (String url) {
+                if (mounted && progress < 1.0) {
+                  setState(() {
+                    progress = 1.0;
+                  });
+                }
+              },
+              onNavigationRequest: (NavigationRequest request) {
+                final urlString = request.url;
+                if (HelpScreen.isExternalUrl(urlString)) {
+                  final uri = Uri.tryParse(urlString.trim());
+                  if (uri != null) {
+                    launchUrl(uri, mode: LaunchMode.externalApplication);
+                  }
+                  return NavigationDecision.prevent;
+                }
+                if (urlString != 'about:blank' &&
+                    !urlString.startsWith('data:')) {
+                  _handleNavigation(urlString);
+                  return NavigationDecision.prevent;
+                }
+                return NavigationDecision.navigate;
+              },
+            ),
+          );
+      } catch (_) {}
+    } else {
+      progress = 1.0;
+    }
     LocaleController.currentLocale.addListener(_onLocaleChanged);
+    _statusListener = Settings.instance.statusStream().listen((status) {
+      if (mounted) {
+        loadFile(currentFile);
+        setState(() {});
+      }
+    });
     _helpNavListener = HelpNavListener(_handleNavigation);
+    loadFile(currentFile);
   }
 
   @override
   void dispose() {
     LocaleController.currentLocale.removeListener(_onLocaleChanged);
+    _statusListener?.cancel();
     _helpNavListener?.dispose();
     super.dispose();
   }
@@ -124,11 +252,24 @@ document.addEventListener('click', function(e) {
     }
     final systemLang =
         WidgetsBinding.instance.platformDispatcher.locale.languageCode;
-    const supported = {'en', 'es'};
-    if (supported.contains(systemLang)) {
+    if (LocaleController.supportedLocales
+        .any((l) => l.languageCode == systemLang)) {
       return systemLang;
     }
     return 'en';
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    final locale = Localizations.localeOf(context).languageCode;
+    final brightness = Theme.of(context).brightness;
+    if ((_lastLocale != null && _lastLocale != locale) ||
+        (_lastBrightness != null && _lastBrightness != brightness)) {
+      loadFile(currentFile);
+    }
+    _lastLocale = locale;
+    _lastBrightness = brightness;
   }
 
   void loadFile(String filename) async {
@@ -137,10 +278,6 @@ document.addEventListener('click', function(e) {
     final cleanBase =
         baseWithExt.replaceAll(RegExp(r'_[a-z]{2}\.html$'), '.html');
     currentFile = cleanBase;
-    if (webViewController == null) {
-      print("Not loading $filename because controller is null.");
-      return;
-    }
     final lang = _effectiveLanguage();
     String target = cleanBase;
     if (lang != 'en') {
@@ -168,6 +305,14 @@ document.addEventListener('click', function(e) {
           htmlContent.replaceFirst('</head>', '<style>$css</style></head>');
     } catch (_) {}
 
+    final scheme = Settings.instance.theme.scheme;
+    final themeCss = HelpScreen.generateThemeCss(scheme);
+    if (htmlContent.contains('</head>')) {
+      htmlContent = htmlContent.replaceFirst('</head>', '$themeCss</head>');
+    } else {
+      htmlContent = '$themeCss$htmlContent';
+    }
+
     if (htmlContent.contains('</body>')) {
       htmlContent = htmlContent.replaceFirst('</body>', '$_navScript</body>');
     } else {
@@ -175,7 +320,7 @@ document.addEventListener('click', function(e) {
     }
 
     try {
-      await webViewController?.loadData(data: htmlContent);
+      await webViewController.loadHtmlString(htmlContent);
     } catch (e) {
       print("Error loading data into webview: $e");
     }
@@ -197,37 +342,37 @@ document.addEventListener('click', function(e) {
         ElevatedButton(
           child: Text(context.l10n.aboutButton),
           onPressed: () {
-            loadFile(getLocalizedHtmlFileName(context, "about"));
+            loadFile("about.html");
           },
         ),
         ElevatedButton(
           child: Text(context.l10n.privacyButton),
           onPressed: () {
-            loadFile(getLocalizedHtmlFileName(context, "privacy"));
+            loadFile("privacy.html");
           },
         ),
         ElevatedButton(
           child: Text(context.l10n.termsButton),
           onPressed: () {
-            loadFile(getLocalizedHtmlFileName(context, "terms"));
+            loadFile("terms.html");
           },
         ),
         ElevatedButton(
           child: Text(context.l10n.overviewButton),
           onPressed: () {
-            loadFile(getLocalizedHtmlFileName(context, "help"));
+            loadFile("help.html");
           },
         ),
         ElevatedButton(
           child: Text(context.l10n.fieldsButton),
           onPressed: () {
-            loadFile(getLocalizedHtmlFileName(context, "fields"));
+            loadFile("fields.html");
           },
         ),
         ElevatedButton(
           child: Text(context.l10n.controlsButton),
           onPressed: () {
-            loadFile(getLocalizedHtmlFileName(context, "controls"));
+            loadFile("controls.html");
           },
         ),
         IconButton(
@@ -241,57 +386,8 @@ document.addEventListener('click', function(e) {
     );
   }
 
-  InAppWebView webview(BuildContext c) {
-    var blankPage = InAppWebViewInitialData(data: """
-      <!DOCTYPE html>
-      <head></head> <body>${c.l10n.loadingText}</body></html>
-      """);
-    return InAppWebView(
-      key: webViewKey,
-      initialData: blankPage,
-      initialSettings: InAppWebViewSettings(
-        useShouldOverrideUrlLoading: true,
-        javaScriptEnabled: true,
-      ),
-      onWebViewCreated: (controller) {
-        webViewController = controller;
-        controller.addJavaScriptHandler(
-          handlerName: 'helpNavigate',
-          callback: (args) {
-            if (args.isNotEmpty && args[0] is String) {
-              _handleNavigation(args[0] as String);
-            }
-          },
-        );
-        loadFile(getLocalizedHtmlFileName(c, "about"));
-      },
-      shouldOverrideUrlLoading: (controller, navigationAction) async {
-        final uri = navigationAction.request.url;
-        if (uri == null) return NavigationActionPolicy.ALLOW;
-        final urlString = uri.toString();
-        if (urlString.startsWith('http://') ||
-            urlString.startsWith('https://') ||
-            urlString.startsWith('mailto:')) {
-          await launchUrl(uri.uriValue, mode: LaunchMode.externalApplication);
-          return NavigationActionPolicy.CANCEL;
-        }
-        if (urlString != 'about:blank' && !urlString.startsWith('data:')) {
-          _handleNavigation(urlString);
-          return NavigationActionPolicy.CANCEL;
-        }
-        return NavigationActionPolicy.ALLOW;
-      },
-      onProgressChanged: (controller, progress) {
-        setState(() {
-          this.progress = progress / 100;
-        });
-      },
-      onConsoleMessage: (controller, consoleMessage) {
-        if (kDebugMode) {
-          print(consoleMessage);
-        }
-      },
-    );
+  Widget webview(BuildContext c) {
+    return WebViewWidget(controller: webViewController);
   }
 
   @override
