@@ -123,4 +123,113 @@ void main() {
     expect(navigated, isNull);
     listener.dispose();
   });
+
+  test('HelpScreen.prepareHtmlContent inlines CSS, themes, and preserves links',
+      () {
+    const rawHtml = '''<!DOCTYPE html>
+<html>
+<head>
+  <link rel="stylesheet" href="css/doc_style.css" />
+</head>
+<body>
+  <p><a href="fields.html">Fields</a></p>
+  <p><a href="https://example.com">External</a></p>
+  <p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><mi>x</mi></math></p>
+</body>
+</html>''';
+
+    final prepared = HelpScreen.prepareHtmlContent(
+      rawHtml,
+      cssContent: 'body { margin: 0; }',
+      isDark: true,
+      colorScheme: ColorScheme.fromSeed(
+        seedColor: Colors.purple,
+        brightness: Brightness.dark,
+      ),
+    );
+
+    expect(prepared, contains('<html class="dark-theme">'));
+    expect(prepared, isNot(contains('<link rel="stylesheet"')));
+    expect(prepared, contains('<style>body { margin: 0; }</style>'));
+    expect(prepared, contains('id="theme-style"'));
+    expect(prepared, contains('<a href="fields.html">Fields</a>'));
+    expect(
+      prepared,
+      contains('<a href="https://example.com" target="_blank" rel="noopener">'),
+    );
+    expect(prepared, contains('help_navigate:'));
+    expect(prepared, contains('<math display="block"'));
+  });
+
+  test('Compiled help and fields HTML assets contain MathML and internal links',
+      () {
+    const locales = ['', '_de', '_es', '_fr', '_ja', '_lt', '_pt', '_zh'];
+    for (final suffix in locales) {
+      final helpHtml = File('assets/help$suffix.html').readAsStringSync();
+      expect(
+        helpHtml,
+        contains('<math'),
+        reason: 'assets/help$suffix.html should contain MathML',
+      );
+      expect(
+        helpHtml,
+        contains('fields'),
+        reason: 'assets/help$suffix.html should link to fields',
+      );
+      expect(
+        helpHtml,
+        contains('controls'),
+        reason: 'assets/help$suffix.html should link to controls',
+      );
+
+      final fieldsHtml = File('assets/fields$suffix.html').readAsStringSync();
+      expect(
+        fieldsHtml,
+        contains('<math'),
+        reason: 'assets/fields$suffix.html should contain MathML',
+      );
+    }
+  });
+
+  testWidgets('SettingsScreen wraps body in SafeArea for edge-to-edge insets',
+      (WidgetTester tester) async {
+    tester.view.physicalSize = const Size(1280, 800);
+    tester.view.devicePixelRatio = 1.0;
+    addTearDown(tester.view.resetPhysicalSize);
+    addTearDown(tester.view.resetDevicePixelRatio);
+
+    LocaleController.currentLocale.value = const Locale('en');
+    FlowAppWidgetState.initSettings(Settings.instance);
+    Settings.instance.status = SettingsStatus.Initialized;
+    await tester.pumpWidget(
+      MediaQuery(
+        data: const MediaQueryData(
+          size: Size(1280, 800),
+          padding: EdgeInsets.fromLTRB(16, 44, 16, 48),
+        ),
+        child: MaterialApp(
+          locale: const Locale('en'),
+          localizationsDelegates: AppLocalizations.localizationsDelegates,
+          supportedLocales: AppLocalizations.supportedLocales,
+          home: SettingsScreen(),
+        ),
+      ),
+    );
+    await tester.pump();
+
+    final listView = find.descendant(
+      of: find.byType(SettingsScreen),
+      matching: find.byType(ListView),
+    );
+    expect(listView, findsOneWidget);
+    expect(
+      find.ancestor(of: listView, matching: find.byType(SafeArea)),
+      findsOneWidget,
+    );
+
+    final listRect = tester.getRect(listView);
+    expect(listRect.left, greaterThanOrEqualTo(16));
+    expect(listRect.right, lessThanOrEqualTo(1280 - 16));
+    expect(listRect.bottom, lessThanOrEqualTo(800 - 48));
+  });
 }

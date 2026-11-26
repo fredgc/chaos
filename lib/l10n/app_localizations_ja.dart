@@ -80,10 +80,19 @@ class AppLocalizationsJa extends AppLocalizations {
   String get fpsThrottleTip => 'フレームレートはこの値に制限されます';
 
   @override
+  String get helpMenu => 'ヘルプメニュー';
+
+  @override
   String get helpTitle => 'ヘルプ';
 
   @override
   String get helpTooltip => 'ヘルプ';
+
+  @override
+  String get openDrawerTooltip => 'メニューを開く';
+
+  @override
+  String get userGuidesSection => 'ユーザーガイド';
 
   @override
   String get initializingApp => 'アプリを初期化中...';

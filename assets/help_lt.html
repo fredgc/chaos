@@ -32,17 +32,53 @@
 erdvės dimensijomis. Visišie pavyzdžiai yra pirmosios eilės lygtys
 dviejose erdvės dimensijose, o tai reiškia, kad taško padėtis visiškai
 nulemia jo greitį.</p>
-<pre><code>x&#39;(t) = fx(x(t), y(t), t)
-y&#39;(t) = fy(x(t), y(t), t)</code></pre>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mtable><mtr><mtd columnalign="right" style="text-align: right; padding-right: 0"><msup><mi>x</mi><mo>′</mo></msup><mo stretchy="false" form="prefix">(</mo><mi>t</mi><mo stretchy="false" form="postfix">)</mo></mtd><mtd columnalign="left" style="text-align: left; padding-left: 0"><mo>=</mo><msub><mi>f</mi><mi>x</mi></msub><mo stretchy="false" form="prefix">(</mo><mi>x</mi><mo stretchy="false" form="prefix">(</mo><mi>t</mi><mo stretchy="false" form="postfix">)</mo><mo>,</mo><mi>y</mi><mo stretchy="false" form="prefix">(</mo><mi>t</mi><mo stretchy="false" form="postfix">)</mo><mo>,</mo><mi>t</mi><mo stretchy="false" form="postfix">)</mo></mtd></mtr><mtr><mtd columnalign="right" style="text-align: right; padding-right: 0"><msup><mi>y</mi><mo>′</mo></msup><mo stretchy="false" form="prefix">(</mo><mi>t</mi><mo stretchy="false" form="postfix">)</mo></mtd><mtd columnalign="left" style="text-align: left; padding-left: 0"><mo>=</mo><msub><mi>f</mi><mi>y</mi></msub><mo stretchy="false" form="prefix">(</mo><mi>x</mi><mo stretchy="false" form="prefix">(</mo><mi>t</mi><mo stretchy="false" form="postfix">)</mo><mo>,</mo><mi>y</mi><mo stretchy="false" form="prefix">(</mo><mi>t</mi><mo stretchy="false" form="postfix">)</mo><mo>,</mo><mi>t</mi><mo stretchy="false" form="postfix">)</mo></mtd></mtr></mtable><annotation encoding="application/x-tex">
+\begin{aligned}
+x&#39;(t) &amp;= f_x(x(t), y(t), t) \\
+y&#39;(t) &amp;= f_y(x(t), y(t), t)
+\end{aligned}
+</annotation></semantics></math></p>
 <p>Šįlaukągalimaįsivaizduoti kaip vandens srautą.Įvandenįįberiame
 dulkiųdaleliųir stebime, kur jos plaukia.Ši analogija nėra visiškai
 tiksli, nes vanduo yra beveik nesuspaudžiamas, ošie srautai yra
 suspaudžiami.</p>
-<p>Pirmieji keli pavyzdžiai yra visai paprasti. Paskutinis
-demonstruojaįdomų chaotinįelgesį. Puslapio apačioje rasite
-rekomenduojamos literatūros sąrašą.</p>
-<p>Žr. <a href="fields.html">Laukai</a>šios programos braižomiems
-pavyzdiniams laukams.Žr. <a href="controls.html">Valdymas</a> programos
+<p>Pirmieji keli pavyzdžiai yra visai paprasti. Paskutinis demonstruoja
+įdomų chaotinį elgesį. Puslapio apačioje rasite rekomenduojamos
+literatūros sąrašą.</p>
+<h3 id="izoklinos">Izoklinos</h3>
+<p>Pažymėkite langelį „Iso“, kad pamatytumėte izoklinas (dar vadinamas
+nulklinomis). Tai kreivės, kuriose viena iš greičio komponenčių lygi
+nuliui:</p>
+<ul>
+<li><p>Ties
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>x</mi><annotation encoding="application/x-tex">x</annotation></semantics></math>
+izoklina
+(<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>x</mi><mo>′</mo></msup><mo>=</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">x&#39; = 0</annotation></semantics></math>)
+horizontalus judėjimas sustoja ir srautas yra grynai vertikalus. Kertant
+šią kreivę srautas keičia kryptį tarp judėjimo į kairę ir į
+dešinę.</p></li>
+<li><p>Ties
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>y</mi><annotation encoding="application/x-tex">y</annotation></semantics></math>
+izoklina
+(<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>y</mi><mo>′</mo></msup><mo>=</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">y&#39; = 0</annotation></semantics></math>)
+vertikalus judėjimas sustoja ir srautas yra grynai horizontalus. Kertant
+šią kreivę srautas keičia kryptį tarp judėjimo aukštyn ir
+žemyn.</p></li>
+</ul>
+<p>Izoklinos padeda suprasti srautą, nes jos padalija plokštumą į
+sritis, kuriose srautas juda nuoseklia kryptimi (aukštyn-kairėn,
+aukštyn-dešinėn, žemyn-kairėn arba žemyn-dešinėn). Ten, kur susikerta
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>x</mi><annotation encoding="application/x-tex">x</annotation></semantics></math>
+ir
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>y</mi><annotation encoding="application/x-tex">y</annotation></semantics></math>
+izoklinos, kartu galioja
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>x</mi><mo>′</mo></msup><mo>=</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">x&#39; = 0</annotation></semantics></math>
+ir
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>y</mi><mo>′</mo></msup><mo>=</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">y&#39; = 0</annotation></semantics></math>
+— tai <strong>stacionarusis taškas</strong> (pusiausvyra), kuriame
+dalelė nejuda.</p>
+<p>Žr. <a href="fields.html">Laukai</a> šios programos braižomiems
+pavyzdiniams laukams. Žr. <a href="controls.html">Valdymas</a> programos
 naudojimo instrukcijoms.</p>
 <h3 id="literatūra">Literatūra</h3>
 <p>Išsamesniam susipažinimui rekomenduojame:</p>

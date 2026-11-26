@@ -64,5 +64,8 @@
   "vectorFieldLabel": "Champ :",
   "velocityScaleName": "Échelle de vitesse",
   "xIsoclineColorName": "Couleurs des isoclines. X",
-  "yIsoclineColorName": "Y"
+  "yIsoclineColorName": "Y",
+  "helpMenu": "Menu d'aide",
+  "openDrawerTooltip": "Ouvrir le menu",
+  "userGuidesSection": "Guides d'utilisation"
 }

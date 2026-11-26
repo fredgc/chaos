@@ -30,5 +30,6 @@ En Android, los ajustes locales se eliminan al desinstalar la aplicación. En
 la Web, los ajustes se eliminan al borrar los datos de la aplicación local de
 su navegador.
 
-[github]: https://github.com/fredgc/chaos [issues]:
-https://github.com/fredgc/chaos/issues [gchouse]: https://www.gchouse.org
+[github]: https://github.com/fredgc/chaos
+[issues]: https://github.com/fredgc/chaos/issues
+[gchouse]: https://www.gchouse.org

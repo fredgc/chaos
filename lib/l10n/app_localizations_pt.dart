@@ -80,10 +80,19 @@ class AppLocalizationsPt extends AppLocalizations {
   String get fpsThrottleTip => 'A taxa de quadros será limitada a este valor';
 
   @override
+  String get helpMenu => 'Menu de ajuda';
+
+  @override
   String get helpTitle => 'Ajuda';
 
   @override
   String get helpTooltip => 'Ajuda';
+
+  @override
+  String get openDrawerTooltip => 'Abrir menu';
+
+  @override
+  String get userGuidesSection => 'Guias do usuário';
 
   @override
   String get initializingApp => 'Inicializando aplicativo...';

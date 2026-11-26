@@ -81,10 +81,19 @@ class AppLocalizationsFr extends AppLocalizations {
       'La fréquence d\'images sera limitée à cette valeur';
 
   @override
+  String get helpMenu => 'Menu d\'aide';
+
+  @override
   String get helpTitle => 'Aide';
 
   @override
   String get helpTooltip => 'Aide';
+
+  @override
+  String get openDrawerTooltip => 'Ouvrir le menu';
+
+  @override
+  String get userGuidesSection => 'Guides d\'utilisation';
 
   @override
   String get initializingApp => 'Initialisation de l\'application...';

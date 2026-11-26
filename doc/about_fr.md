@@ -30,5 +30,6 @@ Sur Android, les paramètres locaux sont effacés lors de la désinstallation de
 l'application. Sur le Web, ils sont effacés lorsque vous videz les données de
 l'application dans votre navigateur.
 
-[github]: https://github.com/fredgc/chaos [issues]:
-https://github.com/fredgc/chaos/issues [gchouse]: https://www.gchouse.org
+[github]: https://github.com/fredgc/chaos
+[issues]: https://github.com/fredgc/chaos/issues
+[gchouse]: https://www.gchouse.org

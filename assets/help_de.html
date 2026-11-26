@@ -32,8 +32,12 @@
 mehreren räumlichen Dimensionen. Diese Beispiele sind
 Differentialgleichungen erster Ordnung in zwei Raumdimensionen; der Ort
 eines Punktes bestimmt also seine Geschwindigkeit vollständig.</p>
-<pre><code>x&#39;(t) = fx(x(t), y(t), t)
-y&#39;(t) = fy(x(t), y(t), t)</code></pre>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mtable><mtr><mtd columnalign="right" style="text-align: right; padding-right: 0"><msup><mi>x</mi><mo>′</mo></msup><mo stretchy="false" form="prefix">(</mo><mi>t</mi><mo stretchy="false" form="postfix">)</mo></mtd><mtd columnalign="left" style="text-align: left; padding-left: 0"><mo>=</mo><msub><mi>f</mi><mi>x</mi></msub><mo stretchy="false" form="prefix">(</mo><mi>x</mi><mo stretchy="false" form="prefix">(</mo><mi>t</mi><mo stretchy="false" form="postfix">)</mo><mo>,</mo><mi>y</mi><mo stretchy="false" form="prefix">(</mo><mi>t</mi><mo stretchy="false" form="postfix">)</mo><mo>,</mo><mi>t</mi><mo stretchy="false" form="postfix">)</mo></mtd></mtr><mtr><mtd columnalign="right" style="text-align: right; padding-right: 0"><msup><mi>y</mi><mo>′</mo></msup><mo stretchy="false" form="prefix">(</mo><mi>t</mi><mo stretchy="false" form="postfix">)</mo></mtd><mtd columnalign="left" style="text-align: left; padding-left: 0"><mo>=</mo><msub><mi>f</mi><mi>y</mi></msub><mo stretchy="false" form="prefix">(</mo><mi>x</mi><mo stretchy="false" form="prefix">(</mo><mi>t</mi><mo stretchy="false" form="postfix">)</mo><mo>,</mo><mi>y</mi><mo stretchy="false" form="prefix">(</mo><mi>t</mi><mo stretchy="false" form="postfix">)</mo><mo>,</mo><mi>t</mi><mo stretchy="false" form="postfix">)</mo></mtd></mtr></mtable><annotation encoding="application/x-tex">
+\begin{aligned}
+x&#39;(t) &amp;= f_x(x(t), y(t), t) \\
+y&#39;(t) &amp;= f_y(x(t), y(t), t)
+\end{aligned}
+</annotation></semantics></math></p>
 <p>Man kann sich das Feld wie eine Wasserströmung vorstellen. Wir
 streuen einige Staubpartikel ins Wasser und beobachten, wie sie strömen.
 Der Vergleich hinkt etwas, da Wasser kaum kompressibel ist, diese
@@ -41,6 +45,36 @@ Strömungsfelder jedoch schon.</p>
 <p>Die ersten Beispiele sind recht einfach. Das letzte Beispiel zeigt
 faszinierende chaotische Phänomene. Am Ende der Seite finden Sie
 Literaturempfehlungen.</p>
+<h3 id="isoklinen">Isoklinen</h3>
+<p>Aktivieren Sie das Kontrollkästchen „Iso“, um die Isoklinen (auch
+Nullklinen genannt) anzuzeigen. Dies sind die Kurven, auf denen eine
+Komponente der Geschwindigkeit null ist:</p>
+<ul>
+<li><p>Auf der
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>x</mi><annotation encoding="application/x-tex">x</annotation></semantics></math>-Isokline
+(<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>x</mi><mo>′</mo></msup><mo>=</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">x&#39; = 0</annotation></semantics></math>)
+verschwindet die horizontale Bewegung und die Strömung verläuft rein
+vertikal. Beim Überqueren dieser Kurve wechselt die Strömung zwischen
+Bewegung nach links und nach rechts.</p></li>
+<li><p>Auf der
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>y</mi><annotation encoding="application/x-tex">y</annotation></semantics></math>-Isokline
+(<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>y</mi><mo>′</mo></msup><mo>=</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">y&#39; = 0</annotation></semantics></math>)
+verschwindet die vertikale Bewegung und die Strömung verläuft rein
+horizontal. Beim Überqueren dieser Kurve wechselt die Strömung zwischen
+Bewegung nach oben und nach unten.</p></li>
+</ul>
+<p>Isoklinen helfen beim Verständnis der Strömung, weil sie die Ebene in
+Bereiche mit einheitlicher Bewegungsrichtung (oben-links, oben-rechts,
+unten-links, unten-rechts) unterteilen. Wo sich eine
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>x</mi><annotation encoding="application/x-tex">x</annotation></semantics></math>-Isokline
+und eine
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>y</mi><annotation encoding="application/x-tex">y</annotation></semantics></math>-Isokline
+kreuzen, gilt sowohl
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>x</mi><mo>′</mo></msup><mo>=</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">x&#39; = 0</annotation></semantics></math>
+als auch
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>y</mi><mo>′</mo></msup><mo>=</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">y&#39; = 0</annotation></semantics></math>
+— dort liegt ein <strong>stationärer Punkt</strong>
+(Gleichgewichtspunkt), an dem ein Partikel ruht.</p>
 <p>Siehe <a href="fields.html">Felder</a> für Erklärungen der einzelnen
 Beispielfelder. Siehe <a href="controls.html">Steuerung</a> zur
 Bedienung des Programms.</p>

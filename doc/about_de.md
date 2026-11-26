@@ -29,5 +29,6 @@ Unter Android werden lokale Einstellungen beim Deinstallieren der App
 gelöscht. Im Web werden Einstellungen gelöscht, wenn Sie die lokalen
 Browserdaten der Anwendung leeren.
 
-[github]: https://github.com/fredgc/chaos [issues]:
-https://github.com/fredgc/chaos/issues [gchouse]: https://www.gchouse.org
+[github]: https://github.com/fredgc/chaos
+[issues]: https://github.com/fredgc/chaos/issues
+[gchouse]: https://www.gchouse.org

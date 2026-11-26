@@ -80,10 +80,19 @@ class AppLocalizationsZh extends AppLocalizations {
   String get fpsThrottleTip => '帧率将被限制在此数值';
 
   @override
+  String get helpMenu => '帮助菜单';
+
+  @override
   String get helpTitle => '帮助';
 
   @override
   String get helpTooltip => '帮助';
+
+  @override
+  String get openDrawerTooltip => '打开菜单';
+
+  @override
+  String get userGuidesSection => '用户指南';
 
   @override
   String get initializingApp => '正在初始化应用...';

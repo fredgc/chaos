@@ -27,5 +27,6 @@ Android sistemoje vietiniai nustatymai ištrinami pašalinus programėlę.
 Žiniatinklyje nustatymai ištrinami išvalius naršyklės vietinius programos
 duomenis.
 
-[github]: https://github.com/fredgc/chaos [issues]:
-https://github.com/fredgc/chaos/issues [gchouse]: https://www.gchouse.org
+[github]: https://github.com/fredgc/chaos
+[issues]: https://github.com/fredgc/chaos/issues
+[gchouse]: https://www.gchouse.org

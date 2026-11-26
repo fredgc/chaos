@@ -28,80 +28,118 @@
 <h1 class="title">Chaoso Pavyzdiniai Laukai</h1>
 </header>
 <h2 id="pavyzdiniai-laukai">Pavyzdiniai laukai</h2>
-<p>Štai rodomųvektoriniųlaukųsąrašas. Rekomenduojame juos peržiūrėti
-išeilės.</p>
+<p>Štai rodomų vektorinių laukų sąrašas. Rekomenduojame juos peržiūrėti
+iš eilės.</p>
 <h3 id="paprastas-sukimasis">Paprastas sukimasis</h3>
 <p>Tai paprastas sukimasis pagal laikrodžio rodyklę.</p>
-<pre><code>x&#39; =     y + p*saw(x)
-y&#39; = -x    + p*saw(y)</code></pre>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mtable><mtr><mtd columnalign="right" style="text-align: right; padding-right: 0"><msup><mi>x</mi><mo>′</mo></msup></mtd><mtd columnalign="left" style="text-align: left; padding-left: 0"><mo>=</mo><mi>y</mi><mo>+</mo><mi>p</mi><mrow><mi>saw</mi><mo>&#8289;</mo></mrow><mo stretchy="false" form="prefix">(</mo><mi>x</mi><mo stretchy="false" form="postfix">)</mo></mtd></mtr><mtr><mtd columnalign="right" style="text-align: right; padding-right: 0"><msup><mi>y</mi><mo>′</mo></msup></mtd><mtd columnalign="left" style="text-align: left; padding-left: 0"><mo>=</mo><mi>−</mi><mi>x</mi><mo>+</mo><mi>p</mi><mrow><mi>saw</mi><mo>&#8289;</mo></mrow><mo stretchy="false" form="prefix">(</mo><mi>y</mi><mo stretchy="false" form="postfix">)</mo></mtd></mtr></mtable><annotation encoding="application/x-tex">
+\begin{aligned}
+x&#39; &amp;= y + p \operatorname{saw}(x) \\
+y&#39; &amp;= -x + p \operatorname{saw}(y)
+\end{aligned}
+</annotation></semantics></math></p>
 <p>Arba vektoriniu pavidalu:</p>
-<pre><code>v&#39; = [ 0  1]v  + trikdis
-     [-1  0]
-
-v = [x]
-    [y]</code></pre>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>𝐯</mi><mo>′</mo></msup><mo>=</mo><mrow><mo stretchy="true" form="prefix">[</mo><mtable><mtr><mtd columnalign="center" style="text-align: center"><mn>0</mn></mtd><mtd columnalign="center" style="text-align: center"><mn>1</mn></mtd></mtr><mtr><mtd columnalign="center" style="text-align: center"><mi>−</mi><mn>1</mn></mtd><mtd columnalign="center" style="text-align: center"><mn>0</mn></mtd></mtr></mtable><mo stretchy="true" form="postfix">]</mo></mrow><mi>𝐯</mi><mo>+</mo><mtext mathvariant="normal">trikdis</mtext><mo>,</mo><mspace width="2.0em"></mspace><mi>𝐯</mi><mo>=</mo><mrow><mo stretchy="true" form="prefix">[</mo><mtable><mtr><mtd columnalign="center" style="text-align: center"><mi>x</mi></mtd></mtr><mtr><mtd columnalign="center" style="text-align: center"><mi>y</mi></mtd></mtr></mtable><mo stretchy="true" form="postfix">]</mo></mrow></mrow><annotation encoding="application/x-tex">
+\mathbf{v}&#39; = \begin{bmatrix} 0 &amp; 1 \\ -1 &amp; 0 \end{bmatrix} \mathbf{v}
+  + \text{trikdis}, \qquad
+\mathbf{v} = \begin{bmatrix} x \\ y \end{bmatrix}
+</annotation></semantics></math></p>
 <p>Trikdis yra pjūklo formos funkcija, priklausanti nuo parametro.
-Pridėkite kelias daleles ir spustelėkite„Groti“. Pamatysite, kaip jos
+Pridėkite kelias daleles ir spustelėkite „Groti“. Pamatysite, kaip jos
 sukasi ratu pagal laikrodžio rodyklę.</p>
-<p>Padidinus parametro reikšmę, dalelėsšiek tiek nukryps nuo savo
+<p>Padidinus parametro reikšmę, dalelės šiek tiek nukryps nuo savo
 ankstesnių trajektorijų.</p>
-<p>Pažymėkite langelį„Fld“, kad pamatytumėte vektorinįlauką. Kadangi
+<p>Pažymėkite langelį „Fld“, kad pamatytumėte vektorinį lauką. Kadangi
 vektorinis laukas yra aprėžtas, kiekvienos dalelės kelias yra tolygus ir
-visiškai nulemtas jos pradinio taško. Tai reiškia, kad
-daleliųtrajektorijos niekada nesikerta.</p>
-<p>Pažymėkite langelį„Iso“, kad pamatytumėte izoklinas. Tai kreivės,
-kuriose vektorinio lauko x arba y koordinatėlygi 0. Jei
-<code>x' = 0</code>, laukas yra vertikalus. Jei <code>y' = 0</code>,
+visiškai nulemtas jos pradinio taško. Tai reiškia, kad dalelių
+trajektorijos niekada nesikerta.</p>
+<p>Pažymėkite langelį „Iso“, kad pamatytumėte izoklinas. Tai kreivės,
+kuriose vektorinio lauko
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>x</mi><annotation encoding="application/x-tex">x</annotation></semantics></math>
+arba
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>y</mi><annotation encoding="application/x-tex">y</annotation></semantics></math>
+koordinatė lygi 0. Jei
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>x</mi><mo>′</mo></msup><mo>=</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">x&#39; = 0</annotation></semantics></math>,
+laukas yra vertikalus. Jei
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>y</mi><mo>′</mo></msup><mo>=</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">y&#39; = 0</annotation></semantics></math>,
 laukas yra horizontalus. Jei abi lygios 0, dalelė nejuda. Tai vadinama
 dinaminės sistemos pusiausvyros (stacionariuoju) tašku.</p>
 <h3 id="spiralė-stabilus-ir-nestabilus-taškas">Spiralė – stabilus ir
 nestabilus taškas</h3>
-<p>Pakeičiame ankstesnįpavyzdįpridėdami tiesinę<code>x'</code>
-priklausomybęnuo <code>x</code> ir <code>y'</code> nuo
-<code>y</code>:</p>
-<pre><code>x&#39; = p*x +   y
-y&#39; =  -x + p*y</code></pre>
-<p>Pradžioje <code>p = 0</code>, todėl judėjimas identiškas sukimuisi
-aukščiau. Centre <code>(0,0)</code> yra stacionarusis taškas.</p>
-<p>Pajudinkite parametrąįkairę(<code>p &lt; 0</code>). Dalelės ims
-spiralėmis artėti prie stacionariojo taško. Tai stabilus stacionarusis
-taškas: dalelės, prasidedančiosšalia jo, liekašalia.</p>
-<p>Pajudinkite parametrąįdešinę(<code>p &gt; 0</code>). Dalelės ims
-spiralėmis tolti nuo stacionariojo taško. Tai nestabilus stacionarusis
-taškas.</p>
-<p>Pažvelkiteįsritis, kurias skiria izoklinos. Kiekvienoje srityje
-dalelės judaį atitinkamąkvadranto pusę.</p>
+<p>Pakeičiame ankstesnį pavyzdį pridėdami tiesinę
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mi>x</mi><mo>′</mo></msup><annotation encoding="application/x-tex">x&#39;</annotation></semantics></math>
+priklausomybę nuo
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>x</mi><annotation encoding="application/x-tex">x</annotation></semantics></math>
+ir
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mi>y</mi><mo>′</mo></msup><annotation encoding="application/x-tex">y&#39;</annotation></semantics></math>
+nuo
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>y</mi><annotation encoding="application/x-tex">y</annotation></semantics></math>:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mtable><mtr><mtd columnalign="right" style="text-align: right; padding-right: 0"><msup><mi>x</mi><mo>′</mo></msup></mtd><mtd columnalign="left" style="text-align: left; padding-left: 0"><mo>=</mo><mi>p</mi><mi>x</mi><mo>+</mo><mi>y</mi></mtd></mtr><mtr><mtd columnalign="right" style="text-align: right; padding-right: 0"><msup><mi>y</mi><mo>′</mo></msup></mtd><mtd columnalign="left" style="text-align: left; padding-left: 0"><mo>=</mo><mi>−</mi><mi>x</mi><mo>+</mo><mi>p</mi><mi>y</mi></mtd></mtr></mtable><annotation encoding="application/x-tex">
+\begin{aligned}
+x&#39; &amp;= px + y \\
+y&#39; &amp;= -x + py
+\end{aligned}
+</annotation></semantics></math></p>
+<p>Pradžioje
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>p</mi><mo>=</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">p = 0</annotation></semantics></math>,
+todėl judėjimas identiškas sukimuisi aukščiau. Centre
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false" form="prefix">(</mo><mn>0</mn><mo>,</mo><mn>0</mn><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">(0, 0)</annotation></semantics></math>
+yra stacionarusis taškas.</p>
+<p>Pajudinkite parametrą į kairę
+(<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>p</mi><mo>&lt;</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">p &lt; 0</annotation></semantics></math>).
+Dalelės ims spiralėmis artėti prie stacionariojo taško. Tai stabilus
+stacionarusis taškas: dalelės, prasidedančios šalia jo, lieka šalia.</p>
+<p>Pajudinkite parametrą į dešinę
+(<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>p</mi><mo>&gt;</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">p &gt; 0</annotation></semantics></math>).
+Dalelės ims spiralėmis tolti nuo stacionariojo taško. Tai nestabilus
+stacionarusis taškas.</p>
+<p>Pažvelkite į sritis, kurias skiria izoklinos. Kiekvienoje srityje
+dalelės juda į atitinkamą kvadranto pusę.</p>
 <h3 id="maišymas-stir">Maišymas (Stir)</h3>
 <p>Tai pavyzdys su keliais stacionariaisiais taškais—vieni stabilūs,
-kiti nestabilūs. Dalelėšalia nestabilaus taško tolsta nuo jo ir artėja
-prie stabiliųtaškų.</p>
-<pre><code>x&#39; = -0.2 x^3 + saw(y, y_cent)
-y&#39; = -0.2 y^3 - saw(x, x_cent)
-                        /
+kiti nestabilūs. Dalelė šalia nestabilaus taško tolsta nuo jo ir artėja
+prie stabilių taškų.</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mtable><mtr><mtd columnalign="right" style="text-align: right; padding-right: 0"><msup><mi>x</mi><mo>′</mo></msup></mtd><mtd columnalign="left" style="text-align: left; padding-left: 0"><mo>=</mo><mi>−</mi><mn>0.2</mn><msup><mi>x</mi><mn>3</mn></msup><mo>+</mo><mrow><mi>saw</mi><mo>&#8289;</mo></mrow><mo stretchy="false" form="prefix">(</mo><mi>y</mi><mo>,</mo><msub><mi>y</mi><mtext mathvariant="normal">cent</mtext></msub><mo stretchy="false" form="postfix">)</mo></mtd></mtr><mtr><mtd columnalign="right" style="text-align: right; padding-right: 0"><msup><mi>y</mi><mo>′</mo></msup></mtd><mtd columnalign="left" style="text-align: left; padding-left: 0"><mo>=</mo><mi>−</mi><mn>0.2</mn><msup><mi>y</mi><mn>3</mn></msup><mo>−</mo><mrow><mi>saw</mi><mo>&#8289;</mo></mrow><mo stretchy="false" form="prefix">(</mo><mi>x</mi><mo>,</mo><msub><mi>x</mi><mtext mathvariant="normal">cent</mtext></msub><mo stretchy="false" form="postfix">)</mo></mtd></mtr></mtable><annotation encoding="application/x-tex">
+\begin{aligned}
+x&#39; &amp;= -0.2 x^3 + \operatorname{saw}(y, y_{\text{cent}}) \\
+y&#39; &amp;= -0.2 y^3 - \operatorname{saw}(x, x_{\text{cent}})
+\end{aligned}
+</annotation></semantics></math></p>
+<pre><code>                        /
                    /\  /
- saw(x,c) =       /  \/
+ saw(x, c) =      /  \/
                  /</code></pre>
-<p>Pakeiskite parametrąir stacionarieji taškai ims judėti. Dalelės seks
+<p>Pakeiskite parametrą ir stacionarieji taškai ims judėti. Dalelės seks
 paskui juos ir susidarys chaotiška netvarka.</p>
-<p>Kadangi lygtys tolydžios, dalelės, prasidedančios vienašalia kitos,
+<p>Kadangi lygtys tolydžios, dalelės, prasidedančios viena šalia kitos,
 trumpuoju laikotarpiu lieka arti. Tačiau ilgainiui jos išsiskiria.</p>
 <p>Tai atrodo kaip matematinės analizės paradoksas: fiksuotai
-<code>t</code> reikšmei padėtis <code>(x(t), y(t))</code> kinta
-tolydžiai pradinės padėties <code>(x(0), y(0))</code> atžvilgiu. Tačiau
-leidus <code>t</code> augti be ribų,šis tolydumas praktiškai
-prarandamas.</p>
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>t</mi><annotation encoding="application/x-tex">t</annotation></semantics></math>
+reikšmei padėtis
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false" form="prefix">(</mo><mi>x</mi><mo stretchy="false" form="prefix">(</mo><mi>t</mi><mo stretchy="false" form="postfix">)</mo><mo>,</mo><mi>y</mi><mo stretchy="false" form="prefix">(</mo><mi>t</mi><mo stretchy="false" form="postfix">)</mo><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">(x(t), y(t))</annotation></semantics></math>
+kinta tolydžiai pradinės padėties
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false" form="prefix">(</mo><mi>x</mi><mo stretchy="false" form="prefix">(</mo><mn>0</mn><mo stretchy="false" form="postfix">)</mo><mo>,</mo><mi>y</mi><mo stretchy="false" form="prefix">(</mo><mn>0</mn><mo stretchy="false" form="postfix">)</mo><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">(x(0), y(0))</annotation></semantics></math>
+atžvilgiu. Tačiau leidus
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>t</mi><annotation encoding="application/x-tex">t</annotation></semantics></math>
+augti be ribų, šis tolydumas praktiškai prarandamas.</p>
 <p>Šiame pavyzdyje yra atraktorius, kuris juda laike: galiausiai visos
-dalelės ima glaudžiai suktis apie vienąišketuriųatraktoriaus taškų.</p>
+dalelės ima glaudžiai suktis apie vieną iš keturių atraktoriaus
+taškų.</p>
 <h3 id="chaotinė-sistema-su-keistuoju-atraktoriumi">Chaotinė sistema su
 keistuoju atraktoriumi</h3>
-<p>Šis pavyzdys paimtas išliteratūros skyriuje nurodytos knygos.</p>
-<pre><code>x&#39;(t) = 0.7y + 10x(0.1-y^2)
-y&#39;(t) = -x + 0.25 sin(1.57t)</code></pre>
-<p>Norsši sistema chaotiška, ji turi atraktorių. Atraktorius nėra
-paprasta kreivė: bėgant laikui jis atsiskiria ir susilanksto patsįsave.
-Dalelės išsisklaido, o paskui vėl susirenka, bet jau kita tvarka.</p>
-<p>Pridėkite daleliųtinklelįir stebėkite, kaip panašios spalvos
-pradžioje lieka gretos, o vėliau susimaišo—panašiai kaip minkant duonąar
+<p>Šis pavyzdys paimtas iš literatūros skyriuje nurodytos knygos.</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mtable><mtr><mtd columnalign="right" style="text-align: right; padding-right: 0"><msup><mi>x</mi><mo>′</mo></msup><mo stretchy="false" form="prefix">(</mo><mi>t</mi><mo stretchy="false" form="postfix">)</mo></mtd><mtd columnalign="left" style="text-align: left; padding-left: 0"><mo>=</mo><mn>0.7</mn><mi>y</mi><mo>+</mo><mn>10</mn><mi>x</mi><mo stretchy="false" form="prefix">(</mo><mn>0.1</mn><mo>−</mo><msup><mi>y</mi><mn>2</mn></msup><mo stretchy="false" form="postfix">)</mo></mtd></mtr><mtr><mtd columnalign="right" style="text-align: right; padding-right: 0"><msup><mi>y</mi><mo>′</mo></msup><mo stretchy="false" form="prefix">(</mo><mi>t</mi><mo stretchy="false" form="postfix">)</mo></mtd><mtd columnalign="left" style="text-align: left; padding-left: 0"><mo>=</mo><mi>−</mi><mi>x</mi><mo>+</mo><mn>0.25</mn><mrow><mi>sin</mi><mo>&#8289;</mo></mrow><mo stretchy="false" form="prefix">(</mo><mn>1.57</mn><mi>t</mi><mo stretchy="false" form="postfix">)</mo></mtd></mtr></mtable><annotation encoding="application/x-tex">
+\begin{aligned}
+x&#39;(t) &amp;= 0.7y + 10x(0.1 - y^2) \\
+y&#39;(t) &amp;= -x + 0.25 \sin(1.57t)
+\end{aligned}
+</annotation></semantics></math></p>
+<p>Nors ši sistema chaotiška, ji turi atraktorių. Atraktorius nėra
+paprasta kreivė: bėgant laikui jis atsiskiria ir susilanksto pats į
+save. Dalelės išsisklaido, o paskui vėl susirenka, bet jau kita
+tvarka.</p>
+<p>Pridėkite dalelių tinklelį ir stebėkite, kaip panašios spalvos
+pradžioje lieka greta, o vėliau susimaišo—panašiai kaip minkant duoną ar
 kalant plieną.</p>
 <h3 id="literatūra">Literatūra</h3>
 <p>Išsamesniam susipažinimui rekomenduojame:</p>

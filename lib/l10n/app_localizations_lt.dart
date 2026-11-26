@@ -80,10 +80,19 @@ class AppLocalizationsLt extends AppLocalizations {
   String get fpsThrottleTip => 'Kadrų dažnis bus apribotas iki šios reikšmės';
 
   @override
+  String get helpMenu => 'Pagalbos meniu';
+
+  @override
   String get helpTitle => 'Pagalba';
 
   @override
   String get helpTooltip => 'Pagalba';
+
+  @override
+  String get openDrawerTooltip => 'Atidaryti meniu';
+
+  @override
+  String get userGuidesSection => 'Naudotojo vadovai';
 
   @override
   String get initializingApp => 'Inicijuojama programa...';
