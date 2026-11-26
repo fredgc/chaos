@@ -29,11 +29,32 @@
 </header>
 <h2 id="カオスchaos">カオス（Chaos）</h2>
 <p>力学系とは、複数の空間次元を持つ常微分方程式のことです。ここに示す例はすべて2次元空間における1階微分方程式であり、点の位置がその速度を一意に決定します。</p>
-<pre><code>x&#39;(t) = fx(x(t), y(t), t)
-y&#39;(t) = fy(x(t), y(t), t)</code></pre>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mtable><mtr><mtd columnalign="right" style="text-align: right; padding-right: 0"><msup><mi>x</mi><mo>′</mo></msup><mo stretchy="false" form="prefix">(</mo><mi>t</mi><mo stretchy="false" form="postfix">)</mo></mtd><mtd columnalign="left" style="text-align: left; padding-left: 0"><mo>=</mo><msub><mi>f</mi><mi>x</mi></msub><mo stretchy="false" form="prefix">(</mo><mi>x</mi><mo stretchy="false" form="prefix">(</mo><mi>t</mi><mo stretchy="false" form="postfix">)</mo><mo>,</mo><mi>y</mi><mo stretchy="false" form="prefix">(</mo><mi>t</mi><mo stretchy="false" form="postfix">)</mo><mo>,</mo><mi>t</mi><mo stretchy="false" form="postfix">)</mo></mtd></mtr><mtr><mtd columnalign="right" style="text-align: right; padding-right: 0"><msup><mi>y</mi><mo>′</mo></msup><mo stretchy="false" form="prefix">(</mo><mi>t</mi><mo stretchy="false" form="postfix">)</mo></mtd><mtd columnalign="left" style="text-align: left; padding-left: 0"><mo>=</mo><msub><mi>f</mi><mi>y</mi></msub><mo stretchy="false" form="prefix">(</mo><mi>x</mi><mo stretchy="false" form="prefix">(</mo><mi>t</mi><mo stretchy="false" form="postfix">)</mo><mo>,</mo><mi>y</mi><mo stretchy="false" form="prefix">(</mo><mi>t</mi><mo stretchy="false" form="postfix">)</mo><mo>,</mo><mi>t</mi><mo stretchy="false" form="postfix">)</mo></mtd></mtr></mtable><annotation encoding="application/x-tex">
+\begin{aligned}
+x&#39;(t) &amp;= f_x(x(t), y(t), t) \\
+y&#39;(t) &amp;= f_y(x(t), y(t), t)
+\end{aligned}
+</annotation></semantics></math></p>
 <p>この場は水の流れに例えることができます。水面に微粒子（埃）を落とし、それがどこへ流れていくかを観察します。ただし、水は非圧縮性ですがこれらの流れ場は圧縮性を
 持つため、完全な類似ではありません。</p>
 <p>最初のいくつかの例は非常にシンプルです。最後の例は興味深いカオス的挙動を示します。ページ下部におすすめの参考文献を掲載しています。</p>
+<h3 id="等傾斜線アイソクライン">等傾斜線（アイソクライン）</h3>
+<p>「Iso」チェックボックスをオンにすると、等傾斜線（ヌルクラインとも呼ばれます）が表示されます。これは速度のどちらかの成分が
+0 になる曲線です：</p>
+<ul>
+<li><p><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>x</mi><annotation encoding="application/x-tex">x</annotation></semantics></math>
+の等傾斜線（<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>x</mi><mo>′</mo></msup><mo>=</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">x&#39; = 0</annotation></semantics></math>）上では水平方向の動きが止まり、流れは純粋に垂直になります。この曲線を横切るとき、流れの向きが左向きと右向きの間で反転します。</p></li>
+<li><p><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>y</mi><annotation encoding="application/x-tex">y</annotation></semantics></math>
+の等傾斜線（<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>y</mi><mo>′</mo></msup><mo>=</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">y&#39; = 0</annotation></semantics></math>）上では垂直方向の動きが止まり、流れは純粋に水平になります。この曲線を横切るとき、流れの向きが上向きと下向きの間で反転します。</p></li>
+</ul>
+<p>等傾斜線は、平面を一定の方向（左上、右上、左下、右下）へ流れる領域に分割するため、流れ全体の構造を把握するのに役立ちます。<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>x</mi><annotation encoding="application/x-tex">x</annotation></semantics></math>
+の等傾斜線と
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>y</mi><annotation encoding="application/x-tex">y</annotation></semantics></math>
+の等傾斜線が交差する点では
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>x</mi><mo>′</mo></msup><mo>=</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">x&#39; = 0</annotation></semantics></math>
+かつ
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>y</mi><mo>′</mo></msup><mo>=</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">y&#39; = 0</annotation></semantics></math>
+となり、粒子が静止する<strong>平衡点（停留点）</strong>を示します。</p>
 <p>本プログラムで描画される各サンプル場については<a
 href="fields.html">ベクトル場</a>をご覧ください。プログラムの使い方については<a
 href="controls.html">操作方法</a>をご覧ください。</p>

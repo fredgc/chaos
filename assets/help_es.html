@@ -32,15 +32,50 @@
 dimensiones espaciales. Estos ejemplos son ecuaciones de primer orden en
 dos dimensiones espaciales, lo que significa que la posición de un punto
 determina completamente su velocidad.</p>
-<pre><code>x&#39;(t) = fx(x(t), y(t), t)
-y&#39;(t) = fy(x(t), y(t), t)</code></pre>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mtable><mtr><mtd columnalign="right" style="text-align: right; padding-right: 0"><msup><mi>x</mi><mo>′</mo></msup><mo stretchy="false" form="prefix">(</mo><mi>t</mi><mo stretchy="false" form="postfix">)</mo></mtd><mtd columnalign="left" style="text-align: left; padding-left: 0"><mo>=</mo><msub><mi>f</mi><mi>x</mi></msub><mo stretchy="false" form="prefix">(</mo><mi>x</mi><mo stretchy="false" form="prefix">(</mo><mi>t</mi><mo stretchy="false" form="postfix">)</mo><mo>,</mo><mi>y</mi><mo stretchy="false" form="prefix">(</mo><mi>t</mi><mo stretchy="false" form="postfix">)</mo><mo>,</mo><mi>t</mi><mo stretchy="false" form="postfix">)</mo></mtd></mtr><mtr><mtd columnalign="right" style="text-align: right; padding-right: 0"><msup><mi>y</mi><mo>′</mo></msup><mo stretchy="false" form="prefix">(</mo><mi>t</mi><mo stretchy="false" form="postfix">)</mo></mtd><mtd columnalign="left" style="text-align: left; padding-left: 0"><mo>=</mo><msub><mi>f</mi><mi>y</mi></msub><mo stretchy="false" form="prefix">(</mo><mi>x</mi><mo stretchy="false" form="prefix">(</mo><mi>t</mi><mo stretchy="false" form="postfix">)</mo><mo>,</mo><mi>y</mi><mo stretchy="false" form="prefix">(</mo><mi>t</mi><mo stretchy="false" form="postfix">)</mo><mo>,</mo><mi>t</mi><mo stretchy="false" form="postfix">)</mo></mtd></mtr></mtable><annotation encoding="application/x-tex">
+\begin{aligned}
+x&#39;(t) &amp;= f_x(x(t), y(t), t) \\
+y&#39;(t) &amp;= f_y(x(t), y(t), t)
+\end{aligned}
+</annotation></semantics></math></p>
 <p>Puede pensar en el campo como una corriente de agua. Vamos a colocar
 algunas motas de polvo en el agua y observar hacia dónde fluyen. Esta no
 es una analogía perfecta porque el agua no es muy compresible y estos
 flujos sílo son.</p>
-<p>Los primeros ejemplos son bastante simples. Elúltimo muestra un
+<p>Los primeros ejemplos son bastante simples. El último muestra un
 comportamiento interesante. Desplácese hasta el final para ver lecturas
 recomendadas.</p>
+<h3 id="isoclinas">Isoclinas</h3>
+<p>Active la casilla “Iso” para mostrar las isoclinas (también llamadas
+nulclinas). Son las curvas donde una componente de la velocidad es
+cero:</p>
+<ul>
+<li><p>En la isoclina en
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>x</mi><annotation encoding="application/x-tex">x</annotation></semantics></math>
+(<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>x</mi><mo>′</mo></msup><mo>=</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">x&#39; = 0</annotation></semantics></math>),
+el movimiento horizontal se detiene y el flujo es puramente vertical. Al
+cruzar esta curva el flujo cambia entre moverse hacia la izquierda y
+hacia la derecha.</p></li>
+<li><p>En la isoclina en
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>y</mi><annotation encoding="application/x-tex">y</annotation></semantics></math>
+(<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>y</mi><mo>′</mo></msup><mo>=</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">y&#39; = 0</annotation></semantics></math>),
+el movimiento vertical se detiene y el flujo es puramente horizontal. Al
+cruzar esta curva el flujo cambia entre moverse hacia arriba y hacia
+abajo.</p></li>
+</ul>
+<p>Las isoclinas son útiles porque dividen el plano en regiones donde el
+flujo mantiene una dirección constante (arriba-izquierda,
+arriba-derecha, abajo-izquierda o abajo-derecha). Donde se cruzan una
+isoclina en
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>x</mi><annotation encoding="application/x-tex">x</annotation></semantics></math>
+y una isoclina en
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>y</mi><annotation encoding="application/x-tex">y</annotation></semantics></math>,
+tanto
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>x</mi><mo>′</mo></msup><mo>=</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">x&#39; = 0</annotation></semantics></math>
+como
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>y</mi><mo>′</mo></msup><mo>=</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">y&#39; = 0</annotation></semantics></math>,
+lo que marca un <strong>punto estacionario</strong> (de equilibrio)
+donde una mota permanece inmóvil.</p>
 <p>Consulte <a href="fields_es.html">Campos</a> para ver los campos de
 muestra dibujados por este programa. Consulte <a
 href="controls_es.html">Controles</a> para aprender a usar el

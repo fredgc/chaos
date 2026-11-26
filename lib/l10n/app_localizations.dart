@@ -236,6 +236,12 @@ abstract class AppLocalizations {
   /// **'The frame rate will be throttled to this value'**
   String get fpsThrottleTip;
 
+  /// Title of the help navigation menu on narrow screens
+  ///
+  /// In en, this message translates to:
+  /// **'Help Menu'**
+  String get helpMenu;
+
   /// Title of the Help screen
   ///
   /// In en, this message translates to:
@@ -247,6 +253,18 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Help'**
   String get helpTooltip;
+
+  /// Tooltip for button to open the help navigation menu
+  ///
+  /// In en, this message translates to:
+  /// **'Open menu'**
+  String get openDrawerTooltip;
+
+  /// Section heading for user guide links in the help menu
+  ///
+  /// In en, this message translates to:
+  /// **'User Guides'**
+  String get userGuidesSection;
 
   /// Message shown while app is initializing
   ///

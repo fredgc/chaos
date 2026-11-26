@@ -14,6 +14,7 @@
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -26,6 +27,13 @@ import 'widget.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge);
+  SystemChrome.setSystemUIOverlayStyle(
+    const SystemUiOverlayStyle(
+      statusBarColor: Colors.transparent,
+      systemNavigationBarColor: Colors.transparent,
+    ),
+  );
   await LocaleController.initialize();
   print("RED: Start of main.");
   MyAppBuilder builder = MyAppBuilder();
@@ -50,28 +58,34 @@ class MyAppBuilder {
   }
 
   Widget makeApp() {
-    return ValueListenableBuilder<Locale?>(
-      valueListenable: LocaleController.currentLocale,
-      builder: (context, locale, _) {
-        return MaterialApp(
-          locale: locale,
-          localeResolutionCallback: (deviceLocale, supportedLocales) {
-            if (deviceLocale != null) {
-              for (final supported in supportedLocales) {
-                if (supported.languageCode == deviceLocale.languageCode) {
-                  return supported;
+    return StreamBuilder<SettingsStatus>(
+      stream: Settings.instance.statusStream(),
+      initialData: Settings.instance.status,
+      builder: (context, _) {
+        return ValueListenableBuilder<Locale?>(
+          valueListenable: LocaleController.currentLocale,
+          builder: (context, locale, _) {
+            return MaterialApp(
+              locale: locale,
+              localeResolutionCallback: (deviceLocale, supportedLocales) {
+                if (deviceLocale != null) {
+                  for (final supported in supportedLocales) {
+                    if (supported.languageCode == deviceLocale.languageCode) {
+                      return supported;
+                    }
+                  }
                 }
-              }
-            }
-            return const Locale('en');
+                return const Locale('en');
+              },
+              onGenerateTitle: (context) => context.l10n.appTitle,
+              localizationsDelegates: AppLocalizations.localizationsDelegates,
+              supportedLocales: AppLocalizations.supportedLocales,
+              theme: Settings.instance.theme.theme_data,
+              routes: routes,
+              initialRoute: FieldEnum.rotate.route,
+              debugShowCheckedModeBanner: false,
+            );
           },
-          onGenerateTitle: (context) => context.l10n.appTitle,
-          localizationsDelegates: AppLocalizations.localizationsDelegates,
-          supportedLocales: AppLocalizations.supportedLocales,
-          theme: Settings.instance.theme.theme_data,
-          routes: routes,
-          initialRoute: FieldEnum.rotate.route,
-          debugShowCheckedModeBanner: false,
         );
       },
     );

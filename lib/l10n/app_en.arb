@@ -124,6 +124,10 @@
   "@fpsThrottleTip": {
     "description": "Tooltip for FPS throttle setting"
   },
+  "helpMenu": "Help Menu",
+  "@helpMenu": {
+    "description": "Title of the help navigation menu on narrow screens"
+  },
   "helpTitle": "Help",
   "@helpTitle": {
     "description": "Title of the Help screen"
@@ -131,6 +135,14 @@
   "helpTooltip": "Help",
   "@helpTooltip": {
     "description": "Tooltip for help button"
+  },
+  "openDrawerTooltip": "Open menu",
+  "@openDrawerTooltip": {
+    "description": "Tooltip for button to open the help navigation menu"
+  },
+  "userGuidesSection": "User Guides",
+  "@userGuidesSection": {
+    "description": "Section heading for user guide links in the help menu"
   },
   "initializingApp": "Initializing App...",
   "@initializingApp": {

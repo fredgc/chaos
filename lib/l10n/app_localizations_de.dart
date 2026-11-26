@@ -80,10 +80,19 @@ class AppLocalizationsDe extends AppLocalizations {
   String get fpsThrottleTip => 'Die Bildrate wird auf diesen Wert gedrosselt';
 
   @override
+  String get helpMenu => 'Hilfemenü';
+
+  @override
   String get helpTitle => 'Hilfe';
 
   @override
   String get helpTooltip => 'Hilfe';
+
+  @override
+  String get openDrawerTooltip => 'Menü öffnen';
+
+  @override
+  String get userGuidesSection => 'Benutzerhandbücher';
 
   @override
   String get initializingApp => 'App wird initialisiert...';

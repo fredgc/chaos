@@ -332,11 +332,10 @@ class _SettingsScreenState extends State<SettingsScreen> {
       },
       separatorBuilder: (BuildContext context, int index) => const Divider(),
     );
-    return Theme(
-      data: Settings.instance.theme.theme_data,
-      child: Scaffold(
-        appBar: appBar(context),
-        body: list,
+    return Scaffold(
+      appBar: appBar(context),
+      body: SafeArea(
+        child: list,
       ),
     );
   }

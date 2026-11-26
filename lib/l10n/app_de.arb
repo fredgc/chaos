@@ -64,5 +64,8 @@
   "vectorFieldLabel": "Feld:",
   "velocityScaleName": "Geschwindigkeitsskalierung",
   "xIsoclineColorName": "Isoklinenfarben. X",
-  "yIsoclineColorName": "Y"
+  "yIsoclineColorName": "Y",
+  "helpMenu": "Hilfemenü",
+  "openDrawerTooltip": "Menü öffnen",
+  "userGuidesSection": "Benutzerhandbücher"
 }

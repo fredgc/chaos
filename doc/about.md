@@ -25,5 +25,6 @@ collected.
 On Android, local settings are deleted when you uninstall the app. On Web,
 settings are deleted when you clear your browser's local application data.
 
-[github]: https://github.com/fredgc/chaos [issues]:
-https://github.com/fredgc/chaos/issues [gchouse]: https://www.gchouse.org
+[github]: https://github.com/fredgc/chaos
+[issues]: https://github.com/fredgc/chaos/issues
+[gchouse]: https://www.gchouse.org

@@ -120,6 +120,7 @@ class FlowAppWidgetState extends State<FlowAppWidget>
   @override
   void dispose() {
     print("RED: Displose of widget.");
+    _statusListener.cancel();
     super.dispose();
     animator?.dispose();
     widget.flow.dispose();
@@ -143,15 +144,12 @@ class FlowAppWidgetState extends State<FlowAppWidget>
         // } else {
         // print("BLUE: BoxConstraints ${constraints}. _narrow = $_narrow");
       }
-      return Theme(
-        data: Settings.instance.theme.theme_data,
-        child: Scaffold(
-          appBar: makeAppBar(context),
-          body: Container(
-            child: SafeArea(
-              child: Center(
-                child: _centerWidget(context),
-              ),
+      return Scaffold(
+        appBar: makeAppBar(context),
+        body: Container(
+          child: SafeArea(
+            child: Center(
+              child: _centerWidget(context),
             ),
           ),
         ),

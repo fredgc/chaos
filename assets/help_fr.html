@@ -33,8 +33,12 @@ comportant plusieurs dimensions spatiales. Ces exemples sont tous
 deséquations du premier ordre en deux dimensions spatiales, ce qui
 signifie que la position d’un point détermine entièrement sa
 vitesse.</p>
-<pre><code>x&#39;(t) = fx(x(t), y(t), t)
-y&#39;(t) = fy(x(t), y(t), t)</code></pre>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mtable><mtr><mtd columnalign="right" style="text-align: right; padding-right: 0"><msup><mi>x</mi><mo>′</mo></msup><mo stretchy="false" form="prefix">(</mo><mi>t</mi><mo stretchy="false" form="postfix">)</mo></mtd><mtd columnalign="left" style="text-align: left; padding-left: 0"><mo>=</mo><msub><mi>f</mi><mi>x</mi></msub><mo stretchy="false" form="prefix">(</mo><mi>x</mi><mo stretchy="false" form="prefix">(</mo><mi>t</mi><mo stretchy="false" form="postfix">)</mo><mo>,</mo><mi>y</mi><mo stretchy="false" form="prefix">(</mo><mi>t</mi><mo stretchy="false" form="postfix">)</mo><mo>,</mo><mi>t</mi><mo stretchy="false" form="postfix">)</mo></mtd></mtr><mtr><mtd columnalign="right" style="text-align: right; padding-right: 0"><msup><mi>y</mi><mo>′</mo></msup><mo stretchy="false" form="prefix">(</mo><mi>t</mi><mo stretchy="false" form="postfix">)</mo></mtd><mtd columnalign="left" style="text-align: left; padding-left: 0"><mo>=</mo><msub><mi>f</mi><mi>y</mi></msub><mo stretchy="false" form="prefix">(</mo><mi>x</mi><mo stretchy="false" form="prefix">(</mo><mi>t</mi><mo stretchy="false" form="postfix">)</mo><mo>,</mo><mi>y</mi><mo stretchy="false" form="prefix">(</mo><mi>t</mi><mo stretchy="false" form="postfix">)</mo><mo>,</mo><mi>t</mi><mo stretchy="false" form="postfix">)</mo></mtd></mtr></mtable><annotation encoding="application/x-tex">
+\begin{aligned}
+x&#39;(t) &amp;= f_x(x(t), y(t), t) \\
+y&#39;(t) &amp;= f_y(x(t), y(t), t)
+\end{aligned}
+</annotation></semantics></math></p>
 <p>On peut comparer ce champàunécoulement d’eau. Nous allons déposer
 quelques particules de poussière dans l’eau et observer leur dérive. La
 comparaison a ses limites, car l’eau est presque incompressible alors
@@ -42,9 +46,39 @@ que ces champs ne le sont pas.</p>
 <p>Les premiers exemples sont très simples. Le dernier montre un
 comportement chaotique particulièrement riche. Des références d’ouvrages
 sont recommandées au bas de la page.</p>
+<h3 id="isoclines">Isoclines</h3>
+<p>Cochez la case « Iso » pour afficher les isoclines (aussi appelées
+nullclines). Ce sont les courbes où une composante de la vitesse est
+nulle :</p>
+<ul>
+<li><p>Sur l’isocline en
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>x</mi><annotation encoding="application/x-tex">x</annotation></semantics></math>
+(<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>x</mi><mo>′</mo></msup><mo>=</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">x&#39; = 0</annotation></semantics></math>),
+le mouvement horizontal s’annule et le flux est purement vertical. C’est
+en traversant cette courbe que le flux passe d’un déplacement vers la
+gauche à un déplacement vers la droite.</p></li>
+<li><p>Sur l’isocline en
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>y</mi><annotation encoding="application/x-tex">y</annotation></semantics></math>
+(<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>y</mi><mo>′</mo></msup><mo>=</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">y&#39; = 0</annotation></semantics></math>),
+le mouvement vertical s’annule et le flux est purement horizontal. C’est
+en traversant cette courbe que le flux passe d’un déplacement vers le
+haut à un déplacement vers le bas.</p></li>
+</ul>
+<p>Les isoclines aident à comprendre le flux car elles découpent le plan
+en zones de direction cohérente (haut-gauche, haut-droite, bas-gauche,
+bas-droite). Là où une isocline en
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>x</mi><annotation encoding="application/x-tex">x</annotation></semantics></math>
+et une isocline en
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>y</mi><annotation encoding="application/x-tex">y</annotation></semantics></math>
+se croisent, on a à la fois
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>x</mi><mo>′</mo></msup><mo>=</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">x&#39; = 0</annotation></semantics></math>
+et
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>y</mi><mo>′</mo></msup><mo>=</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">y&#39; = 0</annotation></semantics></math>
+: c’est un <strong>point stationnaire</strong> (d’équilibre) où une
+particule reste immobile.</p>
 <p>Consultez <a href="fields.html">Champs</a> pour découvrir les champs
 vectoriels présentés. Consultez <a href="controls.html">Commandes</a>
-pour apprendreàutiliser le programme.</p>
+pour apprendre à utiliser le programme.</p>
 <h3 id="références">Références</h3>
 <p>Pour aller plus loin, nous recommandons :</p>
 <ul>

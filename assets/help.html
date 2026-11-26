@@ -32,8 +32,12 @@
 spatial dimensions. These examples are all first order equations in two
 spatial dimensions, which means the position of a point completely
 determines its velocity.</p>
-<pre><code>x&#39;(t) = fx(x(t), y(t), t)
-y&#39;(t) = fy(x(t), y(t), t)</code></pre>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mtable><mtr><mtd columnalign="right" style="text-align: right; padding-right: 0"><msup><mi>x</mi><mo>′</mo></msup><mo stretchy="false" form="prefix">(</mo><mi>t</mi><mo stretchy="false" form="postfix">)</mo></mtd><mtd columnalign="left" style="text-align: left; padding-left: 0"><mo>=</mo><msub><mi>f</mi><mi>x</mi></msub><mo stretchy="false" form="prefix">(</mo><mi>x</mi><mo stretchy="false" form="prefix">(</mo><mi>t</mi><mo stretchy="false" form="postfix">)</mo><mo>,</mo><mi>y</mi><mo stretchy="false" form="prefix">(</mo><mi>t</mi><mo stretchy="false" form="postfix">)</mo><mo>,</mo><mi>t</mi><mo stretchy="false" form="postfix">)</mo></mtd></mtr><mtr><mtd columnalign="right" style="text-align: right; padding-right: 0"><msup><mi>y</mi><mo>′</mo></msup><mo stretchy="false" form="prefix">(</mo><mi>t</mi><mo stretchy="false" form="postfix">)</mo></mtd><mtd columnalign="left" style="text-align: left; padding-left: 0"><mo>=</mo><msub><mi>f</mi><mi>y</mi></msub><mo stretchy="false" form="prefix">(</mo><mi>x</mi><mo stretchy="false" form="prefix">(</mo><mi>t</mi><mo stretchy="false" form="postfix">)</mo><mo>,</mo><mi>y</mi><mo stretchy="false" form="prefix">(</mo><mi>t</mi><mo stretchy="false" form="postfix">)</mo><mo>,</mo><mi>t</mi><mo stretchy="false" form="postfix">)</mo></mtd></mtr></mtable><annotation encoding="application/x-tex">
+\begin{aligned}
+x&#39;(t) &amp;= f_x(x(t), y(t), t) \\
+y&#39;(t) &amp;= f_y(x(t), y(t), t)
+\end{aligned}
+</annotation></semantics></math></p>
 <p>You can think of the field being a flow of water. We are going to
 drop some motes of dust into the water and watch where they flow. This
 is not a great analogy because water is not very compressible, and these
@@ -41,6 +45,36 @@ flows are.</p>
 <p>The first few examples are quite simple. The last one shows some
 interesting behavior. Scroll to the bottom for some recommended
 reading.</p>
+<h3 id="isoclines">Isoclines</h3>
+<p>Turn on the “Iso” checkbox to display the isoclines (also called
+nullclines). These are the curves where one component of the velocity is
+zero:</p>
+<ul>
+<li><p>On the
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>x</mi><annotation encoding="application/x-tex">x</annotation></semantics></math>-isocline
+(<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>x</mi><mo>′</mo></msup><mo>=</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">x&#39; = 0</annotation></semantics></math>),
+horizontal motion stops and the flow is purely vertical. Crossing this
+curve is where the flow changes between moving left and moving
+right.</p></li>
+<li><p>On the
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>y</mi><annotation encoding="application/x-tex">y</annotation></semantics></math>-isocline
+(<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>y</mi><mo>′</mo></msup><mo>=</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">y&#39; = 0</annotation></semantics></math>),
+vertical motion stops and the flow is purely horizontal. Crossing this
+curve is where the flow changes between moving up and moving
+down.</p></li>
+</ul>
+<p>Isoclines are useful because they divide the plane into regions where
+the flow moves in a consistent direction (up-left, up-right, down-left,
+or down-right). Wherever an
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>x</mi><annotation encoding="application/x-tex">x</annotation></semantics></math>-isocline
+and a
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>y</mi><annotation encoding="application/x-tex">y</annotation></semantics></math>-isocline
+cross, both
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>x</mi><mo>′</mo></msup><mo>=</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">x&#39; = 0</annotation></semantics></math>
+and
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>y</mi><mo>′</mo></msup><mo>=</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">y&#39; = 0</annotation></semantics></math>,
+marking a <strong>stationary point</strong> (equilibrium) where a mote
+stays still.</p>
 <p>See <a href="fields.html">Fields</a> for the sample fields drawn by
 this program. See <a href="controls.html">Controls</a> for how to use
 the program.</p>

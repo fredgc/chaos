@@ -64,5 +64,8 @@
   "vectorFieldLabel": "場:",
   "velocityScaleName": "速度スケール",
   "xIsoclineColorName": "等傾線の色. X",
-  "yIsoclineColorName": "Y"
+  "yIsoclineColorName": "Y",
+  "helpMenu": "ヘルプメニュー",
+  "openDrawerTooltip": "メニューを開く",
+  "userGuidesSection": "ユーザーガイド"
 }

@@ -32,44 +32,66 @@
 der Reihe nach zu betrachten.</p>
 <h3 id="einfache-rotation">Einfache Rotation</h3>
 <p>Dies ist eine einfache Rotation im Uhrzeigersinn.</p>
-<pre><code>x&#39; =     y + p*saw(x)
-y&#39; = -x    + p*saw(y)</code></pre>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mtable><mtr><mtd columnalign="right" style="text-align: right; padding-right: 0"><msup><mi>x</mi><mo>′</mo></msup></mtd><mtd columnalign="left" style="text-align: left; padding-left: 0"><mo>=</mo><mi>y</mi><mo>+</mo><mi>p</mi><mrow><mi>saw</mi><mo>&#8289;</mo></mrow><mo stretchy="false" form="prefix">(</mo><mi>x</mi><mo stretchy="false" form="postfix">)</mo></mtd></mtr><mtr><mtd columnalign="right" style="text-align: right; padding-right: 0"><msup><mi>y</mi><mo>′</mo></msup></mtd><mtd columnalign="left" style="text-align: left; padding-left: 0"><mo>=</mo><mi>−</mi><mi>x</mi><mo>+</mo><mi>p</mi><mrow><mi>saw</mi><mo>&#8289;</mo></mrow><mo stretchy="false" form="prefix">(</mo><mi>y</mi><mo stretchy="false" form="postfix">)</mo></mtd></mtr></mtable><annotation encoding="application/x-tex">
+\begin{aligned}
+x&#39; &amp;= y + p \operatorname{saw}(x) \\
+y&#39; &amp;= -x + p \operatorname{saw}(y)
+\end{aligned}
+</annotation></semantics></math></p>
 <p>In Vektorschreibweise:</p>
-<pre><code>v&#39; = [ 0  1]v  + Störung
-     [-1  0]
-
-v = [x]
-    [y]</code></pre>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>𝐯</mi><mo>′</mo></msup><mo>=</mo><mrow><mo stretchy="true" form="prefix">[</mo><mtable><mtr><mtd columnalign="center" style="text-align: center"><mn>0</mn></mtd><mtd columnalign="center" style="text-align: center"><mn>1</mn></mtd></mtr><mtr><mtd columnalign="center" style="text-align: center"><mi>−</mi><mn>1</mn></mtd><mtd columnalign="center" style="text-align: center"><mn>0</mn></mtd></mtr></mtable><mo stretchy="true" form="postfix">]</mo></mrow><mi>𝐯</mi><mo>+</mo><mtext mathvariant="normal">Störung</mtext><mo>,</mo><mspace width="2.0em"></mspace><mi>𝐯</mi><mo>=</mo><mrow><mo stretchy="true" form="prefix">[</mo><mtable><mtr><mtd columnalign="center" style="text-align: center"><mi>x</mi></mtd></mtr><mtr><mtd columnalign="center" style="text-align: center"><mi>y</mi></mtd></mtr></mtable><mo stretchy="true" form="postfix">]</mo></mrow></mrow><annotation encoding="application/x-tex">
+\mathbf{v}&#39; = \begin{bmatrix} 0 &amp; 1 \\ -1 &amp; 0 \end{bmatrix} \mathbf{v}
+  + \text{Störung}, \qquad
+\mathbf{v} = \begin{bmatrix} x \\ y \end{bmatrix}
+</annotation></semantics></math></p>
 <p>Die Störung ist eine Sägezahnfunktion, die vom Parameter abhängt.
-Fügen Sie einige Partikel hinzu und klicken Sie auf„Start“. Sie bewegen
+Fügen Sie einige Partikel hinzu und klicken Sie auf „Start“. Sie bewegen
 sich auf einer Kreisbahn im Uhrzeigersinn.</p>
 <p>Erhöhen Sie den Parameterwert, weichen die Partikel leicht von ihren
 bisherigen Bahnen ab.</p>
-<p>Aktivieren Sie das Kontrollkästchen„Feld“, um das Vektorfeld
+<p>Aktivieren Sie das Kontrollkästchen „Feld“, um das Vektorfeld
 einzublenden. Da das Vektorfeld beschränkt ist, ist die Bahn jedes
 Partikels glatt und wird vollständig durch seinen Startpunkt bestimmt.
 Partikelbahnen können sich daher nie kreuzen.</p>
-<p>Aktivieren Sie das Kontrollkästchen„Iso“, um die Isoklinen
-anzuzeigen. Auf diesen Kurven verschwindet die x- oder y-Komponente des
-Vektorfelds. Wenn <code>x' = 0</code>, verläuft das Vektorfeld rein
-vertikal. Wenn <code>y' = 0</code>, verläuft es rein horizontal. Sind
-beide 0, bleibt das Partikel in Ruhe. Dies wird als stationärer Punkt
-des dynamischen Systems bezeichnet.</p>
+<p>Aktivieren Sie das Kontrollkästchen „Iso“, um die Isoklinen
+anzuzeigen. Auf diesen Kurven verschwindet die
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>x</mi><annotation encoding="application/x-tex">x</annotation></semantics></math>-
+oder
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>y</mi><annotation encoding="application/x-tex">y</annotation></semantics></math>-Komponente
+des Vektorfelds. Wenn
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>x</mi><mo>′</mo></msup><mo>=</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">x&#39; = 0</annotation></semantics></math>,
+verläuft das Vektorfeld rein vertikal. Wenn
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>y</mi><mo>′</mo></msup><mo>=</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">y&#39; = 0</annotation></semantics></math>,
+verläuft es rein horizontal. Sind beide 0, bleibt das Partikel in Ruhe.
+Dies wird als stationärer Punkt des dynamischen Systems bezeichnet.</p>
 <h3 id="spirale-stabiler-versus-instabiler-punkt">Spirale – stabiler
 versus instabiler Punkt</h3>
 <p>Wir erweitern das vorherige Beispiel um eine lineare Abhängigkeit von
-<code>x'</code> von <code>x</code> und <code>y'</code> von
-<code>y</code>:</p>
-<pre><code>x&#39; = p*x +   y
-y&#39; =  -x + p*y</code></pre>
-<p>Zu Beginn ist <code>p = 0</code>, was der obigen reinen Rotation
-entspricht. Im Ursprung <code>(0,0)</code> liegt ein stationärer
-Punkt.</p>
-<p>Wird der Parameter nach links verschoben (<code>p &lt; 0</code>),
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mi>x</mi><mo>′</mo></msup><annotation encoding="application/x-tex">x&#39;</annotation></semantics></math>
+von
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>x</mi><annotation encoding="application/x-tex">x</annotation></semantics></math>
+und
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mi>y</mi><mo>′</mo></msup><annotation encoding="application/x-tex">y&#39;</annotation></semantics></math>
+von
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>y</mi><annotation encoding="application/x-tex">y</annotation></semantics></math>:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mtable><mtr><mtd columnalign="right" style="text-align: right; padding-right: 0"><msup><mi>x</mi><mo>′</mo></msup></mtd><mtd columnalign="left" style="text-align: left; padding-left: 0"><mo>=</mo><mi>p</mi><mi>x</mi><mo>+</mo><mi>y</mi></mtd></mtr><mtr><mtd columnalign="right" style="text-align: right; padding-right: 0"><msup><mi>y</mi><mo>′</mo></msup></mtd><mtd columnalign="left" style="text-align: left; padding-left: 0"><mo>=</mo><mi>−</mi><mi>x</mi><mo>+</mo><mi>p</mi><mi>y</mi></mtd></mtr></mtable><annotation encoding="application/x-tex">
+\begin{aligned}
+x&#39; &amp;= px + y \\
+y&#39; &amp;= -x + py
+\end{aligned}
+</annotation></semantics></math></p>
+<p>Zu Beginn ist
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>p</mi><mo>=</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">p = 0</annotation></semantics></math>,
+was der obigen reinen Rotation entspricht. Im Ursprung
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false" form="prefix">(</mo><mn>0</mn><mo>,</mo><mn>0</mn><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">(0, 0)</annotation></semantics></math>
+liegt ein stationärer Punkt.</p>
+<p>Wird der Parameter nach links verschoben
+(<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>p</mi><mo>&lt;</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">p &lt; 0</annotation></semantics></math>),
 spiralen die Partikel auf den stationären Punkt zu. Dies ist ein
 stabiler Gleichgewichtspunkt: Partikel, die nahe am Punkt starten,
 bleiben in seiner Nähe.</p>
-<p>Wird der Parameter nach rechts verschoben (<code>p &gt; 0</code>),
+<p>Wird der Parameter nach rechts verschoben
+(<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>p</mi><mo>&gt;</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">p &gt; 0</annotation></semantics></math>),
 spiralen die Partikel vom Punkt weg. Dies ist ein instabiler
 Gleichgewichtspunkt: Partikel entfernen sich mit der Zeit.</p>
 <p>Beachten Sie die durch die Isoklinen getrennten Bereiche. In jedem
@@ -78,11 +100,15 @@ Bereich streben die Partikel in eine bestimmte Quadrantenrichtung.</p>
 <p>Hier ist ein Beispiel mit mehreren stationären Punkten—manche stabil,
 manche instabil. Partikel nahe instabilen Punkten driften ab und nähern
 sich den stabilen Punkten.</p>
-<pre><code>x&#39; = -0.2 x^3 + saw(y, y_cent)
-y&#39; = -0.2 y^3 - saw(x, x_cent)
-                        /
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mtable><mtr><mtd columnalign="right" style="text-align: right; padding-right: 0"><msup><mi>x</mi><mo>′</mo></msup></mtd><mtd columnalign="left" style="text-align: left; padding-left: 0"><mo>=</mo><mi>−</mi><mn>0.2</mn><msup><mi>x</mi><mn>3</mn></msup><mo>+</mo><mrow><mi>saw</mi><mo>&#8289;</mo></mrow><mo stretchy="false" form="prefix">(</mo><mi>y</mi><mo>,</mo><msub><mi>y</mi><mtext mathvariant="normal">cent</mtext></msub><mo stretchy="false" form="postfix">)</mo></mtd></mtr><mtr><mtd columnalign="right" style="text-align: right; padding-right: 0"><msup><mi>y</mi><mo>′</mo></msup></mtd><mtd columnalign="left" style="text-align: left; padding-left: 0"><mo>=</mo><mi>−</mi><mn>0.2</mn><msup><mi>y</mi><mn>3</mn></msup><mo>−</mo><mrow><mi>saw</mi><mo>&#8289;</mo></mrow><mo stretchy="false" form="prefix">(</mo><mi>x</mi><mo>,</mo><msub><mi>x</mi><mtext mathvariant="normal">cent</mtext></msub><mo stretchy="false" form="postfix">)</mo></mtd></mtr></mtable><annotation encoding="application/x-tex">
+\begin{aligned}
+x&#39; &amp;= -0.2 x^3 + \operatorname{saw}(y, y_{\text{cent}}) \\
+y&#39; &amp;= -0.2 y^3 - \operatorname{saw}(x, x_{\text{cent}})
+\end{aligned}
+</annotation></semantics></math></p>
+<pre><code>                        /
                    /\  /
- saw(x,c) =       /  \/
+ saw(x, c) =      /  \/
                  /</code></pre>
 <p>Wird der Parameter verändert, beginnen die stationären Punkte zu
 wandern. Die Partikel folgen ihnen und es entsteht ein chaotisches
@@ -91,10 +117,16 @@ Muster.</p>
 starten, zunächst nahe beieinander. Nach längerer Zeit driften sie
 jedoch unweigerlich auseinander.</p>
 <p>Dies veranschaulicht ein scheinbares Paradoxon der Analysis: Bei
-festem <code>t</code> hängt die Position <code>(x(t), y(t))</code>
-stetig von den Anfangswerten <code>(x(0), y(0))</code> ab. Lässt man
-<code>t</code> jedoch beliebig großwerden, geht diese Stetigkeit in der
-Praxis verloren.</p>
+festem
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>t</mi><annotation encoding="application/x-tex">t</annotation></semantics></math>
+hängt die Position
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false" form="prefix">(</mo><mi>x</mi><mo stretchy="false" form="prefix">(</mo><mi>t</mi><mo stretchy="false" form="postfix">)</mo><mo>,</mo><mi>y</mi><mo stretchy="false" form="prefix">(</mo><mi>t</mi><mo stretchy="false" form="postfix">)</mo><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">(x(t), y(t))</annotation></semantics></math>
+stetig von den Anfangswerten
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false" form="prefix">(</mo><mi>x</mi><mo stretchy="false" form="prefix">(</mo><mn>0</mn><mo stretchy="false" form="postfix">)</mo><mo>,</mo><mi>y</mi><mo stretchy="false" form="prefix">(</mo><mn>0</mn><mo stretchy="false" form="postfix">)</mo><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">(x(0), y(0))</annotation></semantics></math>
+ab. Lässt man
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>t</mi><annotation encoding="application/x-tex">t</annotation></semantics></math>
+jedoch beliebig groß werden, geht diese Stetigkeit in der Praxis
+verloren.</p>
 <p>Dieses Beispiel besitzt einen sich mit der Zeit bewegenden Attraktor:
 Schließlich kreisen alle Partikel eng um einen der vier
 Attraktor-Punkte.</p>
@@ -102,13 +134,17 @@ Attraktor-Punkte.</p>
 mit seltsamem Attraktor</h3>
 <p>Dieses Beispiel stammt aus dem in den Literaturhinweisen genannten
 Fachbuch.</p>
-<pre><code>x&#39;(t) = 0.7y + 10x(0.1-y^2)
-y&#39;(t) = -x + 0.25 sin(1.57t)</code></pre>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mtable><mtr><mtd columnalign="right" style="text-align: right; padding-right: 0"><msup><mi>x</mi><mo>′</mo></msup><mo stretchy="false" form="prefix">(</mo><mi>t</mi><mo stretchy="false" form="postfix">)</mo></mtd><mtd columnalign="left" style="text-align: left; padding-left: 0"><mo>=</mo><mn>0.7</mn><mi>y</mi><mo>+</mo><mn>10</mn><mi>x</mi><mo stretchy="false" form="prefix">(</mo><mn>0.1</mn><mo>−</mo><msup><mi>y</mi><mn>2</mn></msup><mo stretchy="false" form="postfix">)</mo></mtd></mtr><mtr><mtd columnalign="right" style="text-align: right; padding-right: 0"><msup><mi>y</mi><mo>′</mo></msup><mo stretchy="false" form="prefix">(</mo><mi>t</mi><mo stretchy="false" form="postfix">)</mo></mtd><mtd columnalign="left" style="text-align: left; padding-left: 0"><mo>=</mo><mi>−</mi><mi>x</mi><mo>+</mo><mn>0.25</mn><mrow><mi>sin</mi><mo>&#8289;</mo></mrow><mo stretchy="false" form="prefix">(</mo><mn>1.57</mn><mi>t</mi><mo stretchy="false" form="postfix">)</mo></mtd></mtr></mtable><annotation encoding="application/x-tex">
+\begin{aligned}
+x&#39;(t) &amp;= 0.7y + 10x(0.1 - y^2) \\
+y&#39;(t) &amp;= -x + 0.25 \sin(1.57t)
+\end{aligned}
+</annotation></semantics></math></p>
 <p>Obwohl dieses System chaotisch ist, besitzt es einen Attraktor. Der
 Attraktor ist keine einfache Kurve: Mit fortschreitender Zeit teilt und
 faltet er sich. Partikel entfernen sich voneinander und finden in
 veränderter Reihenfolge wieder zusammen.</p>
-<p>Fügen Sie ein Partikelgitter hinzu und beobachten Sie, wieähnliche
+<p>Fügen Sie ein Partikelgitter hinzu und beobachten Sie, wie ähnliche
 Farben anfangs zusammenbleiben und sich dann durchmischen—vergleichbar
 mit dem Kneten von Teig oder dem Schmieden von Damaszener Stahl.</p>
 <h3 id="literaturhinweise">Literaturhinweise</h3>

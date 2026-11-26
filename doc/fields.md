@@ -11,20 +11,20 @@ order.
 
 This is a simple clockwise rotation.
 
-```
-x' =     y + p*saw(x)
-y' = -x    + p*saw(y)
-```
+$$
+\begin{aligned}
+x' &= y + p \operatorname{saw}(x) \\
+y' &= -x + p \operatorname{saw}(y)
+\end{aligned}
+$$
 
 Or in vector notation:
 
-```
-v' = [ 0  1]v  + perturbation
-     [-1  0]
-
-v = [x]
-    [y]
-```
+$$
+\mathbf{v}' = \begin{bmatrix} 0 & 1 \\ -1 & 0 \end{bmatrix} \mathbf{v}
+  + \text{perturbation}, \qquad
+\mathbf{v} = \begin{bmatrix} x \\ y \end{bmatrix}
+$$
 
 The perturbation is a sawtooth that depends on the parameter. Add a few motes
 to the flow and click "play". You should see them flowing in a clockwise
@@ -38,30 +38,32 @@ is bounded, the path of each mote is smooth and it is completely determined by
 the mote's starting point. That means the motes can never intersect.
 
 Turn on the checkbox "Iso" to display the isoclines. These are the curves
-where the vector field is 0 in either the x or y component. If `x' = 0` then
-the vector field is vertical and the mote is traveling vertically. If `y' = 0`
-then the vector field is horizontal and the mote is traveling horizontally. If
-both are 0 then the mote is stationary. This is also called a stationary point
-of the dynamic system.
+where the vector field is 0 in either the $x$ or $y$ component. If $x' = 0$
+then the vector field is vertical and the mote is traveling vertically. If
+$y' = 0$ then the vector field is horizontal and the mote is traveling
+horizontally. If both are 0 then the mote is stationary. This is also called a
+stationary point of the dynamic system.
 
 ### Spiral - stable versus unstable point
 
-We change the previous example by adding a linear dependency of `x'` on `x`
-and `y'` on `y`:
+We change the previous example by adding a linear dependency of $x'$ on $x$
+and $y'$ on $y$:
 
-```
-x' = p*x +   y
-y' =  -x + p*y
-```
+$$
+\begin{aligned}
+x' &= px + y \\
+y' &= -x + py
+\end{aligned}
+$$
 
-When you start out, `p = 0`, so it is identical to the rotation above. There
-is a stationary point at the center `(0,0)`.
+When you start out, $p = 0$, so it is identical to the rotation above. There
+is a stationary point at the center $(0, 0)$.
 
-Move the parameter to the left so that `p < 0`. The motes will start to spiral
+Move the parameter to the left so that $p < 0$. The motes will start to spiral
 toward the stationary point. This is a stable stationary point. Motes that
 start near the stationary point will stay near the stationary point.
 
-Move the parameter to the right so that `p > 0`. The motes will start to
+Move the parameter to the right so that $p > 0$. The motes will start to
 spiral away from the stationary point. This is an unstable stationary point.
 Motes that start near the stationary point will eventually move away from the
 stationary point.
@@ -75,12 +77,17 @@ Here is an example with several stationary points. Some are stable and some
 are unstable. Notice that if you add a mote near one of the unstable points it
 drifts away and then starts to approach the stable points.
 
+$$
+\begin{aligned}
+x' &= -0.2 x^3 + \operatorname{saw}(y, y_{\text{cent}}) \\
+y' &= -0.2 y^3 - \operatorname{saw}(x, x_{\text{cent}})
+\end{aligned}
+$$
+
 ```
-x' = -0.2 x^3 + saw(y, y_cent)
-y' = -0.2 y^3 - saw(x, x_cent)
                         /
                    /\  /
- saw(x,c) =       /  \/
+ saw(x, c) =      /  \/
                  /
 ```
 
@@ -91,9 +98,9 @@ Because the equations are smooth, motes that start near each other, will in
 the short term, stay near each other. However, if you wait long enough they
 will eventually drift apart.
 
-This seems like a paradox of calculus: if you fix a value of `t`, then the
-position `(x(t), y(t))` varies continuously with respect to `(x(0), y(0))`.
-But if you do not fix `t`, and let it grow large, then you lose that
+This seems like a paradox of calculus: if you fix a value of $t$, then the
+position $(x(t), y(t))$ varies continuously with respect to $(x(0), y(0))$.
+But if you do not fix $t$, and let it grow large, then you lose that
 continuity.
 
 This example is interesting because there is an attractor that moves with
@@ -104,10 +111,12 @@ attractor points.
 
 This is an example from the book mentioned in the reference section below.
 
-```
-x'(t) = 0.7y + 10x(0.1-y^2)
-y'(t) = -x + 0.25 sin(1.57t)
-```
+$$
+\begin{aligned}
+x'(t) &= 0.7y + 10x(0.1 - y^2) \\
+y'(t) &= -x + 0.25 \sin(1.57t)
+\end{aligned}
+$$
 
 Although this system is chaotic, it has an attractor. Notice that the
 attractor is not really a simple curve. As time advances, the attractor

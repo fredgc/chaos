@@ -64,5 +64,8 @@
   "vectorFieldLabel": "场：",
   "velocityScaleName": "速度比例",
   "xIsoclineColorName": "等斜线颜色. X",
-  "yIsoclineColorName": "Y"
+  "yIsoclineColorName": "Y",
+  "helpMenu": "帮助菜单",
+  "openDrawerTooltip": "打开菜单",
+  "userGuidesSection": "用户指南"
 }

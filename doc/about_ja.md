@@ -22,5 +22,6 @@ GitHub（[https://github.com/fredgc/chaos][github]）で公開されています
 Androidでは、アプリをアンインストールするとローカル設定が削除されます。Webでは、ブラウザのローカルアプリケーションデータを消去すると設定が削除され
 ます。
 
-[github]: https://github.com/fredgc/chaos [issues]:
-https://github.com/fredgc/chaos/issues [gchouse]: https://www.gchouse.org
+[github]: https://github.com/fredgc/chaos
+[issues]: https://github.com/fredgc/chaos/issues
+[gchouse]: https://www.gchouse.org

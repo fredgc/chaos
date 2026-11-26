@@ -224,9 +224,9 @@ class SavableTheme extends Savable<int> {
 
   Brightness _sys_brightness = Brightness.light;
   SavableColor theme_color = SavableColor(
-      "theme_color", "Theme Color", Colors.purple, (scheme) => Colors.red);
+      "theme_color", "Theme Color", Colors.purple, (scheme) => scheme.primary);
   SavableColor background_color = SavableColor("backgroud_color",
-      "Background Color", Colors.black, (scheme) => Colors.red);
+      "Background Color", Colors.black, (scheme) => scheme.surface);
   ColorScheme _scheme = ColorScheme.light();
   ThemeMode theme_mode = ThemeMode.system;
   ThemeData theme_data = ThemeData.light();
@@ -256,8 +256,8 @@ class SavableTheme extends Savable<int> {
       // print("Bad theme value? ${prefs.getInt("theme_mode")}");
     }
     theme_color.load(prefs);
-    background_color.load(prefs);
     update();
+    background_color.load(prefs);
   }
 
   void save(SharedPreferencesWithCache prefs) {
@@ -281,7 +281,16 @@ class SavableTheme extends Savable<int> {
     // print("update theme from color ${theme_color.value}, brightness=$brightness.");
     _scheme = ColorScheme.fromSeed(
         seedColor: theme_color.value, brightness: brightness);
-    theme_data = ThemeData(colorScheme: _scheme);
+    theme_data = ThemeData(
+      colorScheme: _scheme,
+      scaffoldBackgroundColor: _scheme.surface,
+      elevatedButtonTheme: ElevatedButtonThemeData(
+        style: ElevatedButton.styleFrom(
+          backgroundColor: _scheme.primaryContainer,
+          foregroundColor: _scheme.onPrimaryContainer,
+        ),
+      ),
+    );
     background_color.value = _scheme.surface;
     // print("--- scheme.brightness = ${scheme.brightness}");
     // print("--- surface = ${scheme.surface}.");

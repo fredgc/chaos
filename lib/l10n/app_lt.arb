@@ -64,5 +64,8 @@
   "vectorFieldLabel": "Laukas:",
   "velocityScaleName": "Greičio mastelis",
   "xIsoclineColorName": "Izoklinų spalvos. X",
-  "yIsoclineColorName": "Y"
+  "yIsoclineColorName": "Y",
+  "helpMenu": "Pagalbos meniu",
+  "openDrawerTooltip": "Atidaryti meniu",
+  "userGuidesSection": "Naudotojo vadovai"
 }
